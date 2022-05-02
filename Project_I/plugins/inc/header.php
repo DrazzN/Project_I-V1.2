@@ -59,7 +59,9 @@
         width: 30px;
         height: 30px;
     }
-
+    .sidenav {
+        width: 200px;
+    }
     .mynav {
         opacity: 1;
     }

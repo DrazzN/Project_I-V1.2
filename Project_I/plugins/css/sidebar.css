@@ -13,8 +13,6 @@ body {
   width: 250px;
   height: 100vh;
   position: fixed;
-  margin-left: -300px;
-  background-color: #7952b3;
   transition: 0.4s;
 }
 
@@ -29,7 +27,7 @@ body {
 }
 
 .dropdown-menu {
-  background-color: #7952b3;
+  background-color: #f2f1f3;
 }
 
 .dropdown-item:active,

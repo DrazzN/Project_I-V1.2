@@ -7,16 +7,13 @@ $page = 'index';
   
 <head>
 <?php include '../plugins/inc/header.php'; ?>
-<link rel="stylesheet" href="<?php echo base_url ?>plugins/css/sidebar.css">
-</head>
+
 
 
 <body>
   <?php include '../plugins/inc/sidebar.php'; ?>
   <section class="my-container">
     <div class="bg-dark">
-      <button class="btn my-4" id="menu-btn">
-      </button>
       <button class="btn my-4 btn-primary text-light" id="menu-btn">
         <a href="logout.php">Logout</a>
       </button>
