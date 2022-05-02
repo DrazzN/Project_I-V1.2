@@ -8,14 +8,12 @@
 
 <body class="hold-transition login-page">
   <section class="bg login p-5 p-lg-4  text-center bg-light bg-image">
-
     <div class="container col-10 col-sm-8 px-4 py-5">
       <div class="row align-items-center g-lg-5 py-5">
         <div class="col text-start text-light">
           <h1 class="display-4 fw-bold lh-1 mb-3">Student Registration</h1>
           <p class="col-lg-10 fs-4">Sign up to start your session</p>
         </div>
-
         <div class="col col-xxl-5 col-md-10 col-sm-10 col-lg-10 mx-auto">
           <form action="http://localhost/Project_I/students/includes/signup.inc.php" method="POST" class="p-4 p-md-5 border rounded-3 bg-light">
             <div class="form-floating mb-3">
@@ -24,7 +22,7 @@
             </div>
             <div class="form-floating mb-3"> 
               <input type="text" class="form-control" id="floatingInput" placeholder="john" name="uid" value="<?php //echo $student_id; ?>" required>
-              <label for="floatingInput">Student ID</label>
+              <label for="floatingInput">Username</label>
             </div>
             <div class="form-floating mb-3">
               <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="pwd" value="<?php //echo $password; ?>" required>
@@ -50,9 +48,6 @@
         </div>
       </div>
     </div>
-
-    </div>
-
   </section>
   <?php include '../plugins/inc/footer.php'; ?>
 </body>

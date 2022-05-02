@@ -1,7 +1,12 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="http://localhost/Project_I/indx.php">eLearning</a>
+            <?php if (!$page == 'index') {
+                echo '';
+            } else{
+                echo '<a class="navbar-brand" href="http://localhost/Project_I/index.php">eLearning</a>';
+            }
+            ?>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -13,7 +18,7 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a href="#learn" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             What You'll Learn
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -24,11 +29,15 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="#instrustors" class="nav-link">
-                            Instrustors
+                        <a href="#About" class="nav-link">
+                            About
                         </a>
                     </li>
-
+                    <li class="nav-item">
+                        <a href="#Contacts" class="nav-link">
+                            Contacts
+                        </a>
+                    </li>
                 </ul>
 
             </div>

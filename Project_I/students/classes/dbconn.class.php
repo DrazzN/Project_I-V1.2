@@ -1,6 +1,6 @@
 <?php
 if (!defined('DB_SERVER')) {
-    include '../includes/initialize.php';
+    include '../../initialize.php';
 }
 
 class DBConnection
@@ -14,7 +14,7 @@ class DBConnection
     {
         try {
             $dsn = 'mysql:host='. $this->host . ';dbname='  . $this->dbname;
-            $pdo = new PDO($dsn, $this->username, "");//$this->password);
+            $pdo = new PDO($dsn, $this->username, $this->password);
             // Set the PDO error mode to exception
             $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

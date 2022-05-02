@@ -3,9 +3,9 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
+<head>
 <?php include '../plugins/inc/header.php'; ?>
-
+</head>
 <body class="hold-transition login-page">
     <section class="bg login bg p-5 text-center bg-light bg-image">
 
@@ -17,13 +17,13 @@ session_start();
                 </div>
 
                 <div class="col-md-10 col-sm-8 mx-auto col-lg-5">
-                    <form action="http://localhost/Project_I/students/includes/login.inc.php" method="post" class="p-4 p-md-5 border rounded-3 bg-light">
+                    <form action="http://localhost/Project_I/admin/includes/login.inc.php" method="post" class="p-4 p-md-5 border rounded-3 bg-light">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="floatingInput" placeholder="john" name="uid" required>
                             <label for="floatingInput">E-mail / Username</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Pwd" name="password" required>
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="pwd" required>
                             <label for="floatingPassword">Password</label>
                         </div>
                         <!--<div class="checkbox mb-3">

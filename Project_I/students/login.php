@@ -4,7 +4,9 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
 <?php include '../plugins/inc/header.php'; ?>
+</head>
 
 <body class="hold-transition login-page">
     <section class="bg login p-5 text-center bg-light bg-image">
@@ -23,7 +25,7 @@ session_start();
                             <label for="floatingInput">E-mail / Username</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Pwd" name="password" required>
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="pwd" required>
                             <label for="floatingPassword">Password</label>
                         </div>
                         <!--<div class="checkbox mb-3">

@@ -1,3 +1,7 @@
+<?php
+session_start();
+$page = 'portal';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'plugins/inc/header.php'; ?>
@@ -12,7 +16,7 @@
             <div class="card shadow">
               <div class="card-body">
                 <h1 class="card-title">Admin</h1>
-                <img class="img logo" src="http://localhost/Project_I/img/ico/people-sharp.svg" alt="">
+                <img class="img icon" src="http://localhost/Project_I/img/ico/people-sharp.svg" alt="">
                 <p class="card-text">
                   <small><i>Signin to Admin pannel.</i></small>
               </div>
@@ -24,7 +28,7 @@
             <div class="card shadow">
               <div class="card-body">
                 <h1 class="card-title">Faculty</h1>
-                <img class="img logo" src="http://localhost/Project_I/img/ico/user-tie-solid.svg" alt="">
+                <img class="img icon" src="http://localhost/Project_I/img/ico/user-tie-solid.svg" alt="">
                 <p class="card-text">
                   <small><i>Signin to Faculty Side.</i></small>
               </div>
@@ -36,7 +40,7 @@
             <div class="card shadow">
               <div class="card-body">
                 <h1 class="card-title">Student</h1>
-                <img class="img logo" src="http://localhost/Project_I/img/ico/people-circle-sharp.svg" alt="">
+                <img class="img icon" src="http://localhost/Project_I/img/ico/people-circle-sharp.svg" alt="">
                 <p class="card-text">
                   <small><i>Signin or Register.</i></small>
               </div>

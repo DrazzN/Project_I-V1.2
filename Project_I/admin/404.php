@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include '../plugins/inc/header.php'; ?>
+
+<head>
+  <?php include '../plugins/inc/header.php'; ?>
+</head>
 
 <body>
-  <section class="login p-4 text-center bg-light bg-image" style="
-      background-image: url('../img/lg-back.webp');
-      background-size: cover;
-      height: 100%;
-    ">
+  <section class="bg login p-4 text-center bg-light bg-image">
     <div class="container py-0 w-75">
       <div class="mx-auto col-sm col-md-11 col-lg-10">
         <div class="card shadow">
@@ -20,7 +19,7 @@
             </p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary"><a href="http://localhost/Project_I">Go Home</a></button>
+                <button type="button" class="btn btn-sm btn-outline-secondary"><a href="http://localhost/Project_I/index.php">Go Home</a></button>
               </div>
             </div>
           </div>

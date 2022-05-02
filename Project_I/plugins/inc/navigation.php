@@ -1,30 +1,31 @@
-  <div class="d-flex flex-column flex-shrink-0 p-3 text-dark bg-light" style="width: 280px;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-      <img class="logo img icon mx-2" src="http://localhost/Project_I/img/settings-outline.svg" alt="">
-      <span class="fs-4">Sidebar</span>
+<div class="fixed-top ssize d-flex flex-column align-item-start" id="sidebar" style="width: 280px;">
+  <div class="collapse navbar-collapse">
+    <a class="navbar-brand" href="http://localhost/Project_I/indx.php"></a>
+    <img class="logo img icon mx-2" src="http://localhost/Project_I/img/settings-outline.svg" alt="">
+    <span class="fs-4">eLearning</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
+        <a href="http://localhost/Project_I/" class="nav-link active" aria-current="page">
           <img class="img icon mx-2" src="http://localhost/Project_I/img/home-outline.svg" alt="">
           Home
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-dark">
+        <a href="http://localhost/Project_I/" class="nav-link text-dark">
           <img class="img icon mx-2" src="http://localhost/Project_I/img/settings-outline.svg" alt="">
           Dashboard
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-dark">
+        <a href="http://localhost/Project_I/" class="nav-link text-dark">
           <img class="img icon mx-2" src="http://localhost/Project_I/img/apps-outline.svg" alt="">
           Events
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-dark">
+        <a href="http://localhost/Project_I/" class="nav-link text-dark">
           <img class="img icon mx-2" src="http://localhost/Project_I/img/library-outline.svg" alt="">
           Assignnments
         </a>
@@ -53,4 +54,4 @@
       </ul>
     </div>
   </div>
-  <!--<div class="b-example-divider"></div>-->
+</div>

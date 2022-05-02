@@ -41,7 +41,7 @@ class Login extends DBConnection
           $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
           session_start();
           $_SESSION["userid"] = $user[0]["user_id"];
-          $_SESSION["useruid"] = $user[0]["username"] . ' Login success!!';
+          $_SESSION["useruid"] = $user[0]["username"] . '<br>Login success!!';
         }
 $stmt = null;
   }
