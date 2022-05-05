@@ -10,7 +10,16 @@ session_start();
 
 <body class="hold-transition login-page">
     <section class="bg login p-5 text-center bg-light bg-image">
-
+    <?php
+    if ($_GET && isset($_SESSION['error'])) {
+      echo '
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="btn-close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            ' . $_SESSION['error'] . '
+        </div>';
+        //unset($_SESSION['error']);
+    }
+    ?>
         <div class="container col-xl-10 col-xxl-8 px-4 py-5">
             <div class="row align-items-center g-lg-5 py-5">
                 <div class="col-lg-7 text-center text-lg-start text-light">

@@ -1,4 +1,6 @@
 <?php
+session_start();
+$_SESSION['page'] = 'admin';
 include "../classes/dbconn.class.php";
 include "../classes/users.class.php";
 ?>
@@ -43,7 +45,7 @@ include "../classes/users.class.php";
 								<th>Student ID</th>
 								<th>Username</th>
 								<th>Email</th>
-								<!--<th>Action</th>-->
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -60,7 +62,7 @@ include "../classes/users.class.php";
 								</td><td><b>' . $user_id . '</b></td>
 							<td><b>' . $username . '</b></td>
 							<td><b>' . $email . '</b></td>
-							<!--<td class="text-center">
+							<td class="text-center">
 								<div class="btn-group">
 									<button type="button" class="btn btn-default btn-block btn-flat dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown" aria-expanded="false">
 										Action
@@ -71,7 +73,7 @@ include "../classes/users.class.php";
 										<a class="dropdown-item action_delete" href="#">Delete</a>
 									</div>
 								</div>
-							</td>-->
+							</td>
 							</tr>
 							';
 								$i++;

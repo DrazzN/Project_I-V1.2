@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 if(isset($_POST['submit'])) {
   $fileName = $_FILES['file']['name'];
   $fileTmpName = $_FILES['file']['tmp_name'];
@@ -15,7 +17,7 @@ if(isset($_POST['submit'])) {
     if($fileError === 0){
       if($fileSize < 1000000) {
         $fileNameNew = uniqid('', true).".".$fileActualExt;
-        $fileDestination = 'uploads/'.$fileNameNew;
+        $fileDestination = 'uploads/'.$_SESSION['useruid'].'/'.$fileNameNew;
         move_uploaded_file($fileTmpName, $fileDestination);
         header("Location: index.php?uploadsuccess");
       } else{

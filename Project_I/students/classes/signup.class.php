@@ -1,10 +1,10 @@
 <?php
 
 class Signup extends DBConnection{
-  protected function setUser($uid, $pwd, $email) {
-    $stmt = $this->connect()->prepare('INSERT INTO users (username, password, email) VALUES (?, ?, ?)');
+  protected function setUser($uid, $pwd, $email, $person) {
+    $stmt = $this->connect()->prepare('INSERT INTO users (username, password, email, person) VALUES (?, ?, ?, ?)');
     $hashedPwd = md5($pwd);
-    if (!$stmt->execute(array($uid, $hashedPwd, $email))) {
+    if (!$stmt->execute(array($uid, $hashedPwd, $email, $person))) {
       $stmt = null;
       header("location : ../index.php?error=stmtfailed");
       exit();

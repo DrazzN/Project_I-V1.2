@@ -1,14 +1,14 @@
 <?php
-if (!defined('DB_SERVER')) {
-    include '../../initialize.php';
-}
+//if (!defined('DB_SERVER')) {
+    //include '../../initialize.php';
+//}
 
 class DBConnection
 {
-    private $host = DB_SERVER;
-    private $username = DB_USERNAME;
-    private $password = DB_PASSWORD;
-    private $dbname = DB_NAME;
+    private $host = 'localhost';
+    private $username = 'root';
+    private $password = '';
+    private $dbname = 'e_dbase';
 
     protected function connect()
     {

@@ -1,12 +1,12 @@
 <?php
-include "../classes/dbconn.class.php";
-include "../classes/users.class.php";
+include "classes/dbconn.class.php";
+include "classes/users.class.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <?php include '../../plugins/inc/header.php'; ?>
+  <?php include '../plugins/inc/header.php'; ?>
 </head>
 
 
@@ -25,7 +25,7 @@ include "../classes/users.class.php";
   </header>
 
   <section class="d-flex">
-    <?php include '../../plugins/inc/sidebar.php'; ?>
+    <?php include '../plugins/inc/sidebar.php'; ?>
 
     <content>
 		<div class="col-9">
@@ -70,7 +70,7 @@ include "../classes/users.class.php";
   </section>
 
   <footer class="">
-    <?php include '../../plugins/inc/footer.php'; ?>
+    <?php include '../plugins/inc/footer.php'; ?>
   </footer>
 
 </body>

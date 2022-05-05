@@ -31,7 +31,7 @@ session_start();
                                 <input type="checkbox" value="remember-me"> Remember me
                             </label>
                         </div>-->
-                        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign In</button>
+                        <button class="w-100 btn btn-lg btn-primary" type="submit" name="submit">Sign In</button>
                         <hr class="my-4">
                         <small class="text-muted">
                             <a href="http://localhost/Project_I/portal.php">Go Back</a>

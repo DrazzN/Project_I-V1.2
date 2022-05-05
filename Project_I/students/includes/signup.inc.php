@@ -7,12 +7,13 @@ if(isset($_POST["submit"])){
   $pwd = $_POST["pwd"];
   $cpwd = $_POST["cpwd"];
   $email = $_POST["email"];
-  $_SESSION["useruid"] = $_POST["uid"];
+  $person = "student";
+  $_SESSION["useruid"] = $uid;
 //Instantiate SignupContr class
 include "../classes/dbconn.class.php";
 include "../classes/signup.class.php";
 include "../classes/signup-contr.class.php";
-$signup = new SignupContr($uid, $pwd, $cpwd, $email);
+$signup = new SignupContr($uid, $pwd, $cpwd, $email, $person);
  
 //Running error handlers and user signup
 $signup->signupUser();

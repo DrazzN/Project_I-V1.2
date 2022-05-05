@@ -1,6 +1,6 @@
 <?php
 if (!defined('DB_SERVER')) {
-    include '../initialize.php';
+    include 'http://localhost/Project_I/initialize.php';
 }
 
 class DBConnection

@@ -1,76 +1,91 @@
-<nav class="navbar bg-light" id="sidebar">
-  <a href="http://localhost/Project_I/" class="mt-5 text-dark">
-    <div class="navbar-brand font-weight-bold">eLearning</div>
-  </a>
-  <ul class="navbar-nav d-flex flex-column mt-5 w-100">
+<nav class="flex-shrink-0 p-3 bg-light" style="width: 280px;" id="sidebar">
+  <div class="dropdown">
+    <a href="#" class="d-flex align-items-start justify-content-start p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="https://github.com/mdo.png" alt="" width="30" height="30" class="rounded-circle">&nbsp;Person
+    </a>
+    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
+      <!--<li><a class="dropdown-item" href="#">New project...</a></li>
+          <li><a class="dropdown-item" href="#">Settings</a></li>-->
+      <li><a class="dropdown-item" href="#">Profile</a></li>
+      <li>
+        <hr class="dropdown-divider">
+      </li>
+      <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
+    </ul>
+  </div>
+  <hr>
+  <ul class="nav nav-pills nav-sidebar flex-column nav-flat">
     <li class="nav-item">
-      <a href="http://localhost/Project_I/" class="nav-link active text-dark" aria-current="page">
-        <img class="img icon mx-2" src="http://localhost/Project_I/img/home-outline.svg" alt="">
-        Home
-      </a>
+      <a href="http://localhost/Project_I/" class="nav-link text-dark" aria-current="page">
+        <img class="img icon mx-2" src="http://localhost/Project_I/img/home-outline.svg" alt="">Home</a>
     </li>
-    <li>
-      <a href="http://localhost/Project_I/" class="nav-link text-dark">
-        <img class="img icon mx-2" src="http://localhost/Project_I/img/settings-outline.svg" alt="">
-        Dashboard
-      </a>
+    <hr>
+    <li class="nav-item">
+      <a href="http://localhost/Project_I/<?php echo $_SESSION['page']; ?>/" class="nav-link text-dark">
+        <img class="img icon mx-2" src="http://localhost/Project_I/img/speedometer-outline.svg" alt="">Dashboard
+        </div></a>
     </li>
-    <li>
-      <a href="http://localhost/Project_I/students/course/" class="nav-link text-dark">
-        <img class="img icon mx-2" src="http://localhost/Project_I/img/apps-outline.svg" alt="">
-        Courses
-      </a>
+    <hr>
+    <li class="nav-item">
+      <a href="http://localhost/Project_I/<?php echo $_SESSION['page']; ?>/course/" class="nav-link text-dark">
+        <img class="img icon mx-2" src="http://localhost/Project_I/img/apps-outline.svg" alt="">Courses</a>
     </li>
-    <li>
-      <a href="http://localhost/Project_I/students/assignments/" class="nav-link text-dark">
-        <img class="img icon mx-2" src="http://localhost/Project_I/img/library-outline.svg" alt="">
-        Assignnments
-      </a>
+    <hr>
+    <li class="nav-item">
+      <a href="http://localhost/Project_I/<?php echo $_SESSION['page']; ?>/assignments/" class="nav-link text-dark">
+        <img class="img icon mx-2" src="http://localhost/Project_I/img/library-outline.svg" alt="">Assignnments</a>
     </li>
-    <li>
-      <a href="http://localhost/Project_I/students/users/" class="nav-link text-dark">
-        <img class="img icon mx-2" src="http://localhost/Project_I/img/person-outline.svg" alt="">
-        Users
-      </a>
+    <hr>
+    <li class="nav-item">
+      <a href="http://localhost/Project_I/<?php echo $_SESSION['page']; ?>/users/" class="nav-link text-dark">
+        <img class="img icon mx-2" src="http://localhost/Project_I/img/person-outline.svg" alt="">Users</a>
     </li>
+    <hr>
   </ul>
 </nav>
-
 <!--
-<nav class="ssize navbar d-flex flex-column align-item-start bg-light" id="sidebar">
-  <a href="#" class="mt-5">
-    <div class="navbar-brand display-5 font-weight-bold">eLearning</div>
-  </a>
-  <ul class="navbar-nav d-flex flex-column mt-5 w-100">
-    <li class="nav-item">
-      <a href="http://localhost/Project_I/" class="nav-link active" aria-current="page">
-        <img class="img icon mx-2" src="http://localhost/Project_I/img/home-outline.svg" alt="">
-        Home
-      </a>
-    </li>
-    <li>
-      <a href="http://localhost/Project_I/" class="nav-link text-dark">
-        <img class="img icon mx-2" src="http://localhost/Project_I/img/settings-outline.svg" alt="">
-        Dashboard
-      </a>
-    </li>
-    <li>
-      <a href="http://localhost/Project_I/admin/course/" class="nav-link text-dark">
-        <img class="img icon mx-2" src="http://localhost/Project_I/img/apps-outline.svg" alt="">
-        Courses
-      </a>
-    </li>
-    <li>
-      <a href="http://localhost/Project_I/assignments/" class="nav-link text-dark">
-        <img class="img icon mx-2" src="http://localhost/Project_I/img/library-outline.svg" alt="">
-        Assignnments
-      </a>
-    </li>
-    <li>
-      <a href="http://localhost/Project_I/students/users/" class="nav-link text-dark">
-        <img class="img icon mx-2" src="http://localhost/Project_I/img/person-outline.svg" alt="">
-        Users
-      </a>
-    </li>
-  </ul>
-</nav>-->
+      <div class="d-flex flex-column flex-shrink-0 bg-light">
+      <div class="dropdown">
+        <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle">
+        </a>
+        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
+          <li><a class="dropdown-item" href="#">New project...</a></li>
+          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="#">Sign out</a></li>
+        </ul>
+      </div>
+      <hr>
+      <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+        <li class="nav-item">
+          <a href="#" class="nav-link py-3 border-bottom" aria-current="page" title="Home" data-bs-toggle="tooltip" data-bs-placement="right">
+            <img class="img icon" src="http://localhost/Project_I/img/home-outline.svg" alt="">
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link py-3 border-bottom" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
+            <img class="img icon" src="http://localhost/Project_I/img/speedometer-outline.svg" alt="">
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link py-3 border-bottom" title="Courses" data-bs-toggle="tooltip" data-bs-placement="right">
+            <img class="img icon" src="http://localhost/Project_I/img/apps-outline.svg" alt="">
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link py-3 border-bottom" title="Assignments" data-bs-toggle="tooltip" data-bs-placement="right">
+            <img class="img icon" src="http://localhost/Project_I/img/library-outline.svg" alt="">
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link py-3 border-bottom" title="Users" data-bs-toggle="tooltip" data-bs-placement="right">
+            <img class="img icon" src="http://localhost/Project_I/img/person-outline.svg" alt="">
+          </a>
+        </li>
+      </ul>
+
+    </div>-->

@@ -54,6 +54,9 @@
     a {
         text-decoration: none;
     }
+    a :hover{
+        background: #eccfcf;
+    }
 
     .icon {
         width: 30px;
@@ -66,3 +69,57 @@
         opacity: 1;
     }
 </style>
+<style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* Style the header */
+    header {
+      background-color: #666;
+      padding: 0px;
+      font-size: 35px;
+      color: white;
+    }
+
+    section {
+      height: 100%;
+    }
+
+    /* Create two columns/boxes that floats next to each other */
+    nav {
+      width: 20%;
+      height: 100%;
+      /* only for demonstration, should be removed */
+      background: #ccc;
+      padding: 20px;
+    }
+
+    content {
+      float: left;
+      padding: 20px;
+      width: 80%;
+      background-color: #f1f1f1;
+      height: 100%;
+      /* only for demonstration, should be removed */
+    }
+
+    /* Clear floats after the columns */
+    section::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Style the footer */
+    footer {
+      background-color: #777;
+      padding: 0px;
+      text-align: center;
+      color: white;
+    }
+  </style>

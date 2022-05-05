@@ -1,49 +1,66 @@
 <?php
 session_start();
-$page = 'index';
+$_SESSION['page'] = 'admin';
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  
-<head>
-<?php include '../plugins/inc/header.php'; ?>
 
+<head>
+  <?php include '../plugins/inc/header.php'; ?>
+</head>
 
 
 <body>
-  <?php include '../plugins/inc/sidebar.php'; ?>
-  <section class="my-container">
-    <div class="bg-dark">
-      <button class="btn my-4 btn-primary text-light" id="menu-btn">
-        <a href="logout.php">Logout</a>
-      </button>
-
+  <header>
+    <div class="bg-dark d-flex">
+      <div class="col navbar-brand font-weight-bold">
+        <a href="http://localhost/Project_I/" class="text-light">eLearning</a>
+      </div>
+      <!--<div class="col">
+        <button class="btn btn-outline-info btn-lg px-4 m-2fw-bold">
+          <a class="link-light" href="logout.php">Logout</a>
+        </button>
+      </div>-->
     </div>
+  </header>
 
-    <h1>DashBoard</h1>
-    <div class="text-light ">
+  <section class="d-flex">
+    <?php include '../plugins/inc/sidebar.php'; ?>
 
-    </div>
-    <p>
-      <?php echo "<h1>Welcome " . $_SESSION["useruid"] . "</h1>"; ?>
-
-    </p>
+    <content>
+      <div class="card card-outline card-primary" style="height:100%;">
+        <div>
+          <h1 class="ps-3 pt-3">DashBoard</h1>
+          <hr>
+          <div>
+            <p>
+              <?php
+              if (isset($_GET['error'])) {
+                if ($_GET['error'] = 'none') {
+                  echo '<div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                Login Successful...!!
+                </div>';
+                  //unset($_SESSION['error']);
+                }
+              }
+              echo '<h1 class="ps-3">Welcome ';
+              if (isset($_SESSION['useruid'])) {
+                echo $_SESSION['useruid'];
+              }
+              echo '</h1>';
+              ?>
+            </p>
+          </div>
+        </div>
+      </div>
+    </content>
   </section>
-  <?php include '../plugins/inc/footer.php'; ?>
 
-  <!-- bootstrap js -->
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js" integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d" crossorigin="anonymous"></script>
-  <!-- custom js -->
-  <script>
-    var menu_btn = document.querySelector("#menu-btn")
-    var sidebar = document.querySelector("#sidebar")
-    var container = document.querySelector(".my-container")
-    menu_btn.addEventListener("click", () => {
-      sidebar.classList.toggle("active-nav")
-      container.classList.toggle("active-cont")
-    })
-  </script>
+  <footer class="">
+    <?php include '../plugins/inc/footer.php'; ?>
+  </footer>
+
 </body>
 
 </html>
