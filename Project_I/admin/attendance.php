@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['user'] = 'faculty';
+$_SESSION['user'] = 'admin';
 $_SESSION['page'] = 'attendance';
 
 include "classes/dbconn.class.php";

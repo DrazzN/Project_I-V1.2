@@ -1,4 +1,8 @@
 <?php
+session_start();
+$_SESSION['user'] = 'students';
+$_SESSION['page'] = 'users';
+
 include "../classes/dbconn.class.php";
 include "../classes/users.class.php";
 ?>

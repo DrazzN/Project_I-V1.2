@@ -27,14 +27,21 @@ class Course extends DBConnection{
     return $resultCheck;
   }
 }
+
 class Subject extends DBConnection{
   public function getSubject() {
     $stmt = $this->connect()->query('SELECT * FROM subject');
     return $stmt;
   }
+  public function getLevel() {
+    $stmtlv = $this->connect()->query('SELECT COUNT(level), level FROM subject GROUP BY level;');
+    return $stmtlv;
+  }
 }
 $obj = new Subject;
 $results = $obj->getsubject();
+$semi = $obj->getLevel();
+
 class Coursedelete extends DBConnection{
   public function deleteSubject($subject_code) {
    $stmt = $this->connect()->prepare('DELETE FROM subject WHERE subject_code = ?');
@@ -46,6 +53,7 @@ class Coursedelete extends DBConnection{
   $stmt = null;
   }
 }
+
 class CourseUpdate extends DBConnection{
   public function updateSubject($subject_code, $course_id, $level, $description, $id) {
     $stmt = $this->connect()->prepare('UPDATE subject SET subject_code= ?, course_id= ?, level= ?, description= ? WHERE id = ?');

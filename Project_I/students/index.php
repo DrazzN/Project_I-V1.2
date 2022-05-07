@@ -1,6 +1,7 @@
 <?php
 session_start();
-$_SESSION['page'] = 'students';
+$_SESSION['user'] = 'students';
+$_SESSION['page'] = 'dashboard';
 ?>
 <!DOCTYPE html>
 <html lang="en">

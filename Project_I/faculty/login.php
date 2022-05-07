@@ -1,5 +1,7 @@
 <?php
 session_start();
+$_SESSION['user'] = 'faculty';
+$_SESSION['page'] = 'login';
 ?>
 <!DOCTYPE html>
 <html lang="en">

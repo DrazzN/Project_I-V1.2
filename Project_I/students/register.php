@@ -1,5 +1,7 @@
 <?php
 session_start();
+$_SESSION['user'] = 'students';
+$_SESSION['page'] = 'register';
 ?>
 <!DOCTYPE html>
 <html lang="en" class="" style="height: auto;">

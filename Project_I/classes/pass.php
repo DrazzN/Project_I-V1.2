@@ -14,8 +14,8 @@ include 'Query.class.php'; ?>
     $Obj = new Query();
     $pas = md5('admin2123');
     //echo $Obj->setUsersStmt('admin3','admin3@gmail.com',$pas);
-    echo $Obj->getUsers();
-    echo $Obj->getUsersStmt('admin2','admin2@gmail.com');
+    $result = $Obj->getUsers();
+    //echo $Obj->getUsersStmt('admin2','admin2@gmail.com');
 
 
 

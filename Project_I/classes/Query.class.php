@@ -3,11 +3,12 @@
 class Query extends DBConnection {
 
   public function getUsers() {
-    $sql = "SELECT * FROM users";
+    $sql = "SELECT COUNT(level), level FROM subject GROUP BY level;";
     $stmt = $this->connect()->query($sql);
-    while($row = $stmt->fetch()) {
-      echo $row['username']. '<br>';
-    }
+    //while($row = $stmt->fetch()) {
+     // echo $row['level']. '<br>';
+     return $stmt;
+    //}
   }
 
   public function getUsersStmt($username, $password) {

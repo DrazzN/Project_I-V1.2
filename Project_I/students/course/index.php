@@ -1,9 +1,12 @@
 <?php
+session_start();
+$_SESSION['user'] = 'students';
+$_SESSION['page'] = 'course';
 
 include "../classes/dbconn.class.php";
 include "../classes/course.class.php";
 
-session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

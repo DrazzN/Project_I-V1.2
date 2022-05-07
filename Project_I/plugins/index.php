@@ -77,12 +77,12 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="#About" class="nav-link">
+                            <a href="http://localhost/Project_I/about.php" class="nav-link">
                                 About
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#Contacts" class="nav-link">
+                            <a href="http://localhost/Project_I/contacts.php" class="nav-link">
                                 Contacts
                             </a>
                         </li>

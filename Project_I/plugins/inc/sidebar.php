@@ -16,28 +16,28 @@
   <hr>
   <ul class="nav nav-pills nav-sidebar flex-column nav-flat">
     <li class="nav-item">
-      <a href="http://localhost/Project_I/" class="nav-link text-dark" aria-current="page">
+      <a href="http://localhost/Project_I/" class="nav-link text-dark<?php if (isset($_SESSION['page'])){if($_SESSION['page'] == 'home' ){echo ' active';}}; ?>" aria-current="page">
         <img class="img icon mx-2" src="http://localhost/Project_I/img/home-outline.svg" alt="">Home</a>
     </li>
     <hr>
     <li class="nav-item">
-      <a href="http://localhost/Project_I/<?php echo $_SESSION['page']; ?>/" class="nav-link text-dark">
+      <a href="http://localhost/Project_I/<?php echo $_SESSION['user']; ?>/" class="nav-link text-dark<?php if (isset($_SESSION['page'])){if($_SESSION['page'] == 'dashboard' ){echo 'active';}}; ?>">
         <img class="img icon mx-2" src="http://localhost/Project_I/img/speedometer-outline.svg" alt="">Dashboard
         </div></a>
     </li>
     <hr>
     <li class="nav-item">
-      <a href="http://localhost/Project_I/<?php echo $_SESSION['page']; ?>/course/" class="nav-link text-dark">
+      <a href="http://localhost/Project_I/<?php echo $_SESSION['user']; ?>/course/" class="nav-link text-dark<?php if (isset($_SESSION['page'])){if($_SESSION['page'] == 'course' ){echo 'active';}}; ?>">
         <img class="img icon mx-2" src="http://localhost/Project_I/img/apps-outline.svg" alt="">Courses</a>
     </li>
     <hr>
     <li class="nav-item">
-      <a href="http://localhost/Project_I/<?php echo $_SESSION['page']; ?>/assignments/" class="nav-link text-dark">
+      <a href="http://localhost/Project_I/<?php echo $_SESSION['user']; ?>/assignments/" class="nav-link text-dark<?php if (isset($_SESSION['page'])){if($_SESSION['page'] == 'assignments' ){echo 'active';}}; ?>">
         <img class="img icon mx-2" src="http://localhost/Project_I/img/library-outline.svg" alt="">Assignnments</a>
     </li>
     <hr>
     <li class="nav-item">
-      <a href="http://localhost/Project_I/<?php echo $_SESSION['page']; ?>/users/" class="nav-link text-dark">
+      <a href="http://localhost/Project_I/<?php echo $_SESSION['user']; ?>/users/" class="nav-link text-dark<?php if (isset($_SESSION['page'])){if($_SESSION['page'] == 'users' ){echo 'active';}}; ?>">
         <img class="img icon mx-2" src="http://localhost/Project_I/img/person-outline.svg" alt="">Users</a>
     </li>
     <hr>

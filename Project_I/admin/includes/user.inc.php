@@ -1,37 +1,43 @@
 <?php
 
 if (isset($_POST)) {
-  //Grabbing the Data
-  $subject_code = $_POST["subject_code"];
-  $course_id = $_POST["course_id"];
-  $level = $_POST["level"];
-  $description = $_POST["description"];
-  $id = $_POST["id"];
   //Instantiate class
   include "../classes/dbconn.class.php";
-  include "../classes/user.class.php";
+  include "../classes/users.class.php";
   include "../classes/user-contr.class.php";
-  if (isset($_POST["add-submit"])) {
-    $signup = new UserContr($subject_code, $User_id, $level, $description);
 
-    $signup->addSubject();
-    // Going to back to User page
-    header("location: ../User/index.php?error=added");
-  }
-  if (isset($_POST["delete-submit"])) {
-    $deletion = new Userdelete($subject_code);
+  if (isset($_POST["add-user-submit"])) {
+    //Grabbing the Data
+    $uid = $_POST["uid"];
+    $email = $_POST["email"];
+    $pwd = md5($_POST["pwd"]);
+    $person = $_POST["person"];
+    $add = new UserContr($uid, $email, $pwd, $person);
 
-    $deletion->deleteSubject($subject_code);
+    $add->addUser($uid, $email, $pwd, $person);
     // Going to back to User page
-    header("location: ../User/index.php?error=deleted");
+    header("location: ../users/index.php?error=added");
   }
-  if (isset($_POST["update-submit"])) {
-    $update = new UserUpdate();//$subject_code, $User_id, $level, $description, $id);
 
-    $update->updateSubject($subject_code, $User_id, $level, $description, $id);
+  if (isset($_POST["delete-user-submit"])) {
+    //Grabbing the Data
+    $uid = $_POST["uid"];
+    $deletion = new UserDelete($uid);
+
+    $deletion->deleteUser($uid);
     // Going to back to User page
-    header("location: ../User/index.php?error=added");
+    header("location: ../users/index.php?error=deleted");
   }
-  
-  
+  if (isset($_POST["update-user-submit"]))
+    //Grabbing the Data
+    $uid = $_POST["uid"];
+    $email = $_POST["email"];
+    $pwd = md5($_POST["pwd"]);
+    $id = $_POST["id"]; {
+    $update = new UserUpdate();
+
+    $update->updateUser($uid, $email, $pwd, $id);
+    // Going to back to User page
+    header("location: ../users/index.php?error=updated");
+  }
 }

@@ -1,12 +1,8 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <?php if (!$page == 'index') {
-                echo '';
-            } else{
-                echo '<a class="navbar-brand" href="http://localhost/Project_I/index.php">eLearning</a>';
-            }
-            ?>
+            <a class="navbar-brand" href="http://localhost/Project_I/index.php">eLearning</a>
+
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -29,12 +25,12 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="#About" class="nav-link">
+                        <a href="http://localhost/Project_I/about.php" class="nav-link">
                             About
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#Contacts" class="nav-link">
+                        <a href="http://localhost/Project_I/contacts.php" class="nav-link">
                             Contacts
                         </a>
                     </li>

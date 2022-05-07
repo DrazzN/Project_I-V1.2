@@ -32,7 +32,7 @@ class CourseContr extends Course {
     } else {
       $result = true;
     }
-    return $result;;
+    return $result;
   }
   private function subAlreadyinCheck() {
     if (!$this->checkSubject($this->subject_code, $this->description)) {
@@ -43,5 +43,3 @@ class CourseContr extends Course {
     return $result;
   }
 }
-
-?>
