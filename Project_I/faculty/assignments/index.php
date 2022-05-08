@@ -1,7 +1,7 @@
 <?php
 session_start();
 $page = 'assignments';
-if($_SESSION['user'] != 'student') {
+if($_SESSION['user'] != 'faculty') {
   header("location: ../error.php");
 }
 

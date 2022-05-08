@@ -1,7 +1,6 @@
 <?php
 session_start();
-$_SESSION['user'] = 'admin';
-$_SESSION['page'] = 'login';
+$page = 'login';
 ?>
 <!DOCTYPE html>
 <html lang="en">

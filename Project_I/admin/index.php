@@ -1,7 +1,9 @@
 <?php
 session_start();
-$_SESSION['user'] = 'admin';
-$_SESSION['page'] = 'home';
+$page = 'dashboard';
+if($_SESSION['user'] != 'admin') {
+  header("location: error.php");
+}
 
 ?>
 <!DOCTYPE html>
@@ -18,11 +20,6 @@ $_SESSION['page'] = 'home';
       <div class="col navbar-brand font-weight-bold">
         <a href="http://localhost/Project_I/" class="text-light">eLearning</a>
       </div>
-      <!--<div class="col">
-        <button class="btn btn-outline-info btn-lg px-4 m-2fw-bold">
-          <a class="link-light" href="logout.php">Logout</a>
-        </button>
-      </div>-->
     </div>
   </header>
 

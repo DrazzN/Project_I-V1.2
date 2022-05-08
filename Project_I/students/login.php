@@ -1,7 +1,9 @@
 <?php
 session_start();
-$_SESSION['user'] = 'students';
-$_SESSION['page'] = 'login';
+$page = 'login';
+if($_SESSION['user'] != 'student') {
+  header("location: error.php");
+}
 
 ?>
 <!DOCTYPE html>

@@ -1,6 +1,10 @@
 <?php
 session_start();
-$_SESSION['page'] = 'admin';
+$page = 'course';
+if($_SESSION['user'] != 'admin') {
+  header("location: ../error.php");
+}
+
 include "../classes/dbconn.class.php";
 include "../classes/course.class.php";
 
@@ -20,11 +24,6 @@ include "../classes/course.class.php";
 			<div class="col navbar-brand font-weight-bold">
 				<a href="http://localhost/Project_I/" class="text-light">eLearning</a>
 			</div>
-			<!--<div class="col">
-        <button class="btn btn-outline-info btn-lg px-4 m-2fw-bold">
-          <a class="link-light" href="logout.php">Logout</a>
-        </button>
-      </div>-->
 		</div>
 	</header>
 

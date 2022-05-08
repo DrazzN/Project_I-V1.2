@@ -1,8 +1,9 @@
 <?php
 session_start();
-$_SESSION['user'] = 'admin';
-$_SESSION['page'] = 'attendance';
-
+$page = 'attendance';
+if($_SESSION['user'] != 'admin') {
+  header("location: error.php");
+}
 include "classes/dbconn.class.php";
 include "classes/users.class.php";
 

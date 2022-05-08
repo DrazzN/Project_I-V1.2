@@ -1,10 +1,10 @@
 <?php
 class Login extends DBConnection
 {
-  protected function getUser($uid, $pwd)//, $person)
+  protected function getUser($uid, $pwd)
   {
     $stmt = $this->connect()->prepare('SELECT password FROM users WHERE username = ? OR email = ?');
-    if (!$stmt->execute(array($uid, $pwd))) {//, $person))) {
+    if (!$stmt->execute(array($uid, $pwd))) {
       $stmt = null;
       header("location : ../index.php?error=stmtfailed");
       

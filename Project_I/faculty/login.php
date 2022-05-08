@@ -1,7 +1,7 @@
 <?php
 session_start();
-$_SESSION['user'] = 'faculty';
-$_SESSION['page'] = 'login';
+$page = 'login';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +19,7 @@ $_SESSION['page'] = 'login';
                 </div>
 
                 <div class="col-md-10 col-sm-8 mx-auto col-lg-5">
-                    <form action="http://localhost/Project_I/admin/includes/login.inc.php" method="post" class="p-4 p-md-5 border rounded-3 bg-light">
+                    <form action="http://localhost/Project_I/faculty/includes/login.inc.php" method="post" class="p-4 p-md-5 border rounded-3 bg-light">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="floatingInput" placeholder="john" name="uid" required>
                             <label for="floatingInput">E-mail / Username</label>

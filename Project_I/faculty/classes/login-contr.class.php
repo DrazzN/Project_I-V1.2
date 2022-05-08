@@ -3,21 +3,19 @@
 class LoginContr extends Login {
   private $uid;
   private $pwd;
-  //private $person;
-  public function __construct($uid, $pwd) {//, $person) {
+  public function __construct($uid, $pwd) {
     $this->uid = $uid;
     $this->pwd = $pwd;
-    //$this->person = $person;
   }
 
   public function loginUser() {
     if($this->emptyInput() == false) {
       $_SESSION['error'] = "Empty input!";
       //echo "Empty input!";
-      header("location: ../login.php?error=emptyfield");
+      header("location: ../index.php?error=emptyfield");
       exit();
     }
-    $this->getUser($this->uid, $this->pwd);//, $this->person); 
+    $this->getUser($this->uid, $this->pwd); 
   }
   private function emptyInput() {
 
@@ -28,6 +26,7 @@ class LoginContr extends Login {
     }
     return $result;
   }
+
 }
 
 ?>

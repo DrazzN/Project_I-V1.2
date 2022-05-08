@@ -1,7 +1,9 @@
 <?php
 session_start();
-$_SESSION['user'] = 'students';
-$_SESSION['page'] = 'course';
+$page = 'course';
+if($_SESSION['user'] != 'student') {
+  header("location: ../error.php");
+}
 
 include "../classes/dbconn.class.php";
 include "../classes/course.class.php";
