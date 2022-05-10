@@ -24,7 +24,8 @@ class UserContr extends User {
       header("location: ../users/index.php?error=alreadyadded");
       exit();
     }
-    $this->setUser($this->uid, $this->email,$this->pwd, $this->person); 
+    $this->setUser($this->uid, $this->email, $this->pwd, $this->person); 
+    $this->setProf($this->uid, $this->email);
   }
   private function emptyInput() {
     if (empty($this->uid) || empty($this->email) || empty($this->pwd) || empty($this->person)) {

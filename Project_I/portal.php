@@ -1,13 +1,24 @@
 <?php
 session_start();
 $page = 'portal';
+if (isset($_SESSION['user'])) {
+  if ($_SESSION['user'] == 'admin') {
+    header("Location: admin/index.php");
+  } elseif ($_SESSION['user'] == 'faculty') {
+    header("Location: faculty/index.php");
+  } elseif ($_SESSION['user'] == 'faculty') {
+    header("Location: students/index.php");
+  }
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'plugins/inc/header.php'; ?>
 
 <body>
-<?php include 'plugins/inc/topnavbar.php'; ?>
+  <?php include 'plugins/inc/topnavbar.php'; ?>
   <section class="bg py-5 text-center bg-light bg-imag">
     <div class="container py-0 ssize">
       <div class="row row-cols-md-3 align-items-center py-1 bg-dark">

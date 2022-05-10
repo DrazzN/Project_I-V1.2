@@ -1,12 +1,19 @@
 <?php
 session_start();
 $page = 'login';
+if (isset($_SESSION['user'])) {
+    if ($_SESSION['user'] == 'admin') {
+        header("Location: index.php");
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<?php include '../plugins/inc/header.php'; ?>
+    <?php include '../plugins/inc/header.php'; ?>
 </head>
+
 <body class="hold-transition login-page">
     <section class="bg login bg p-5 text-center bg-light bg-image">
 

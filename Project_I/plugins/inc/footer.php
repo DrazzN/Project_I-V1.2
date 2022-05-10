@@ -1,6 +1,6 @@
 <footer class="footer mt-auto py-0 bg-light">
         <div class="container">
-            <span class="text-muted">© 1985-2022 Blackboard Inc. All Rights Reserved.
+            <span class="text-muted">© 1985-2022 AToughCookie Inc. All Rights Reserved.
                 <a href="#">Help</a>
                 <a href="#">Privacy and Terms of Use</a></span>
             <a href="#">Back to top</a>

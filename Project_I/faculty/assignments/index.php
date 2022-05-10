@@ -1,7 +1,7 @@
 <?php
 session_start();
 $page = 'assignments';
-if($_SESSION['user'] != 'faculty') {
+if ($_SESSION['user'] != 'faculty') {
   header("location: ../error.php");
 }
 
@@ -35,7 +35,7 @@ include "../classes/users.class.php";
     <?php include '../../plugins/inc/sidebar.php'; ?>
 
     <content>
-		<div class="col-9">
+      <div class="col-9">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
           Upload Assignment
         </button>
@@ -60,17 +60,66 @@ include "../classes/users.class.php";
                   <div class="form-group">
                     <input type="file" class="form-control" name="file">
                   </div>
-                
+
               </div>
               <div class="modal-footer">
                 <button type="submit" name="submit" class="btn btn-primary">Upload</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div></form>
+              </div>
+              </form>
             </div>
           </div>
         </div>
         <br>
+        <a href="" download="<?php echo $files[$a]; ?>"></a>
+        <div class="span9" id="content">
+          <div class="row-fluid">
+            <div id="block_bg" class="block">
+              <div class="navbar navbar-inner block-header">
+                <div class="muted pull-left">Assignment File Uploaded List</div>
+              </div>
+              <div class="block-content collapse in">
+                <div class="span12">
+                  <table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
 
+                    <thead>
+                      <tr>
+
+                        <th>File Name</th>
+                        <th>Description</th>
+                        <th>Date Upload</th>
+                        <th>Upload By</th>
+                        <th>Class</th>
+
+                      </tr>
+
+                    </thead>
+                    <tbody>
+
+                      <?php
+                      $query = mysqli_query($conn, "select * FROM assignment LEFT JOIN teacher ON teacher.teacher_id = assignment.teacher_id 
+																				  LEFT JOIN teacher_class ON teacher_class.teacher_class_id = assignment.class_id 
+																				  INNER JOIN class ON class.class_id = teacher_class.class_id  ") or die(mysqli_error());
+                      while ($row = mysqli_fetch_array($query)) {
+                      ?>
+                        <tr>
+                          <td><?php echo $row['fname']; ?></td>
+                          <td><?php echo $row['fdesc']; ?></td>
+                          <td><?php echo $row['fdatein']; ?></td>
+                          <td><?php echo $row['firstname'] . " " . $row['lastname']; ?></td>
+                          <td><?php echo $row['class_name']; ?></td>
+                        </tr>
+                      <?php } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- /block -->
+          </div>
+
+
+        </div>
 
       </div>
     </content>

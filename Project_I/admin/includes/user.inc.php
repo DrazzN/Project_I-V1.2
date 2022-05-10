@@ -15,6 +15,7 @@ if (isset($_POST)) {
     $add = new UserContr($uid, $email, $pwd, $person);
 
     $add->addUser($uid, $email, $pwd, $person);
+    
     // Going to back to User page
     header("location: ../users/index.php?error=added");
   }

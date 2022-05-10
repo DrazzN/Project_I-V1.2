@@ -14,7 +14,7 @@ $login = new LoginContr($uid, $pwd);
 $login->loginUser();
 // Going to back to front page
 session_start();
-$_SESSION['user'] = 'admin';
+$_SESSION['user'] = 'faculty';
 header("location: ../index.php?error=none");
 
 
