@@ -1,14 +1,14 @@
 <?php
 class Users extends DBConnection
 {
-  public function getUsers()
+  public function getUsers($sql)
   {
-    $stmt = $this->connect()->query('SELECT * FROM users');
+    $stmt = $this->connect()->query($sql);
     return $stmt;
   }
 }
 $obj = new Users;
-$results = $obj->getUsers();
+$results = $obj->getUsers('SELECT * FROM users');
 class User extends DBConnection
 {
   protected function setUser($uid, $email, $pwd, $person)
@@ -34,8 +34,8 @@ class User extends DBConnection
       foreach ($result as $result) {
         $id = $result['user_id'] . ' <br>';
       }
-      $stmt = $this->connect()->prepare('INSERT INTO profileimg (user_id, status) VALUES (?, ?)');
-      if (!$stmt->execute(array($id, 1))) {
+      $stmt = $this->connect()->prepare('INSERT INTO profileimg (user_id) VALUES (?)');
+      if (!$stmt->execute(array($id))) {
         $stmt = null;
         header("location: ../users/index.php?error=stmtfailed");
         exit();

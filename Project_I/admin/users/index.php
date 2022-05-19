@@ -8,6 +8,7 @@ if($_SESSION['user'] != 'admin') {
 
 include "../classes/dbconn.class.php";
 include "../classes/users.class.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +27,7 @@ include "../classes/users.class.php";
 		</div>
 	</header>
 
-	<section class="d-flex">
+	<section class="d-flex ssize">
 		<?php include '../../plugins/inc/sidebar.php'; ?>
 
 		<content>
@@ -86,7 +87,7 @@ include "../classes/users.class.php";
 										</div>
 									</div>
 								</div>
-								<div style="overflow-y: scroll; height:520px;">
+								<div style="overflow-y: scroll; height:370px;">
 								<table class="table tabe-hover table-bordered" id="list">
 									<thead>
 										<tr>

@@ -13,6 +13,8 @@ $login = new LoginContr($uid, $pwd);
 //Running error handlers and user login
 $login->loginUser();
 // Going to back to front page
+session_start();
+$_SESSION['user'] = 'students';
 header("location: ../index.php?error=none");
 
 

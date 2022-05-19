@@ -1,30 +1,31 @@
 <?php
 session_start();
 $page = 'login';
-if($_SESSION['user'] != 'student') {
-  header("location: error.php");
+if (isset($_SESSION['user'])) {
+    if ($_SESSION['user'] == 'students') {
+        header("Location: index.php");
+    }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<?php include '../plugins/inc/header.php'; ?>
+    <?php include '../plugins/inc/header.php'; ?>
 </head>
 
 <body class="hold-transition login-page">
     <section class="bg login p-5 text-center bg-light bg-image">
-    <?php
-    if ($_GET && isset($_SESSION['error'])) {
-      echo '
+        <?php
+        if ($_GET && isset($_SESSION['error'])) {
+            echo '
         <div class="alert alert-danger alert-dismissable">
             <button type="button" class="btn-close" data-dismiss="alert" aria-hidden="true">&times;</button>
             ' . $_SESSION['error'] . '
         </div>';
-        //unset($_SESSION['error']);
-    }
-    ?>
+            //unset($_SESSION['error']);
+        }
+        ?>
         <div class="container col-xl-10 col-xxl-8 px-4 py-5">
             <div class="row align-items-center g-lg-5 py-5">
                 <div class="col-lg-7 text-center text-lg-start text-light">
@@ -47,12 +48,13 @@ if($_SESSION['user'] != 'student') {
                                 <input type="checkbox" value="remember-me"> Remember me
                             </label>
                         </div>-->
-                        
+
                         <button class="w-100 btn btn-lg btn-mycolorpic" type="submit" name="submit">Sign In</button>
                         <hr class="my-4">
                         <small class="text-muted">
                             <p>Don't have an account ?
-                            <a class="align-content-start text-mycolorpic" href="http://localhost/Project_I/students/register.php">Register Here</a></p>
+                                <a class="align-content-start text-mycolorpic" href="http://localhost/Project_I/students/register.php">Register Here</a>
+                            </p>
                             <a href="http://localhost/Project_I/portal.php">Go Back</a>
                         </small>
                     </form>

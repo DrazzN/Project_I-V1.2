@@ -24,8 +24,8 @@ class Signup extends DBConnection{
       foreach ($result as $result) {
         $id = $result['user_id'] . ' <br>';
       }
-      $stmt = $this->connect()->prepare('INSERT INTO profileimg (user_id, status) VALUES (?, ?)');
-      if (!$stmt->execute(array($id, 1))) {
+      $stmt = $this->connect()->prepare('INSERT INTO profileimg (user_id) VALUES (?)');
+      if (!$stmt->execute(array($id))) {
         $stmt = null;
         header("location: ../users/index.php?error=stmtfailed");
         exit();

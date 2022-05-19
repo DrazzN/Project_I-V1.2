@@ -1,7 +1,11 @@
 <?php
 session_start();
 $page = 'login';
-
+if (isset($_SESSION['user'])) {
+    if ($_SESSION['user'] != 'faculty') {
+        header("location: error.php");
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,4 +1,10 @@
 <?php
+session_start();
+$page = 'users';
+if($_SESSION['user'] != 'admin') {
+  header("location: ../error.php");
+}
+
 include "classes/dbconn.class.php";
 include "classes/users.class.php";
 
@@ -70,10 +76,10 @@ if(isset($_POST['attendance-submit'])){
                       <td><b>' . $username . '</b></td>
                       <td class="text-center">											
                         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                          <input type="radio" class="btn-check" value=1 name="attendance' . $username . '" id="btncheck1' . $username . '">
+                          <input type="radio" class="btn-check" value=1 name="attendance-' . $username . '" id="btncheck1' . $username . '">
                           <label class="btn btn-outline-success rounded-pill" for="btncheck1' . $username . '">Present</label>
 
-                          <input type="radio" class="btn-check" value=0 name="attendance' . $username . '" id="btncheck2' . $username . '">
+                          <input type="radio" class="btn-check" value=0 name="attendance-' . $username . '" id="btncheck2' . $username . '">
                           <label class="btn btn-outline-danger rounded-pill" for="btncheck2' . $username . '">Absent</label>
                         </div>
 												

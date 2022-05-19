@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="<?php echo base_url ?>plugins/css/bootstrap-utilities.min.css">
 <link rel="stylesheet" href="<?php echo base_url ?>plugins/css/bootstrap-grid.rtl.css">
 <link rel="stylesheet" href="<?php echo base_url ?>plugins/css/bootstrap-utilities.rtl.min.css">
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
     body,
     html,
@@ -86,9 +86,8 @@
       color: white;
     }
 
-    section {
-      height: 100%;
-    }
+    /*section {
+    }*/
 
     /* Create two columns/boxes that floats next to each other */
     nav {
@@ -104,7 +103,6 @@
       padding: 20px;
       width: 80%;
       background-color: #f1f1f1;
-      height: 100%;
       /* only for demonstration, should be removed */
     }
 

@@ -1,9 +1,7 @@
 <?php
 session_start();
 $page = 'register';
-if($_SESSION['user'] != 'student') {
-  header("location: error.php");
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en" class="" style="height: auto;">

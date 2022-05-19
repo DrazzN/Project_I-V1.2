@@ -31,7 +31,7 @@ include "../classes/users.class.php";
     </div>
   </header>
 
-  <section class="d-flex">
+  <section class="d-flex ssize">
     <?php include '../../plugins/inc/sidebar.php'; ?>
 
     <content>

@@ -6,7 +6,7 @@ if (isset($_SESSION['user'])) {
     header("Location: admin/index.php");
   } elseif ($_SESSION['user'] == 'faculty') {
     header("Location: faculty/index.php");
-  } elseif ($_SESSION['user'] == 'faculty') {
+  } elseif ($_SESSION['user'] == 'students') {
     header("Location: students/index.php");
   }
 }

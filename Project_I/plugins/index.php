@@ -1,3 +1,4 @@
+<?php //include 'plugins/index.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,27 +66,6 @@
                                 Home
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                What You'll Learn
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a href="#" class="dropdown-item">Feature #1</a></li>
-                                <li><a href="#" class="dropdown-item">Feature #2</a></li>
-                                <li><a href="#" class="dropdown-item">Feature #3</a></li>
-                                <li><a href="#" class="dropdown-item">Feature #4</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="http://localhost/Project_I/about.php" class="nav-link">
-                                About
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="http://localhost/Project_I/contacts.php" class="nav-link">
-                                Contacts
-                            </a>
-                        </li>
                     </ul>
 
                 </div>
@@ -99,27 +79,12 @@
                 <div>
                     <h1>Start Learning<span class="d-sm-flex text-warning">What You Find Interesting</span></h1>
                     <p class="lead my-4">
-                        Expand your opportunities withcouirses of your own choice. We
+                        Expand your opportunities with courses of your own choice. We
                         provide the tools and skills to teach what you love.
                     </p>
-                    <button class="btn btn-primary btn-lg"><a href="http://localhost/Project_I/students/register.php" class="text-light">Start The Enrollment</a></button>
+                    <button class="btn btn-primary btn-lg"><a href="http://localhost/Project_I/portal.php" class="text-light">Start The Enrollment</a></button>
                 </div>
                 <img class="img-fluid w-50 d-none d-md-block" src="img/flowers.webp" alt="" />
-            </div>
-        </div>
-    </section>
-    <section class="bg text-center bg-light bg-image">
-        <div class="container col-xl-10 col-xxl-8 px-4 py-5" id="signup-banner">
-            <div class="row align-items-center g-lg-5 py-5">
-                <div class="col-lg-7 text-center">
-                    <h1 class="display-4 fw-bold lh-1 mb-3">Login Below.</h1>
-                    <p class="fs-4"><button class="btn btn-primary btn-lg"><a href="http://localhost/Project_I/portal.php" class="text-light">Start Session</a></button>
-                    </p>
-                </div>
-
-                <div class="col-md-10 mx-auto col-lg-5">
-
-                </div>
             </div>
         </div>
     </section>
@@ -129,9 +94,7 @@
     
     <footer class="footer mt-auto py-0 bg-light">
         <div class="container">
-            <span class="text-muted">© 1985-2022 Blackboard Inc. All Rights Reserved.
-                <a href="#">Help</a>
-                <a href="#">Privacy and Terms of Use</a></span>
+            <span class="text-muted">© 2022 - eLearning</span>
             <a href="#">Back to top</a>
         </div>
     </footer>
