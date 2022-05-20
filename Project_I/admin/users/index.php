@@ -1,8 +1,8 @@
 <?php
 session_start();
 $page = 'users';
-if($_SESSION['user'] != 'admin') {
-  header("location: ../error.php");
+if ($_SESSION['user'] != 'admin') {
+	header("location: ../error.php");
 }
 
 
@@ -88,26 +88,26 @@ include "../classes/users.class.php";
 									</div>
 								</div>
 								<div style="overflow-y: scroll; height:370px;">
-								<table class="table tabe-hover table-bordered" id="list">
-									<thead>
-										<tr>
-											<th class="text-center">#</th>
-											<th>Avatar</th>
-											<th>Student ID</th>
-											<th>Username</th>
-											<th>Email</th>
-											<th>Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										<?php
-										$i = 1;
-										foreach ($results as $row) {
-											$user_id = $row['user_id'];
-											$username = $row['username'];
-											$email = $row['email'];
+									<table class="table tabe-hover table-bordered" id="list">
+										<thead>
+											<tr>
+												<th class="text-center">#</th>
+												<th>Avatar</th>
+												<th>Student ID</th>
+												<th>Username</th>
+												<th>Email</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+											$i = 1;
+											foreach ($results as $row) {
+												$user_id = $row['user_id'];
+												$username = $row['username'];
+												$email = $row['email'];
 
-											echo '
+												echo '
 											<tr>
 												<th class="text-center">' . $i . '</th>
 												<td>
@@ -175,7 +175,11 @@ include "../classes/users.class.php";
 																				<div class="modal-body">
 																					<div class="form-group">
 																						<label for="username" class="control-label">Username</label>
-																						<input type="text" name="uid" required="" class="form-control form-control-sm" value="' . $username . '">
+																						<input type="text" name="uid" required="" class="form-control form-control-sm" value="' . $user_id . '">
+																					</div>
+																					<div class="form-group">
+																						<label for="username" class="control-label">Username</label>
+																						<input type="text" required="" class="form-control form-control-sm" value="' . $username . '">
 																					</div>
 																					<br>
 																				</div>
@@ -192,11 +196,11 @@ include "../classes/users.class.php";
 											</td>
 											</tr>
 											';
-											$i++;
-										}
-										?>
-									</tbody>
-								</table>
+												$i++;
+											}
+											?>
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</div>

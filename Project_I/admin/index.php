@@ -12,7 +12,7 @@ include "classes/users.class.php";
 $userno= $obj->getUsers('SELECT count(person), person FROM users GROUP by person;');
 $adata = $userno->fetchAll();
 // var_dump($userno->fetchAll());
-echo $adata[1]['person'];
+// echo $adata[1]['person'];
 ?>
 <!DOCTYPE html>
 <html lang="en">

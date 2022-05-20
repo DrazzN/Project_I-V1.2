@@ -23,6 +23,16 @@ include "../classes/course.class.php";
 			display: block;
 			width: 100%;
 		}
+		.ho:hover {
+			text-shadow: none !important;
+			box-shadow: border-box !important;
+			cursor:  pointer !important;
+			transition: all 0.3s ease !important;
+			-webkit-transition: scale(1.1) !important;
+			-ms-transform: scale(1.1) !important;
+			transform: scale(1.1) !important;
+			z-index: 2;
+		}
 	</style>
 
 </head>
@@ -87,7 +97,7 @@ include "../classes/course.class.php";
 						<!--<h3 class="px-5 pt-5 font-md-1">First Semister</h3>-->
 						<div class="container bg-light pt-2">
 
-							<div class="row gy-4 d-flex">
+							<div class="row gy-0 d-flex">
 								<?php
 								foreach ($results as $row) {
 									$id = $row['id'];
@@ -96,7 +106,7 @@ include "../classes/course.class.php";
 									$lvl = $row['level'];
 									$sname = $row['description'];
 									echo '<div class="col-lg-3 col-md-4" style="height:280px";>
-																	<div class="card shadow-sm">
+																	<div class="card shadow-sm ho">
 																		<img src="https://picsum.photos/seed/picsum/200/300" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="...">
 																		<div class="card-body">
 																			<h6 class="card-title">' . $sname . '</h6>

@@ -3,10 +3,10 @@
 class Query extends DBConnection {
 
   public function getUsers() {
-    $sql = "SELECT COUNT(user_id) FROM users;";
+    $sql = "INSERT INTO asda(dada, ddd) VALUES ('asss','coo')";
     $stmt = $this->connect()->query($sql);
-    $row = $stmt->fetch();
-      echo $row['COUNT(user_id)']. '<br>';
+    $row = $stmt->fetchAll();
+    var_dump($row);
      return $stmt;
     
   }

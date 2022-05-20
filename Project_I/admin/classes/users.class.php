@@ -21,6 +21,32 @@ class User extends DBConnection
     }
     $stmt = null;
   }
+  protected function setProfile($uid, $email)
+  {
+    $stmt = $this->connect()->prepare('SELECT * FROM users WHERE username = ? OR email = ?');
+    if (!$stmt->execute(array($uid, $email))) {
+      $stmt = null;
+      header("location: ../users/index.php?error=stmtfailed");
+      exit();
+    }
+    if ($stmt->rowCount() > 0) {
+      $result = $stmt->fetchAll();
+      foreach ($result as $result) {
+        $id = $result['user_id'] . ' <br>';
+      }
+      $stmt = $this->connect()->prepare('INSERT INTO student (user_id) VALUES (?)');
+      if (!$stmt->execute(array($id))) {
+        $stmt = null;
+        header("location: ../users/index.php?error=stmtfailed");
+        exit();
+      }
+    } else {
+      $stmt = null;
+      header("location: ../users/index.php?error=stmtfailed");
+      exit();
+    }
+    $stmt = null;
+  }
   protected function setProf($uid, $email)
   {
     $stmt = $this->connect()->prepare('SELECT * FROM users WHERE username = ? OR email = ?');
@@ -67,7 +93,19 @@ class UserDelete extends DBConnection
 {
   public function deleteUser($uid)
   {
-    $stmt = $this->connect()->prepare('DELETE FROM users WHERE username = ?');
+    $stmt = $this->connect()->prepare('DELETE FROM users WHERE user_id = ?');
+    if (!$stmt->execute(array($uid))) {
+      $stmt = null;
+      header("location : ../users/index.php?error=stmtfailed");
+      exit();
+    }
+    $stmt = $this->connect()->prepare('DELETE FROM student WHERE user_id = ?');
+    if (!$stmt->execute(array($uid))) {
+      $stmt = null;
+      header("location : ../users/index.php?error=stmtfailed");
+      exit();
+    }
+    $stmt = $this->connect()->prepare('DELETE FROM profileimg WHERE user_id = ?');
     if (!$stmt->execute(array($uid))) {
       $stmt = null;
       header("location : ../users/index.php?error=stmtfailed");
@@ -76,7 +114,6 @@ class UserDelete extends DBConnection
     $stmt = null;
   }
 }
-
 class UserUpdate extends DBConnection
 {
   public function updateUser($uid, $email, $pwd, $id)

@@ -78,18 +78,15 @@ $adata = $userno->fetchAll();
                 Downloadables <span class="badge rounded-pill bg-light text-dark">4</span>
               </button>
             </div>
-            <div class="btn btn-outline-dark btn-shadow py-3">
+            <div class="shadow p-3 mb-5 bg-white rounded">
               <div class="d-flex">
                 <div class="d-flex  mx-3">
-                  <div class="d-flex justify-items-center p-2 rounded bg-secondary">
-                  <img class="img icon mx-2" src="http://localhost/Project_I/img/ico/cloud-download-sharp.svg" alt="">
-                  </div>
+                  <img class="img icon mx-2" src="http://localhost/Project_I/img/ico/cloud-download-sharp.svg" alt="">Primary
                 </div>
-                <div class="bg-success align-items-start">
+                <div class="bg-success align-items-center">
                   <div class="font-bold text-lg">Faucet Timer</div>
                   <div>
-                    30
-                    Minutes
+                    3
                   </div>
                 </div>
               </div>

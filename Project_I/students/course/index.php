@@ -1,8 +1,8 @@
 <?php
 session_start();
 $page = 'course';
-if($_SESSION['user'] != 'students') {
-  header("location: ../error.php");
+if ($_SESSION['user'] != 'students') {
+	header("location: ../error.php");
 }
 
 include "../classes/dbconn.class.php";
@@ -15,6 +15,21 @@ include "../classes/course.class.php";
 
 <head>
 	<?php include '../../plugins/inc/header.php'; ?>
+	<style>
+		.ho:hover {
+			text-shadow: none !important;
+			box-shadow: border-box !important;
+			cursor:  pointer !important;
+			transition: all 0.3s ease !important;
+			-webkit-transition: scale(1.1) !important;
+			-ms-transform: scale(1.1) !important;
+			transform: scale(1.1) !important;
+			z-index: 2;
+		}
+
+	</style>
+
+
 </head>
 
 
@@ -64,7 +79,7 @@ include "../classes/course.class.php";
 													$cname = $row['description'];
 													echo '
 								<div class="col">
-									<div class="card shadow-sm">
+									<div class="card shadow-sm ho figure">
 										<img src="https://picsum.photos/seed/picsum/200/300" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="...">
 			
 										<div class="card-body">

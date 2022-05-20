@@ -5,6 +5,7 @@ if ($_SESSION['user'] != 'admin') {
   header("location: error.php");
 }
 include 'settings.php';
+var_dump($_POST);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -116,7 +117,7 @@ include 'settings.php';
                     </div>
                   </div>
                   <!-- Save changes button-->
-                  <button class="btn btn-primary" type="submit" name="save-submit" onclick="c()">Save changes</button>
+                  <button class="btn btn-primary" type="submit" name="save-submit">Save changes</button>
 
                 </form>
               </div>
@@ -133,24 +134,7 @@ include 'settings.php';
   <footer class="">
     <?php include '../plugins/inc/footer.php'; ?>
   </footer>
-  <script>
-    function c() {
-      Swal.fire({
-        title: 'Do you want to save the changes?',
-        showDenyButton: true,
-        showCancelButton: true,
-        confirmButtonText: 'Save',
-        denyButtonText: `Don't save`,
-      }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          Swal.fire('Saved!', '', 'success')
-        } else if (result.isDenied) {
-          Swal.fire('Changes are not saved', '', 'info')
-        }
-      })
-    };
-  </script>
+
 </body>
 
 </html>

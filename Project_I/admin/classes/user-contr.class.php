@@ -25,6 +25,7 @@ class UserContr extends User {
       exit();
     }
     $this->setUser($this->uid, $this->email, $this->pwd, $this->person); 
+    $this->setProfile($this->uid, $this->email);
     $this->setProf($this->uid, $this->email);
   }
   private function emptyInput() {
