@@ -33,14 +33,14 @@ class Subject extends DBConnection{
     $stmt = $this->connect()->query('SELECT * FROM subject');
     return $stmt;
   }
-  public function getLevel() {
-    $stmtlv = $this->connect()->query('SELECT COUNT(level), level FROM subject GROUP BY level;');
-    return $stmtlv;
-  }
+  // public function getLevel() {
+  //   $stmtlv = $this->connect()->query('SELECT COUNT(level), level FROM subject GROUP BY level;');
+  //   return $stmtlv;
+  // }
 }
 $obj = new Subject;
 $results = $obj->getsubject();
-$semi = $obj->getLevel();
+// $semi = $obj->getLevel();
 
 class Coursedelete extends DBConnection{
   public function deleteSubject($subject_code) {
@@ -58,6 +58,16 @@ class CourseUpdate extends DBConnection{
   public function updateSubject($subject_code, $course_id, $level, $description, $id) {
     $stmt = $this->connect()->prepare('UPDATE subject SET subject_code= ?, course_id= ?, level= ?, description= ? WHERE id = ?');
     if (!$stmt->execute(array($subject_code, $course_id, $level, $description, $id))) {
+      $stmt = null;
+      header("location : ../index.php?error=stmtfailed");
+      exit();
+    }
+    $stmt = null;
+  }
+}class AssginUp extends DBConnection {
+  public function uploadAssign($assign_id, $location, $description, $date, $subject_id, $s_id) {
+    $stmt = $this->connect()->prepare('INSERT INTO student_assignment (id, assignment_id, floc, datein, fdesc, subject_code, student_id) VALUES (?, ?, ?, ?, ?, ?)');
+    if (!$stmt->execute(array($assign_id, $location, $description, $date, $subject_id, $s_id))) {
       $stmt = null;
       header("location : ../index.php?error=stmtfailed");
       exit();

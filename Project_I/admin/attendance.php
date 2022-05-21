@@ -95,7 +95,7 @@ if(isset($_POST['attendance-submit'])){
 								<button type="submit" class="btn btn-outline-primary" name="attendance-submit">Submit</button>
 							</form>
 						</div>
-
+						UPDATE asda SET id = id + 1 WHERE dada = 'asss';
 						<br>
 
 

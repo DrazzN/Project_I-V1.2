@@ -8,102 +8,62 @@ if ($_SESSION['user'] != 'students') {
 include "../classes/dbconn.class.php";
 include "../classes/course.class.php";
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 	<?php include '../../plugins/inc/header.php'; ?>
-	<style>
-		.ho:hover {
-			text-shadow: none !important;
-			box-shadow: border-box !important;
-			cursor:  pointer !important;
-			transition: all 0.3s ease !important;
-			-webkit-transition: scale(1.1) !important;
-			-ms-transform: scale(1.1) !important;
-			transform: scale(1.1) !important;
-			z-index: 2;
-		}
-
-	</style>
-
-
 </head>
 
 
 <body>
-	<header>
-		<div class="bg-dark d-flex">
-			<div class="col navbar-brand font-weight-bold">
-				<a href="http://localhost/Project_I/" class="text-light">eLearning</a>
-			</div>
-			<!--<div class="col">
-        <button class="btn btn-outline-info btn-lg px-4 m-2fw-bold">
-          <a class="link-light" href="logout.php">Logout</a>
-        </button>
-      </div>-->
-		</div>
-	</header>
 
-	<section class="d-flex">
+
+	<section class="d-flex ssize">
 		<?php include '../../plugins/inc/sidebar.php'; ?>
 
-		<content>
-			<div class="card card-outline card-primary" style="height:100%;">
+		<content class="w-100">
+			<div class="card card-outline " style="height:100%;">
 				<div>
 					<h1 class="ps-3 pt-3">Courses</h1>
 					<hr>
-					<div>
-						<div class="">
-							<div class="card card-outline card-primary">
+					<main>
+							<!--<h3 class="px-5 pt-5 font-md-1">First Semister</h3>-->
+							<div class="container">
+							<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-4 d-flex m-2" style="width:100%;">
 
-								<!--<div class="card-header">
-									<div class="card-tools">
-										<a class="btn btn-block btn-sm btn-flat btn-primary" href="#">
-											<img class="img logo" src="http://localhost/Project_I/img/ico/add-circle-sharp.svg" alt="" style="width:20px;height:20px;">Add New</a>
-									</div>
-								</div>-->
-
-								<main>
-									<div class="bg-light">
-										<h3 class="px-5 pt-5 font-md-1">First Semister</h3>
-										<div class="container">
-											<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-4 d-flex">
-
-												<?php
-												foreach ($results as $row) {
-													$subid = $row['subject_code'];
-													$cid = $row['course_id'];
-													$cname = $row['description'];
-													echo '
+									<?php
+									$i = 1;
+									foreach ($results as $row) {
+										$subid = $row['subject_code'];
+										$cid = $row['course_id'];
+										$sname = $row['description'];
+										echo '
 								<div class="col">
-									<div class="card shadow-sm ho figure">
-										<img src="https://picsum.photos/seed/picsum/200/300" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="...">
+									<div class="card shadow-sm ho">
+									<img src="background/' . $i . '.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="...">
 			
 										<div class="card-body">
-											<h6 class="card-title">' . $cname . '</h6>
+											<h6 class="card-title">' . $sname . '</h6>
 											<!--<p class="card-text"></p>-->
 											<div class="d-flex justify-content-between align-items-center">
 												<div class="btn-group">
-													<button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-													<!--<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+													<button type="button" class="btn btn-sm btn-outline-secondary"><a class="text-dark" href="http://localhost/Project_I/students/course/view/course-content.php?name=' . $sname . '" style="text-decoration:none;">View</a></button>
+													
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							';
-												}
-												?>
-											</div>
-										</div>
-									</div>
-								</main>
+										$i++;
+									}
+									?>
+								</div>
 							</div>
-						</div>
-					</div>
+					</main>
+
 				</div>
 		</content>
 	</section>

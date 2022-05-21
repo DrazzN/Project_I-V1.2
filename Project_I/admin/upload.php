@@ -24,12 +24,12 @@ if(isset($_POST['submit'])) {
         $resultset = $objset->setStatus($sqlup);
         header("Location: profile.php?upload=success");
       } else{
-        echo 'Your file is too big.';
+        header("Location: profile.php?error=Your file is too big");
       }
     } else {
-      echo 'There was an error uploading your file.';
+      header("Location: profile.php?error=There was an error uploading your file");
     }
   } else {
-    echo 'You cannot upload file of this type.';
+    header("Location: profile.php?error=You cannot upload file of this type");
   }
 }

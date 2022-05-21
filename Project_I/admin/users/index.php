@@ -111,7 +111,7 @@ include "../classes/users.class.php";
 											<tr>
 												<th class="text-center">' . $i . '</th>
 												<td>
-													<img src="" alt="" class="img-thumbnail border-rounded" width="75px" height="75px" style="object-fit: cover;">
+													<img src="http://localhost/Project_I/'. $_SESSION['user'].'/'.$_SESSION['profile_locate']. '" alt="" class="img-thumbnail border-rounded" width="75px" height="75px" style="object-fit: cover;">
 												</td>
 												<td><b>' . $user_id . '</b></td>
 												<td><b>' . $username . '</b></td>

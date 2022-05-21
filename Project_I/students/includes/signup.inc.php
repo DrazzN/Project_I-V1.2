@@ -8,7 +8,6 @@ if(isset($_POST["submit"])){
   $cpwd = $_POST["cpwd"];
   $email = $_POST["email"];
   $person = "student";
-  $_SESSION["useruid"] = $uid;
 //Instantiate SignupContr class
 include "../classes/dbconn.class.php";
 include "../classes/signup.class.php";
@@ -18,7 +17,7 @@ $signup = new SignupContr($uid, $pwd, $cpwd, $email, $person);
 //Running error handlers and user signup
 $signup->signupUser();
 // Going to back to front page
-header("location: ../index.php?error=none");
+header("location: ../login.php?signup=success");
 
 
 }

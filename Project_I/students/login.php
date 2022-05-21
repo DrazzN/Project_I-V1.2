@@ -6,6 +6,9 @@ if (isset($_SESSION['user'])) {
         header("Location: index.php");
     }
 }
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +19,18 @@ if (isset($_SESSION['user'])) {
 
 <body class="hold-transition login-page">
     <section class="bg login p-5 text-center bg-light bg-image">
+
         <?php
+        if (isset($_GET['signup'])) {
+            if ($_GET['signup'] = 'success') {
+                echo "<script>
+                  Swal.fire(
+                    'Signup Successful',
+                    '', 'success'
+                  );
+              </script>";
+            }
+        }
         if ($_GET && isset($_SESSION['error'])) {
             echo '
         <div class="alert alert-danger alert-dismissable">

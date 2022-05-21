@@ -15,16 +15,33 @@ if (isset($_SESSION['user'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'plugins/inc/header.php'; ?>
+
+<head>
+  <?php include 'plugins/inc/header.php'; ?>
+  <style>
+		.ho:hover {
+			text-shadow: none !important;
+			box-shadow: border-box !important;
+			cursor:  pointer !important;
+			transition: all 0.3s ease !important;
+			-webkit-transition: scale(1.1) !important;
+			-ms-transform: scale(1.1) !important;
+			transform: scale(1.1) !important;
+			z-index: 2;
+		}
+
+	</style>
+</head>
+
 
 <body>
-  <?php include 'plugins/inc/topnavbar.php'; ?>
-  <section class="bg py-5 text-center bg-light bg-imag">
-    <div class="container py-0 ssize">
-      <div class="row row-cols-md-3 align-items-center py-1 bg-dark">
+  
+  <section class="bg text-center bg-light bg-imag">
+    <div class="container ssize" style="padding-top:280px;">
+      <div class="row row-cols-md-3 py-1 bg-dark">
         <a href="http://localhost/Project_I/admin/login.php" class="">
           <div class="mx-auto col">
-            <div class="card shadow">
+            <div class="card shadow ho">
               <div class="card-body">
                 <h1 class="card-title">Admin</h1>
                 <img class="img icon" src="http://localhost/Project_I/img/ico/people-sharp.svg" alt="">
@@ -36,7 +53,7 @@ if (isset($_SESSION['user'])) {
         </a>
         <a href="http://localhost/Project_I/faculty/login.php" class="">
           <div class="mx-auto col">
-            <div class="card shadow">
+            <div class="card shadow ho">
               <div class="card-body">
                 <h1 class="card-title">Faculty</h1>
                 <img class="img icon" src="http://localhost/Project_I/img/ico/user-tie-solid.svg" alt="">
@@ -48,7 +65,7 @@ if (isset($_SESSION['user'])) {
         </a>
         <a href="http://localhost/Project_I/students/login.php" class="">
           <div class="mx-auto col">
-            <div class="card shadow">
+            <div class="card shadow ho">
               <div class="card-body">
                 <h1 class="card-title">Student</h1>
                 <img class="img icon" src="http://localhost/Project_I/img/ico/people-circle-sharp.svg" alt="">

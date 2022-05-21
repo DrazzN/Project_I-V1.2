@@ -15,6 +15,12 @@ class LoginContr extends Login {
       header("location: ../index.php?error=emptyfield");
       exit();
     }
+    if($this->uidCheck() == false) {
+      $_SESSION['error'] = "Empty input!";
+      //echo "Empty input!";
+      header("location: ../index.php?error=emptyfield");
+      exit();
+    }
     $this->getUser($this->uid, $this->pwd); 
   }
   private function emptyInput() {
@@ -26,7 +32,14 @@ class LoginContr extends Login {
     }
     return $result;
   }
-
+  private function uidCheck() {
+    if ($this->checkUsers($this->uid, $this->email)) {
+      $result = false;
+    } else {
+      $result = true;
+    }
+    return $result;
+  }
 }
 
 ?>

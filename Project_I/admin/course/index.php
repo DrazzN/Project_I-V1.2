@@ -15,39 +15,19 @@ include "../classes/course.class.php";
 
 <head>
 	<?php include '../../plugins/inc/header.php'; ?>
-	<style>
-		.card img {
-			/* change the height to whatever you want */
-			height: 100px;
-			object-fit: cover;
-			display: block;
-			width: 100%;
-		}
-		.ho:hover {
-			text-shadow: none !important;
-			box-shadow: border-box !important;
-			cursor:  pointer !important;
-			transition: all 0.3s ease !important;
-			-webkit-transition: scale(1.1) !important;
-			-ms-transform: scale(1.1) !important;
-			transform: scale(1.1) !important;
-			z-index: 2;
-		}
-	</style>
-
 </head>
 
 
 <body>
 
-	<section class="d-flex">
+	<section class="d-flex ssize">
 		<?php include '../../plugins/inc/sidebar.php'; ?>
 
 		<content class="w-100">
-			<div class="card card-outline card-primary" style="height:100%;">
+			<div class="card card-outline" style="height:100%;">
 				<div>
-						<h1 class="ps-3 pt-3">Courses</h1>
-						<hr>
+					<h1 class="ps-3 pt-3">Courses</h1>
+					<hr>
 						<button type="button" class="btn btn-primary ms-3" data-toggle="modal" data-target="#uploadModal" style="width:100px;">Add New</button>
 						<hr>
 						<!-- Modal -->
@@ -88,32 +68,28 @@ include "../classes/course.class.php";
 								</div>
 							</div>
 						</div>
-						<!-- Modal -->
-
-					<div class="card card-outline card-primary ">
-
-
 
 						<!--<h3 class="px-5 pt-5 font-md-1">First Semister</h3>-->
-						<div class="container bg-light pt-2">
+						<div class="container">
 
-							<div class="row gy-0 d-flex">
+							<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-4 d-flex m-2" style="width:100%;">
 								<?php
+								$i = 1;
 								foreach ($results as $row) {
 									$id = $row['id'];
 									$subid = $row['subject_code'];
 									$cid = $row['course_id'];
 									$lvl = $row['level'];
 									$sname = $row['description'];
-									echo '<div class="col-lg-3 col-md-4" style="height:280px";>
-																	<div class="card shadow-sm ho">
-																		<img src="https://picsum.photos/seed/picsum/200/300" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="...">
+									echo '<div class="col">
+																	<div class="card shadow-sm">
+																	<img src="background/' . $i . '.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="...">
 																		<div class="card-body">
 																			<h6 class="card-title">' . $sname . '</h6>
 																			<!--<p class="card-text"></p>-->
 																			<div class="d-flex justify-content-between align-items-center">
 																				<div class="btn-group">
-																					<button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+																					<button type="button" class="btn btn-sm btn-outline-secondary"><a class="text-dark" href="http://localhost/Project_I/admin/course/view/course-content.php?name=' . $sname . '&code='.$subid.'" style="text-decoration:none;">View</a></button>
 																					<button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#updateModal' . $subid . '">Edit</button>
 
 																					<!-- Modal -->
@@ -194,12 +170,13 @@ include "../classes/course.class.php";
 																		</div>
 																	</div>
 																</div>';
+									$i++;
 								}
 								?>
 							</div>
-
 						</div>
-					</div>
+
+					
 				</div>
 			</div>
 		</content>

@@ -22,6 +22,9 @@
 <link rel="stylesheet" href="<?php echo base_url ?>plugins/css/bootstrap-grid.rtl.css">
 <link rel="stylesheet" href="<?php echo base_url ?>plugins/css/bootstrap-utilities.rtl.min.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="<?php echo base_url ?>plugins/js/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="<?php echo base_url ?>plugins/js/Chart.js/2.9.4/Chart.js"></script>
 <style>
     body,
     html,
@@ -121,3 +124,15 @@
       color: white;
     }
   </style>
+  <style>
+		.ho:hover {
+			text-shadow: none !important;
+			box-shadow: border-box !important;
+			cursor: pointer !important;
+			transition: all 0.3s ease !important;
+			-webkit-transition: scale(1.1) !important;
+			-ms-transform: scale(1.1) !important;
+			transform: scale(1.1) !important;
+			z-index: 2;
+		}
+	</style>

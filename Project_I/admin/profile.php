@@ -5,7 +5,6 @@ if ($_SESSION['user'] != 'admin') {
   header("location: error.php");
 }
 include 'settings.php';
-var_dump($_POST);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +23,18 @@ var_dump($_POST);
   <section class="d-flex">
     <?php include '../plugins/inc/sidebar.php'; ?>
 
-    <content>
+    <content class="w-100">
+      <?php 
+      if(isset($_GET['error'])){
+        echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '".$_GET['error']."!'
+      });
+      </script>";
+      }
+    ?>
       <div class="container">
         <div class="row p-1">
           <div class="col">
