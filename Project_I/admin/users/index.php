@@ -19,14 +19,6 @@ include "../classes/users.class.php";
 
 
 <body>
-	<header>
-		<div class="bg-dark d-flex">
-			<div class="col navbar-brand font-weight-bold">
-				<a href="http://localhost/Project_I/" class="text-light">eLearning</a>
-			</div>
-		</div>
-	</header>
-
 	<section class="d-flex ssize">
 		<?php include '../../plugins/inc/sidebar.php'; ?>
 
@@ -87,13 +79,13 @@ include "../classes/users.class.php";
 										</div>
 									</div>
 								</div>
-								<div style="overflow-y: scroll; height:370px;">
+								<div style="overflow-y: scroll; height:100%;">
 									<table class="table tabe-hover table-bordered" id="list">
 										<thead>
 											<tr>
 												<th class="text-center">#</th>
-												<th>Avatar</th>
-												<th>Student ID</th>
+												<!-- <th>Avatar</th> -->
+												<th>User ID</th>
 												<th>Username</th>
 												<th>Email</th>
 												<th>Action</th>
@@ -110,9 +102,9 @@ include "../classes/users.class.php";
 												echo '
 											<tr>
 												<th class="text-center">' . $i . '</th>
-												<td>
-													<img src="http://localhost/Project_I/'. $_SESSION['user'].'/'.$_SESSION['profile_locate']. '" alt="" class="img-thumbnail border-rounded" width="75px" height="75px" style="object-fit: cover;">
-												</td>
+												<!--<td>
+													<img src="http://localhost/Project_I/students/uploads/avatar/profile-'. $user_id . '" alt="" class="img-thumbnail border-rounded" width="75px" height="75px" style="object-fit: cover;">
+												</td>-->
 												<td><b>' . $user_id . '</b></td>
 												<td><b>' . $username . '</b></td>
 												<td><b>' . $email . '</b></td>

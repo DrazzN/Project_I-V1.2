@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if(isset($_POST["submit"])){
   //Grabbing the Data
   $uid = $_POST["uid"];
@@ -13,7 +13,7 @@ $login = new LoginContr($uid, $pwd);
 //Running error handlers and user login
 $login->loginUser();
 // Going to back to front page
-session_start();
+
 $_SESSION['user'] = 'admin';
 header("location: ../index.php?error=none");
 

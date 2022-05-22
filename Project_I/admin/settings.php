@@ -14,20 +14,29 @@ class Userdata extends DBConnection
 }
 $data = new Userdata();
 
-$sqlp = 'SELECT student.user_id, student.firstname, student.lastname, student.contact, users.username, users.email FROM student INNER JOIN users ON student.user_id = users.user_id  WHERE username = "admin"';
+$sqlp = 'SELECT admin.user_id, admin.firstname, admin.lastname, admin.contact, users.username, users.email FROM admin INNER JOIN users ON admin.user_id = users.user_id  WHERE users.user_id = "' . $_SESSION['userid'] . '"';
 $userdata = $data->getUserdata($sqlp);
-$_SESSION['user_id'] = $userdata['user_id'];
-$_SESSION['firstname'] = $userdata['firstname'];
-$_SESSION['lastname'] = $userdata['lastname'];
-$_SESSION['username'] = $userdata['username'];
-$_SESSION['contact'] = $userdata['contact'];
-echo $_SESSION['user_id'];
-
-if (isset($_POST['save-submit'])) {
-	$sql = "UPDATE student SET firstname=" . $_POST['fname'] . ",lastname=" . $_POST['lname'] . " ,contact=" . $_POST['contact'] . " WHERE user_id = " . $_SESSION['user_id'];
-	$update = $data->getUserdata($sql);
+if (isset($userdata)) {
+	$_SESSION['user_id'] = $userdata['user_id'];
+	$_SESSION['firstname'] = $userdata['firstname'];
+	$_SESSION['lastname'] = $userdata['lastname'];
+	$_SESSION['username'] = $userdata['username'];
+	$_SESSION['contact'] = $userdata['contact'];
 }
 
+class Userdataset extends DBConnection
+{
+	public function setUserdata($fname, $lname, $contact, $user_id)
+	{
+		$stmt = $this->connect()->prepare('UPDATE admin SET firstname = ?, lastname = ?,  contact = ? WHERE user_id = ?');
+		if (!$stmt->execute(array($fname, $lname, $contact, $user_id))) {
+			$stmt = null;
+			header("location : ../index.php?error=stmtfailed");
+			exit();
+		}
+		$stmt = null;
+	}
+}
 
 class Profileimg extends DBConnection
 {
@@ -39,6 +48,19 @@ class Profileimg extends DBConnection
 	}
 }
 $objprof = new Profileimg;
-$resultsts = $objprof->setStatus('SELECT * FROM profileimg');
+$resultsts = $objprof->setStatus('SELECT * FROM profileimg WHERE user_id = "' . $_SESSION['userid'] . '"');
+if (isset($resultsts)) {
+	$_SESSION['profile_locate'] = $resultsts['location'];
+}
 
-$_SESSION['profile_locate'] = $resultsts['location'];
+
+class Coursect extends DBConnection
+{
+	public function getCount()
+	{
+		$stmt = $this->connect()->query('SELECT COUNT(id) FROM subject');
+		$item = $stmt->fetchAll();
+		return $item;
+	}
+}
+$objco = new Coursect;

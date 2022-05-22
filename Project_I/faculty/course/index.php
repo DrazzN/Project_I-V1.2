@@ -1,8 +1,8 @@
 <?php
 session_start();
 $page = 'course';
-if($_SESSION['user'] != 'faculty') {
-  header("location: ../error.php");
+if ($_SESSION['user'] != 'faculty') {
+	header("location: ../error.php");
 }
 
 include "../classes/dbconn.class.php";
@@ -15,18 +15,6 @@ include "../classes/course.class.php";
 
 <head>
 	<?php include '../../plugins/inc/header.php'; ?>
-	<style>
-		.ho:hover {
-			text-shadow: none !important;
-			box-shadow: border-box !important;
-			cursor: pointer !important;
-			transition: all 0.3s ease !important;
-			-webkit-transition: scale(1.1) !important;
-			-ms-transform: scale(1.1) !important;
-			transform: scale(1.1) !important;
-			z-index: 2;
-		}
-	</style>
 </head>
 
 
@@ -101,7 +89,7 @@ include "../classes/course.class.php";
 																			<!--<p class="card-text"></p>-->
 																			<div class="d-flex justify-content-between align-items-center">
 																				<div class="btn-group">
-																					<button type="button" class="btn btn-sm btn-outline-secondary"><a class="text-dark" href="http://localhost/Project_I/faculty/course/view/course-content.php?name=' . $sname . '" style="text-decoration:none;">View</a></button>
+																					<button type="button" class="btn btn-sm btn-outline-secondary"><a class="text-dark" href="http://localhost/Project_I/faculty/course/view/course-content.php?name=' . $sname . '&code='.$subid.'" style="text-decoration:none;">View</a></button>
 																					<button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#updateModal' . $subid . '">Edit</button>
 
 																					<!-- Modal -->
@@ -161,7 +149,7 @@ include "../classes/course.class.php";
 																										<form action="http://localhost/Project_I/faculty/includes/course.inc.php" method="POST">
 																											<div class="form-group">
 																												<label class="control-label">Do you really want to delete this?
-																												<p>Subject Code : <input type="text" name="subject_code" required="" value="' . $subid . '"></p>
+																												<p>Subject Code : <input type="text" name="subject_code" readonly value="' . $subid . '"></p>
 																												<p>Course ID : ' . $cid . '</p>
 																												<p>Subject : ' . $sname . '</p></label>
 																											</div>

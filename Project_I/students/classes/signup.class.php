@@ -11,6 +11,32 @@ class Signup extends DBConnection{
     }
     $stmt = null;
   }
+  protected function setProfile($uid, $email)
+  {
+    $stmt = $this->connect()->prepare('SELECT * FROM users WHERE username = ? OR email = ?');
+    if (!$stmt->execute(array($uid, $email))) {
+      $stmt = null;
+      header("location: ../users/index.php?error=stmtfailed");
+      exit();
+    }
+    if ($stmt->rowCount() > 0) {
+      $result = $stmt->fetchAll();
+      foreach ($result as $result) {
+        $id = $result['user_id'] . ' <br>';
+      }
+      $stmt = $this->connect()->prepare('INSERT INTO student (user_id) VALUES (?)');
+      if (!$stmt->execute(array($id))) {
+        $stmt = null;
+        header("location: ../users/index.php?error=stmtfailed");
+        exit();
+      }
+    } else {
+      $stmt = null;
+      header("location: ../users/index.php?error=stmtfailed");
+      exit();
+    }
+    $stmt = null;
+  }
   protected function setProf($uid, $email)
   {
     $stmt = $this->connect()->prepare('SELECT * FROM users WHERE username = ? OR email = ?');

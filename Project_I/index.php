@@ -1,6 +1,8 @@
-<?php //include 'plugins/index.php'; ?>
+<?php //include 'plugins/index.php'; 
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -31,6 +33,7 @@
         .ssize {
             height: 100%;
         }
+
         .bg {
             background-image: url('http://localhost/Project_I/img/lg-back.webp');
             height: 95%;
@@ -44,6 +47,7 @@
                 width: 45%;
             }
         }
+
         a {
             text-decoration: none;
         }
@@ -63,7 +67,7 @@
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a href="#home" class="nav-link active">
-                                Home
+                                About
                             </a>
                         </li>
                     </ul>
@@ -74,24 +78,26 @@
     </header>
     <main>
         <section class="ssize bg-dark text-light p-5 text-start">
-        <div class="container">
-            <div class="d-sm-flex py-5 align-items-center justify-content-between">
-                <div>
-                    <h1>Start Learning<span class="d-sm-flex text-warning">What You Find Interesting</span></h1>
-                    <p class="lead my-4">
-                        Expand your opportunities with courses of your own choice. We
-                        provide the tools and skills to teach what you love.
-                    </p>
-                    <button class="btn btn-primary btn-lg"><a href="http://localhost/Project_I/portal.php" class="text-light">Start The Enrollment</a></button>
-                </div>
-                <img class="img-fluid w-50 d-none d-md-block" src="img/flowers.webp" alt="" />
+            <div class="ssize">
+                <content>
+                    <div class="d-sm-flex py-5 align-items-center justify-content-between">
+                        <div>
+                            <h1>Start Learning<span class="d-sm-flex text-warning">What You Find Interesting</span></h1>
+                            <p class="lead my-4">
+                                Expand your opportunities with courses of your own choice. We
+                                provide the tools and skills to teach what you love.
+                            </p>
+                            <button class="btn btn-primary btn-lg"><a href="http://localhost/Project_I/portal.php" class="text-light">Start The Enrollment</a></button>
+                        </div>
+                        <img class="img-fluid w-50 d-none d-md-block" src="img/flowers.webp" alt="" />
+                    </div>
+                </content>
             </div>
-        </div>
-    </section>
+        </section>
     </main>
-    
 
-    
+
+
     <footer class="footer mt-auto py-0 bg-light">
         <div class="container">
             <span class="text-muted">© 2022 - eLearning</span>

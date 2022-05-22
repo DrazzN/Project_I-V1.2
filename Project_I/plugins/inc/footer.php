@@ -1,4 +1,8 @@
-
+<footer class="footer mt-auto py-0 bg-light">
+  <div class="container">
+    <span class="text-muted">© 2022 - eLearning</span>
+  </div>
+</footer>
 
 <script src="http://localhost/Project_I/plugins/js/bootstrap.bundle.min.js"></script>
 <script src="http://localhost/Project/plugins/js/bootstrap.min.js"></script>

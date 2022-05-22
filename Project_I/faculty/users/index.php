@@ -1,12 +1,14 @@
 <?php
 session_start();
 $page = 'users';
-if($_SESSION['user'] != 'faculty') {
-  header("location: ../error.php");
+if ($_SESSION['user'] != 'faculty') {
+	header("location: ../error.php");
 }
+
 
 include "../classes/dbconn.class.php";
 include "../classes/users.class.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,15 +19,7 @@ include "../classes/users.class.php";
 
 
 <body>
-	<header>
-		<div class="bg-dark d-flex">
-			<div class="col navbar-brand font-weight-bold">
-				<a href="http://localhost/Project_I/" class="text-light">eLearning</a>
-			</div>
-		</div>
-	</header>
-
-	<section class="d-flex">
+	<section class="d-flex ssize">
 		<?php include '../../plugins/inc/sidebar.php'; ?>
 
 		<content>
@@ -52,7 +46,7 @@ include "../classes/users.class.php";
 															<span aria-hidden="true">&times;</span>
 														</button>
 													</div>
-													<form action="http://localhost/Project_I/admin/includes/user.inc.php" method="POST" id="manage-user">
+													<form action="http://localhost/Project_I/faculty/includes/user.inc.php" method="POST" id="manage-user">
 														<div class="modal-body">
 															<div class="form-group">
 																<label for="name">UserName</label>
@@ -69,7 +63,6 @@ include "../classes/users.class.php";
 															<div class="form-group">
 																<label for="password">Person</label>
 																<select name="person">
-																	<option value="admin">Admin</option>
 																	<option value="faculty">Faculty</option>
 																	<option value="student">Student</option>
 																</select>
@@ -85,32 +78,32 @@ include "../classes/users.class.php";
 										</div>
 									</div>
 								</div>
-								<div style="overflow-y: scroll; height:520px;">
-								<table class="table tabe-hover table-bordered" id="list">
-									<thead>
-										<tr>
-											<th class="text-center">#</th>
-											<th>Avatar</th>
-											<th>Student ID</th>
-											<th>Username</th>
-											<th>Email</th>
-											<th>Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										<?php
-										$i = 1;
-										foreach ($results as $row) {
-											$user_id = $row['user_id'];
-											$username = $row['username'];
-											$email = $row['email'];
+								<div style="overflow-y: scroll; height:100%;">
+									<table class="table tabe-hover table-bordered" id="list">
+										<thead>
+											<tr>
+												<th class="text-center">#</th>
+												<!-- <th>Avatar</th> -->
+												<th>Student ID</th>
+												<th>Username</th>
+												<th>Email</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+											$i = 1;
+											foreach ($results as $row) {
+												$user_id = $row['user_id'];
+												$username = $row['username'];
+												$email = $row['email'];
 
-											echo '
+												echo '
 											<tr>
 												<th class="text-center">' . $i . '</th>
-												<td>
-													<img src="" alt="" class="img-thumbnail border-rounded" width="75px" height="75px" style="object-fit: cover;">
-												</td>
+												<!--<td>
+													<img src="http://localhost/Project_I/' . $_SESSION['user'] . '/' . $_SESSION['profile_locate'] . '" alt="" class="img-thumbnail border-rounded" width="75px" height="75px" style="object-fit: cover;">
+												</td>-->
 												<td><b>' . $user_id . '</b></td>
 												<td><b>' . $username . '</b></td>
 												<td><b>' . $email . '</b></td>
@@ -127,7 +120,7 @@ include "../classes/users.class.php";
 																					<span aria-hidden="true">&times;</span>
 																				</button>
 																			</div>
-																			<form action="http://localhost/Project_I/admin/includes/user.inc.php" method="POST">
+																			<form action="http://localhost/Project_I/faculty/includes/user.inc.php" method="POST">
 																				<div class="modal-body">
 																				<div class="form-group">
 																						<label for="id" class="control-label">ID</label>
@@ -169,11 +162,15 @@ include "../classes/users.class.php";
 																					<span aria-hidden="true">&times;</span>
 																				</button>
 																			</div>
-																			<form action="http://localhost/Project_I/admin/includes/user.inc.php" method="POST">
+																			<form action="http://localhost/Project_I/faculty/includes/user.inc.php" method="POST">
 																				<div class="modal-body">
 																					<div class="form-group">
 																						<label for="username" class="control-label">Username</label>
-																						<input type="text" name="uid" required="" class="form-control form-control-sm" value="' . $username . '">
+																						<input type="text" name="uid" required="" class="form-control form-control-sm" value="' . $user_id . '">
+																					</div>
+																					<div class="form-group">
+																						<label for="username" class="control-label">Username</label>
+																						<input type="text" required="" class="form-control form-control-sm" value="' . $username . '">
 																					</div>
 																					<br>
 																				</div>
@@ -190,11 +187,11 @@ include "../classes/users.class.php";
 											</td>
 											</tr>
 											';
-											$i++;
-										}
-										?>
-									</tbody>
-								</table>
+												$i++;
+											}
+											?>
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</div>

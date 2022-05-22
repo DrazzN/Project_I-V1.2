@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 class LoginContr extends Login {
   private $uid;
   private $pwd;
@@ -12,14 +12,28 @@ class LoginContr extends Login {
     if($this->emptyInput() == false) {
       $_SESSION['error'] = "Empty input!";
       //echo "Empty input!";
-      header("location: ../login.php?error=emptyfield");
+      header("location: ../index.php?error=emptyfield");
       exit();
     }
-    $this->getUser($this->uid, $this->pwd);//, $this->person); 
+    if($this->uidCheck() == false) {
+      $_SESSION['error'] = "Empty input!";
+      //echo "Empty input!";
+      header("location: ../index.php?error=emptyfield");
+      exit();
+    }
+    $this->getUser($this->uid, $this->pwd); 
   }
   private function emptyInput() {
 
     if (empty($this->uid) || empty($this->pwd)){
+      $result = false;
+    } else {
+      $result = true;
+    }
+    return $result;
+  }
+  private function uidCheck() {
+    if ($this->checkUsers($this->uid, $this->email)) {
       $result = false;
     } else {
       $result = true;

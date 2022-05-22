@@ -7,16 +7,15 @@ class Login extends DBConnection
     if (!$stmt->execute(array($uid, $pwd))) {
       $stmt = null;
       header("location : ../index.php?error=stmtfailed");
-      
     }
 
     if ($stmt->rowCount() == 0) {
       $stmt = null;
       header("location : ../index.php?error=usernotfound");
       exit();
-    } 
+    }
     $pwdHashed = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    if(md5($pwd) == $pwdHashed[0]["password"])
+    if (md5($pwd) == $pwdHashed[0]["password"])
       $checkPwd = true;
     else {
       $checkPwd = false;
@@ -26,25 +25,41 @@ class Login extends DBConnection
       $stmt = null;
       header("location : ../index.php?error=wrongpassword");
       exit();
-    } elseif ($checkPwd == true) {
-        $stmt = $this->connect()->prepare('SELECT * FROM users WHERE username = ? OR email = ? AND password = ?');
-          if (!$stmt->execute(array($uid, $uid, $pwd))) {
-            $stmt = null;
-            header("location : ../index.php?error=stmtfailed");
-          }
-          if ($stmt->rowCount() == 0) {
-            $stmt = null;
-            header("location : ../index.php?error=usernotfound");
-            exit();
-          }
+    } 
+    elseif ($checkPwd == true) {
+      $stmt = $this->connect()->prepare('SELECT * FROM users WHERE username = ? OR email = ? AND password = ?');
+      if (!$stmt->execute(array($uid, $uid, $pwd))) {
+        $stmt = null;
+        header("location : ../index.php?error=stmtfailed");
+      }
+      if ($stmt->rowCount() == 0) {
+        $stmt = null;
+        header("location : ../index.php?error=usernotfound");
+        exit();
+      }
+      $user = $stmt->fetch();
+      session_start();
+      $_SESSION["userid"] = $user["user_id"];
+      $_SESSION["username"] = $user["username"];
+      $_SESSION['email'] = $user["email"];
+    }
+    $stmt = null;
+  }
+  protected function checkUsers($uid, $email)
+  {
+    $stmt = $this->connect()->prepare("SELECT username FROM users WHERE username = ? OR email = ?;");
 
-          $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-          session_start();
-          $_SESSION["userid"] = $user[0]["user_id"];
-          $_SESSION["useruid"] = $user[0]["username"];
-        }
-$stmt = null;
+    if (!$stmt->execute(array($uid, $email))) {
+      $stmt = null;
+      header("location : ../index.php?error=stmtfailed");
+      exit();
+    }
+
+    if ($stmt->rowCount() > 0) {
+      $resultCheck = false;
+    } else {
+      $resultCheck = true;
+    }
+    return $resultCheck;
   }
 }
-
-?>

@@ -12,6 +12,8 @@ include "classes/users.class.php";
 $userno = $obj->getUsers('SELECT count(person), person FROM users GROUP by person;');
 $adata = $userno->fetchAll();
 // echo $adata[1]['person'];
+$resultco = $objco->getCount();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +58,7 @@ $adata = $userno->fetchAll();
           <div class="d-flex gx-5">
             <div class="dropdown">
               <button type="button" class="btn btn-outline-dark btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Total Users <span class="badge rounded-pill bg-light text-dark"><?php echo count($results->fetch()); ?></span>
+                Total Users <span class="badge rounded-pill bg-light text-dark"><?php echo count($results->fetchAll()); ?></span>
               </button>
               <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
                 <li class="dropdown-item btn">Admin <span class="badge bg-light text-dark"><?php echo $adata[0]['count(person)']; ?></span></li>
@@ -72,7 +74,7 @@ $adata = $userno->fetchAll();
             </div>
             <div>
               <button type="button" class="btn btn-outline-dark btn-primary">
-                Courses <span class="badge rounded-pill bg-light text-dark">4</span>
+                Courses <span class="badge rounded-pill bg-light text-dark"><?php echo $resultco[0]['COUNT(id)']; ?></span>
               </button>
             </div>
             <div>
@@ -82,7 +84,7 @@ $adata = $userno->fetchAll();
             </div>
 
           </div>
-          <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+          <!-- <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
           <script>
             var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
             var yValues = [55, 49, 44, 24, 15];
@@ -110,7 +112,7 @@ $adata = $userno->fetchAll();
                 }
               }
             });
-          </script>
+          </script> -->
         </div>
       </div>
 

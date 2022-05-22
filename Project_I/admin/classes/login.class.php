@@ -25,7 +25,8 @@ class Login extends DBConnection
       $stmt = null;
       header("location : ../index.php?error=wrongpassword");
       exit();
-    } elseif ($checkPwd == true) {
+    } 
+    elseif ($checkPwd == true) {
       $stmt = $this->connect()->prepare('SELECT * FROM users WHERE username = ? OR email = ? AND password = ?');
       if (!$stmt->execute(array($uid, $uid, $pwd))) {
         $stmt = null;

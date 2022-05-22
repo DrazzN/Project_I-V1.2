@@ -149,7 +149,7 @@ include "../classes/course.class.php";
 																										<form action="http://localhost/Project_I/admin/includes/course.inc.php" method="POST">
 																											<div class="form-group">
 																												<label class="control-label">Do you really want to delete this?
-																												<p>Subject Code : <input type="text" name="subject_code" required="" value="' . $subid . '"></p>
+																												<p>Subject Code : <input type="text" name="subject_code" readonly value="' . $subid . '"></p>
 																												<p>Course ID : ' . $cid . '</p>
 																												<p>Subject : ' . $sname . '</p></label>
 																											</div>

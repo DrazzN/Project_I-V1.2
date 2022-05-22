@@ -25,6 +25,8 @@
 <script src="<?php echo base_url ?>plugins/js/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script src="<?php echo base_url ?>plugins/js/Chart.js/2.9.4/Chart.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <style>
     body,
     html,

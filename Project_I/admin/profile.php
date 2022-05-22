@@ -5,6 +5,13 @@ if ($_SESSION['user'] != 'admin') {
   header("location: error.php");
 }
 include 'settings.php';
+if (isset($_POST['save-submit'])) {
+  $data = new Userdataset();
+	$update = $data->setUserdata($_POST['fname'],$_POST['lname'],$_POST['contact'],$_POST['uid']);
+  var_dump($_POST);
+  header("Location: profile.php?update=success");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +32,16 @@ include 'settings.php';
 
     <content class="w-100">
       <?php 
+      if (isset($_GET['update'])) {
+        if($_GET['update'] == 'success'){
+          echo "<script>
+                Swal.fire(
+                  'UpdateSuccessful',
+                  '', 'success'
+                );
+                </script>";
+        }
+      }
       if(isset($_GET['error'])){
         echo "<script>
     Swal.fire({
@@ -99,8 +116,8 @@ include 'settings.php';
               <div class="card-body">
                 <form action="profile.php" method="POST">
                   <div class="mb-3">
-                    <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
-                    <input class="form-control" id="inputUsername" type="text" name="uname" placeholder="Enter your username" value="<?php echo $_SESSION['username']; ?>">
+                    <label class="small mb-1" for="inputUserid">User ID</label>
+                    <input class="form-control" id="inputUserid" type="text" name="uid" value="<?php echo $_SESSION['user_id']; ?>" readonly>
                   </div>
                   <div class="row gx-3 mb-3">
                     <div class="col-md-6">
@@ -120,10 +137,6 @@ include 'settings.php';
                     <div class="col-md-6">
                       <label class="small mb-1" for="inputPhone">Phone number</label>
                       <input class="form-control" id="inputPhone" type="tel" name="contact" placeholder="Optional Contact number" value="<?php echo $_SESSION['contact']; ?>">
-                    </div>
-                    <div class="col-md-6">
-                      <label class="small mb-1" for="inputDob">Level</label>
-                      <input class="form-control" id="inputlvl" type="text" name="level" placeholder="1" value="1">
                     </div>
                   </div>
                   <!-- Save changes button-->

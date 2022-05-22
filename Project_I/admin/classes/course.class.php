@@ -64,10 +64,11 @@ class CourseUpdate extends DBConnection{
     }
     $stmt = null;
   }
-}class AssginUp extends DBConnection {
-  public function uploadAssign($assign_id, $location, $description, $date, $subject_id, $s_id) {
-    $stmt = $this->connect()->prepare('INSERT INTO student_assignment (id, assignment_id, floc, datein, fdesc, subject_code, student_id) VALUES (?, ?, ?, ?, ?, ?)');
-    if (!$stmt->execute(array($assign_id, $location, $description, $date, $subject_id, $s_id))) {
+}
+class AssginUp extends DBConnection {
+  public function uploadAssign($assign_id, $location, $fname, $date, $description, $subject_id, $s_id) {
+    $stmt = $this->connect()->prepare('INSERT INTO student_assignment (assignment_id, floc, fname, datein, fdesc, subject_code, student_id) VALUES (?, ?, ?, ?, ?, ?, ?)');
+    if (!$stmt->execute(array($assign_id, $location, $fname, $date, $description, $subject_id, $s_id))) {
       $stmt = null;
       header("location : ../index.php?error=stmtfailed");
       exit();
@@ -75,4 +76,19 @@ class CourseUpdate extends DBConnection{
     $stmt = null;
   }
 }
+class Assgin extends DBConnection {
+  public function getAssign() {
+    $stmt = $this->connect()->prepare('SELECT * FROM student_assignment WHERE subject_code = ?');
+    $stmt->execute(array($_SESSION["subject_code"]));
+    return $stmt->fetchAll();
+  }
+}
+class DelAssgin extends DBConnection {
+  public function delAssign($fname) {
+    $stmt = $this->connect()->prepare('DELETE FROM student_assignment WHERE fname = ?');
+    $stmt->execute(array($fname));
+    return $stmt->fetchAll();
+  }
+}
+$objdel = new DelAssgin;
 ?>

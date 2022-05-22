@@ -137,3 +137,26 @@ class UserUpdate extends DBConnection
     }
   }
 }
+// class Attendance extends DBConnection
+// {
+//   public function updateAtt($sql)
+//   {
+//     $stmt = $this->connect()->prepare($sql);
+//     if (!$stmt->execute()) {
+//       $stmt = null;
+//       header("location: ../users/index.php?error=stmtfailed");
+//       exit();
+//     }
+//   }
+// }
+// if (isset($_POST['att-submit'])) {
+//   if ($_POST['at'] == 0) {
+//     $sqql = 'INSERT INTO attendance (student_id, absent, date) VALUE('.$_POST['user_id'].','.$_POST['at'].', '.$_SESSION['tdate'].')';
+//   } else if ($_POST['at'] == 1) {
+//     $sqql = 'INSERT INTO attendance (student_id, present, date) VALUE('.$_POST['user_id'].','.$_POST['at'].', '.$_SESSION['tdate'].')';
+//   }
+// }
+
+// $cas = new Attendance;
+// $dasa = $cas->updateAtt($sqql);
+// var_dump($dasa);

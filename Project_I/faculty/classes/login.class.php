@@ -7,9 +7,7 @@ class Login extends DBConnection
     if (!$stmt->execute(array($uid, $pwd))) {
       $stmt = null;
       header("location : ../index.php?error=stmtfailed");
-      
     }
-
     if ($stmt->rowCount() == 0) {
       $stmt = null;
       header("location : ../index.php?error=usernotfound");
@@ -38,10 +36,9 @@ class Login extends DBConnection
             exit();
           }
 
-          $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-          session_start();
-          $_SESSION["userid"] = $user[0]["user_id"];
-          $_SESSION["useruid"] = $user[0]["username"];
+          $user = $stmt->fetch();
+          $_SESSION["userid"] = $user["user_id"];
+          $_SESSION["useruid"] = $user["username"];
         }
 $stmt = null;
   }
