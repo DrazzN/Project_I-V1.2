@@ -16,14 +16,14 @@ $data = new Userdata();
 if (isset($page)) {
 	if ($page == 'profile') {
 		if (isset($_POST['save-submit'])) {
-			$sql = "UPDATE student SET firstname=" . $_POST['uname'] . ",lastname=" . $_POST['uname'] . "class_id=" . $_POST['level'] . ",contact=" . $_POST['uname'] . " WHERE user_id = " . $_SESSION['user_id'];
-			$data->getUserdata($sql);
+			$sql = "UPDATE student SET firstname=" . $_POST['uname'] . ",lastname=" . $_POST['uname'] . "class_id=" . $_POST['level'] . ",contact=" . $_POST['uname'] . " WHERE user_id = '" . $_SESSION['user_id'].".";
+			$use = $data->getUserdata($sql);
 		} else {
 			$sql = 'SELECT student.user_id, student.firstname, student.lastname, student.contact, users.username, users.email FROM student INNER JOIN users ON student.user_id = users.user_id  WHERE user_id = "' . $_SESSION['user_id'] . '"';
 			$userdata = $data->getUserdata($sql);
 			// var_dump($userdata);
 		}
-		if (isset($userdata)) {
+		if (!empty($userdata)) {
 			$_SESSION['user_id'] = $userdata['user_id'];
 			$_SESSION['firstname'] = $userdata['firstname'];
 			$_SESSION['lastname'] = $userdata['lastname'];
@@ -35,6 +35,19 @@ if (isset($page)) {
 	}
 }
 
+class Userdataset extends DBConnection
+{
+	public function setUserdata($fname, $lname, $contact, $user_id)
+	{
+		$stmt = $this->connect()->prepare('UPDATE admin SET firstname = ?, lastname = ?,  contact = ? WHERE user_id = ?');
+		if (!$stmt->execute(array($fname, $lname, $contact, $user_id))) {
+			$stmt = null;
+			header("location : ../index.php?error=stmtfailed");
+			exit();
+		}
+		$stmt = null;
+	}
+}
 
 
 

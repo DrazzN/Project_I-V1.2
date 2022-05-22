@@ -1,8 +1,8 @@
 <?php
 session_start();
 $page = 'assignments';
-if($_SESSION['user'] != 'students') {
-  header("location: ../error.php");
+if($_SESSION['user'] != 'admin') {
+  header("location: ../../error.php");
 }
 
 
@@ -31,7 +31,7 @@ include "../classes/users.class.php";
     </div>
   </header>
 
-  <section class="d-flex">
+  <section class="d-flex ssize">
     <?php include '../../plugins/inc/sidebar.php'; ?>
 
     <content>

@@ -33,9 +33,14 @@ class Subject extends DBConnection{
     $stmt = $this->connect()->query('SELECT * FROM subject');
     return $stmt;
   }
+  // public function getLevel() {
+  //   $stmtlv = $this->connect()->query('SELECT COUNT(level), level FROM subject GROUP BY level;');
+  //   return $stmtlv;
+  // }
 }
 $obj = new Subject;
 $results = $obj->getsubject();
+// $semi = $obj->getLevel();
 
 class Coursedelete extends DBConnection{
   public function deleteSubject($subject_code) {

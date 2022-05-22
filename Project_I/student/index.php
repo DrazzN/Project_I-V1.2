@@ -1,13 +1,14 @@
 <?php
 session_start();
 $page = 'dashboard';
-if (isset($_SESSION['user'])) {
-  if ($_SESSION['user'] != 'faculty') {
-    header("location: error.php");
-  }
-}
+// if (isset($_SESSION['user'])) {
+//   if ($_SESSION['user'] != 'admin') {
+//     header("location: error.php");
+//   }
+// }
 include 'settings.php';
 include "classes/users.class.php";
+
 $userno = $obj->getUsers('SELECT count(person), person FROM users GROUP by person;');
 $adata = $userno->fetchAll();
 // echo $adata[1]['person'];
@@ -83,7 +84,35 @@ $resultco = $objco->getCount();
             </div>
 
           </div>
+          <!-- <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+          <script>
+            var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+            var yValues = [55, 49, 44, 24, 15];
+            var barColors = [
+              "#b91d47",
+              "#00aba9",
+              "#2b5797",
+              "#e8c3b9",
+              "#1e7145"
+            ];
 
+            new Chart("myChart", {
+              type: "doughnut",
+              data: {
+                labels: xValues,
+                datasets: [{
+                  backgroundColor: barColors,
+                  data: yValues
+                }]
+              },
+              options: {
+                title: {
+                  display: true,
+                  text: "World Wide Wine Production 2018"
+                }
+              }
+            });
+          </script> -->
         </div>
       </div>
 

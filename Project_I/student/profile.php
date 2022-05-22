@@ -1,7 +1,7 @@
 <?php
 session_start();
 $page = 'profile';
-if ($_SESSION['user'] != 'students') {
+if ($_SESSION['user'] != 'admin') {
   header("location: error.php");
 }
 include 'settings.php';
@@ -64,7 +64,7 @@ if (isset($_POST['save-submit'])) {
                   if ($_SESSION['profile_locate'] == "") {
                     echo '<img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">';
                   } else {
-                    echo '<img class="img-account-profile rounded-circle mb-2" src="http://localhost/Project_I/students/' . $_SESSION['profile_locate'] . '" alt="" style="width:315px;height:315px;>';
+                    echo '<img class="img-account-profile rounded-circle mb-2" src="http://localhost/Project_I/admin/' . $_SESSION['profile_locate'] . '" alt="" style="width:315px;height:315px;>';
                   }
                 }
                 

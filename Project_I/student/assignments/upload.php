@@ -16,8 +16,8 @@ if(isset($_POST['submit'])) {
   if(in_array($fileActualExt, $allowed)){
     if($fileError === 0){
       if($fileSize < 1000000) {
-        $fileNameNew = uniqid('', true).".".$fileActualExt;
-        $fileDestination = 'uploads/'.$_SESSION['useruid'].'/'.$fileNameNew;
+        $fileNameNew = "profile.".$fileActualExt;
+        $fileDestination = 'uploads/'.$fileNameNew;
         move_uploaded_file($fileTmpName, $fileDestination);
         header("Location: index.php?uploadsuccess");
       } else{
