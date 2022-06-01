@@ -89,10 +89,15 @@ include "../classes/course.class.php";
 																			<!--<p class="card-text"></p>-->
 																			<div class="d-flex justify-content-between align-items-center">
 																				<div class="btn-group">
-																					<button type="button" class="btn btn-sm btn-outline-secondary"><a class="text-dark" href="http://localhost/Project_I/admin/course/view/course-content.php?name=' . $sname . '&code='.$subid.'" style="text-decoration:none;">View</a></button>
-																					<button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#updateModal' . $subid . '">Edit</button>
-
-																					<!-- Modal -->
+																					<a class="link" href="http://localhost/Project_I/admin/course/view/course-content.php?name=' . $sname . '&code='.$subid.'" style="text-decoration:none;"><button type="button" class="btn btn-sm btn-outline-primary rounded">View</button></a>
+																					<button type="button" class="btn btn-sm btn-outline-primary rounded" data-toggle="modal" data-target="#updateModal' . $subid . '">Edit</button>
+																					<button type="button" class="btn btn-sm btn-outline-primary rounded" data-toggle="modal" data-target="#deleteModal' . $subid . '">Delete</button>
+																					&nbsp;
+																					<button class="border border-outline-dark" style="border-radius:50%;" title="<em>Orders</em>" data-bs-toggle="tooltip"
+																					data-bs-placement="right">
+																					<img src="http://localhost/Project_I/img/alert-outline.svg" style="width:24px; height:24px;" alt="">
+																					</button>
+																					<!-- Update Modal -->
 																					<div class="modal fade" id="updateModal' . $subid . '" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
 																						<div class="modal-dialog" role="document">
 																							<div class="modal-content">
@@ -134,37 +139,36 @@ include "../classes/course.class.php";
 																							</div>
 																						</div>
 																					</div>
-																					<!-- Modal-->
-																					<button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#deleteModal' . $subid . '">Delete</button>
+																					<!-- Update Modal-->
+																					
+																					<!-- Delete Modal -->
+																					<div class="modal fade" id="deleteModal' . $subid . '" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+																						<div class="modal-dialog" role="document">
+																							<div class="modal-content">
+																								<div class="modal-header">
+																									<h5 class="modal-title" id="deleteModalLabel">New Subject</h5>
 
-																						<!-- Modal -->
-																						<div class="modal fade" id="deleteModal' . $subid . '" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-																							<div class="modal-dialog" role="document">
-																								<div class="modal-content">
-																									<div class="modal-header">
-																										<h5 class="modal-title" id="deleteModalLabel">New Subject</h5>
-
-																									</div>
-																									<div class="modal-body">
-																										<form action="http://localhost/Project_I/admin/includes/course.inc.php" method="POST">
-																											<div class="form-group">
-																												<label class="control-label">Do you really want to delete this?
-																												<p>Subject Code : <input type="text" name="subject_code" readonly value="' . $subid . '"></p>
-																												<p>Course ID : ' . $cid . '</p>
-																												<p>Subject : ' . $sname . '</p></label>
-																											</div>
-																											<br>
-																									</div>
-																									<div class="modal-footer">
-																										<button type="submit" name="delete-submit" class="btn btn-primary">Confirm</button>
-																										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-																									</div>
-																									</form>
 																								</div>
+																								<div class="modal-body">
+																									<form action="http://localhost/Project_I/admin/includes/course.inc.php" method="POST">
+																										<div class="form-group">
+																											<label class="control-label">Do you really want to delete this?
+																											<p>Subject Code : <input type="text" name="subject_code" readonly value="' . $subid . '"></p>
+																											<p>Course ID : ' . $cid . '</p>
+																											<p>Subject : ' . $sname . '</p></label>
+																										</div>
+																										<br>
+																								</div>
+																								<div class="modal-footer">
+																									<button type="submit" name="delete-submit" class="btn btn-primary">Confirm</button>
+																									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+																								</div>
+																								</form>
 																							</div>
 																						</div>
+																					</div>
 
-																						<!--modal-->
+																					<!-- Delete Modal-->
 																				</div>
 																			</div>
 																		</div>
@@ -185,7 +189,11 @@ include "../classes/course.class.php";
 	<footer class="">
 		<?php include '../../plugins/inc/footer.php'; ?>
 	</footer>
-
+<script>
+	$(function(){
+		$('[data-toggle="tooltip"]').tooltip()
+	})
+</script>
 </body>
 
 </html>

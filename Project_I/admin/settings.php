@@ -17,11 +17,17 @@ $data = new Userdata();
 $sqlp = 'SELECT admin.user_id, admin.firstname, admin.lastname, admin.contact, users.username, users.email FROM admin INNER JOIN users ON admin.user_id = users.user_id  WHERE users.user_id = "' . $_SESSION['userid'] . '"';
 $userdata = $data->getUserdata($sqlp);
 if (isset($userdata)) {
-	$_SESSION['user_id'] = $userdata['user_id'];
+	// $_SESSION['user_id'] = $userdata['user_id'];
 	$_SESSION['firstname'] = $userdata['firstname'];
 	$_SESSION['lastname'] = $userdata['lastname'];
 	$_SESSION['username'] = $userdata['username'];
 	$_SESSION['contact'] = $userdata['contact'];
+} else {
+	// $_SESSION['user_id'] = " ";
+	$_SESSION['firstname'] = " ";
+	$_SESSION['lastname'] = " ";
+	$_SESSION['username'] = " ";
+	$_SESSION['contact'] = " ";
 }
 
 class Userdataset extends DBConnection

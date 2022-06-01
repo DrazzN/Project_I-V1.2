@@ -4,11 +4,12 @@ class Users extends DBConnection
   public function getUsers($sql)
   {
     $stmt = $this->connect()->query($sql);
-    return $stmt;
+    $item = $stmt->fetchAll();
+    return $item;
   }
 }
 $obj = new Users;
-$results = $obj->getUsers('SELECT * FROM users');
+$results = $obj->getUsers('SELECT * FROM users WHERE person = "student"');
 class User extends DBConnection
 {
   protected function setUser($uid, $email, $pwd, $person)
@@ -137,26 +138,36 @@ class UserUpdate extends DBConnection
     }
   }
 }
-// class Attendance extends DBConnection
-// {
-//   public function updateAtt($sql)
-//   {
-//     $stmt = $this->connect()->prepare($sql);
-//     if (!$stmt->execute()) {
-//       $stmt = null;
-//       header("location: ../users/index.php?error=stmtfailed");
-//       exit();
-//     }
-//   }
-// }
-// if (isset($_POST['att-submit'])) {
-//   if ($_POST['at'] == 0) {
-//     $sqql = 'INSERT INTO attendance (student_id, absent, date) VALUE('.$_POST['user_id'].','.$_POST['at'].', '.$_SESSION['tdate'].')';
-//   } else if ($_POST['at'] == 1) {
-//     $sqql = 'INSERT INTO attendance (student_id, present, date) VALUE('.$_POST['user_id'].','.$_POST['at'].', '.$_SESSION['tdate'].')';
-//   }
-// }
+class Attendance extends DBConnection
+{
+  public function updateAtt($sql, $sql2, $uid)
+  {
+    $stmt = $this->connect()->prepare($sql2);
 
-// $cas = new Attendance;
-// $dasa = $cas->updateAtt($sqql);
-// var_dump($dasa);
+    if (!$stmt->execute(array())) {
+      $stmt = null;
+      header("location : attendance.php?error=stmtfailed");
+      exit();
+    }
+
+    if ($stmt->rowCount() > 0) {
+      $resultCheck = true;
+      return $resultCheck;
+    } else {
+      $stmt = null;
+      $stmt = $this->connect()->query($sql);
+    }
+    $stmt = null;
+  }
+}
+$cas = new Attendance;
+class Attcount extends DBConnection
+{
+	public function getuserCount($sql)
+	{
+		$stmt = $this->connect()->query($sql);
+		$item = $stmt->fetchAll();
+		return $item;
+	}
+}
+$attco = new Attcount;

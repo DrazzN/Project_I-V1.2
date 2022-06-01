@@ -37,38 +37,38 @@ if (isset($_SESSION['user'])) {
 <body>
   
   <section class="bg text-center bg-light bg-imag">
-    <div class="container ssize" style="padding-top:280px;">
+    <div class="container ssize" style="padding-top:25%;">
       <div class="row row-cols-md-3 py-1 bg-dark">
-        <a href="http://localhost/Project_I/admin/login.php" class="">
+        <a href="<?php echo base_url; ?>admin/login.php" class="">
           <div class="mx-auto col">
             <div class="card shadow ho">
               <div class="card-body">
                 <h1 class="card-title">Admin</h1>
-                <img class="img icon" src="http://localhost/Project_I/img/ico/people-sharp.svg" alt="">
+                <img class="img icon" src="<?php echo base_url; ?>img/ico/people-sharp.svg" alt="">
                 <p class="card-text">
                   <small><i>Signin to Admin pannel.</i></small>
               </div>
             </div>
           </div>
         </a>
-        <a href="http://localhost/Project_I/faculty/login.php" class="">
+        <a href="<?php echo base_url; ?>faculty/login.php" class="">
           <div class="mx-auto col">
             <div class="card shadow ho">
               <div class="card-body">
                 <h1 class="card-title">Faculty</h1>
-                <img class="img icon" src="http://localhost/Project_I/img/ico/user-tie-solid.svg" alt="">
+                <img class="img icon" src="<?php echo base_url; ?>img/ico/user-tie-solid.svg" alt="">
                 <p class="card-text">
                   <small><i>Signin to Faculty Side.</i></small>
               </div>
             </div>
           </div>
         </a>
-        <a href="http://localhost/Project_I/students/login.php" class="">
+        <a href="<?php echo base_url; ?>students/login.php" class="">
           <div class="mx-auto col">
             <div class="card shadow ho">
               <div class="card-body">
                 <h1 class="card-title">Student</h1>
-                <img class="img icon" src="http://localhost/Project_I/img/ico/people-circle-sharp.svg" alt="">
+                <img class="img icon" src="<?php echo base_url; ?>img/ico/people-circle-sharp.svg" alt="">
                 <p class="card-text">
                   <small><i>Signin or Register.</i></small>
               </div>

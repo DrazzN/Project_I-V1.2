@@ -38,7 +38,7 @@ $resultco = $objco->getCount();
   <section class="d-flex ssize">
     <?php include '../plugins/inc/sidebar.php'; ?>
 
-    <content>
+    <content class="w-100">
       <div class="card card-outline card-primary" style="height:100%;">
         <div>
           <h1 class="ps-3 pt-3">Dashboard</h1>

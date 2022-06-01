@@ -5,13 +5,32 @@ if ($_SESSION['user'] != 'students') {
   header("location: error.php");
 }
 include 'settings.php';
+// if (isset($_POST['save-submit'])) {
+// 	$update = $dataset->setUserdata($_POST['fname'],$_POST['lname'],$_POST['contact'],$_POST['uid']);
+//   var_dump($_POST);
+//   header("Location: profile.php?update=success");
+// } else{
+// echo "<script>
+//   Swal.fire(
+//     'UpdateSuccessful',
+//     '', 'danger'
+//   );
+//   </script>";
+// }
 if (isset($_POST['save-submit'])) {
-  $data = new Userdataset();
-	$update = $data->setUserdata($_POST['fname'],$_POST['lname'],$_POST['contact'],$_POST['uid']);
-  var_dump($_POST);
+  $dataset = new Userdataset();
+  $update = $dataset->setUserdata($_POST['fname'], $_POST['lname'], $_POST['level'], $_POST['contact'], $_POST['uid']);
   header("Location: profile.php?update=success");
+} else {
+  echo "<script>
+  Swal.fire(
+    'UpdateSuccessful',
+    '', 'danger'
+  );
+  </script>";
 }
 
+var_dump($_POST)
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,9 +50,9 @@ if (isset($_POST['save-submit'])) {
     <?php include '../plugins/inc/sidebar.php'; ?>
 
     <content class="w-100">
-      <?php 
+      <?php
       if (isset($_GET['update'])) {
-        if($_GET['update'] == 'success'){
+        if ($_GET['update'] == 'success') {
           echo "<script>
                 Swal.fire(
                   'UpdateSuccessful',
@@ -42,16 +61,16 @@ if (isset($_POST['save-submit'])) {
                 </script>";
         }
       }
-      if(isset($_GET['error'])){
+      if (isset($_GET['error'])) {
         echo "<script>
     Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: '".$_GET['error']."!'
+        text: '" . $_GET['error'] . "!'
       });
       </script>";
       }
-    ?>
+      ?>
       <div class="container">
         <div class="row p-1">
           <div class="col">
@@ -67,7 +86,7 @@ if (isset($_POST['save-submit'])) {
                     echo '<img class="img-account-profile rounded-circle mb-2" src="http://localhost/Project_I/students/' . $_SESSION['profile_locate'] . '" alt="" style="width:315px;height:315px;>';
                   }
                 }
-                
+
                 ?>
                 <div class="small font-italic text-muted mb-4">
                   <p>JPG or PNG no larger than 5 MB</p>
@@ -117,7 +136,7 @@ if (isset($_POST['save-submit'])) {
                 <form action="profile.php" method="POST">
                   <div class="mb-3">
                     <label class="small mb-1" for="inputUserid">User ID</label>
-                    <input class="form-control" id="inputUserid" type="text" name="uid" value="<?php echo $_SESSION['user_id']; ?>" readonly>
+                    <input class="form-control" id="inputUserid" type="text" name="uid" value="<?php echo $_SESSION['userid']; ?>" readonly>
                   </div>
                   <div class="row gx-3 mb-3">
                     <div class="col-md-6">
@@ -137,6 +156,8 @@ if (isset($_POST['save-submit'])) {
                     <div class="col-md-6">
                       <label class="small mb-1" for="inputPhone">Phone number</label>
                       <input class="form-control" id="inputPhone" type="tel" name="contact" placeholder="Optional Contact number" value="<?php echo $_SESSION['contact']; ?>">
+                      <label class="small mb-1" for="lvl">Level</label>
+                      <input class="form-control" id="lvl" type="tel" name="level" placeholder="Level" value="<?php echo $_SESSION['level']; ?>">
                     </div>
                   </div>
                   <!-- Save changes button-->

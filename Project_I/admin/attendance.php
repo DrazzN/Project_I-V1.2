@@ -1,14 +1,28 @@
 <?php
 session_start();
-$page = 'users';
-if($_SESSION['user'] != 'admin') {
-  header("location: error.php");
+$page = 'attendance';
+if ($_SESSION['user'] != 'admin') {
+	header("location: error.php");
 }
 
 include "classes/dbconn.class.php";
 include "classes/users.class.php";
-$_SESSION['tdate'] = $tdate = date('Y-m-d');
+$avialdate = $obj->getUsers('SELECT date FROM attendance GROUP BY date');
+$chkatt = $obj->getUsers('SELECT * FROM attendance');
+// foreach ($avialdate as $dval) {
+// 	echo $dval['date'] . '<br>';
+// 	foreach ($chkatt as $row) {
+// 		if ($row['date'] == $dval['date']) {
+// 			if ($row['attendance_id'] == "present") {
+// 				echo '<label class="btn btn-outline-success rounded-pill active">P</label>';
+// 			} elseif ($row['attendance_id'] == "absent") {
+// 				echo '<label class="btn btn-outline-danger rounded-pill active">A</label>';
+// 			}
 
+// 			// echo $row['student_id'] . ' ' . $row['date'] .' '. $row['attendance_id'] .'<br>';
+// 		}
+// 	}
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,130 +36,92 @@ $_SESSION['tdate'] = $tdate = date('Y-m-d');
 	<section class="d-flex ssize">
 		<?php include '../plugins/inc/sidebar.php'; ?>
 
-		<content w-100>
+		<content class="w-100">
+			<?php
+			foreach ($avialdate as $dval) {
+				echo '<div class="accordion accordion-flush" id="accordionFlushExample">
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="flush-headingOne">
+						<button class="accordion-button collapsed btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne' . $dval['date'] . '" aria-expanded="false" aria-controls="flush-collapseOne' . $dval['date'] . '">
+							<h1>Attendance of ' . $dval['date'] . '</h1>
+						</button>
+					</h2>
+					<div id="flush-collapseOne' . $dval['date'] . '" class="accordion-collapse collapse" aria-labelledby="flush-headingOne' . $dval['date'] . '" data-bs-parent="#accordionFlushExample">
+						<div class="accordion-body">
+							<div class="col-lg-12">
+								<div class="card card-outline card-primary">
+									<div class="card-body">
+										<table class="table tabe-hover table-bordered" id="list">
+											<thead>
+												<tr>
+													<th class="text-center">#</th>
+													<!-- <th>Avatar</th> -->
+													<th>Student ID</th>
+													<th>Username</th>
+													<th>Attendance</th>
+												</tr>
+											</thead>
+											<tbody>';
 
-			<div>
-				<h1>Attendance of <?php echo $_SESSION['tdate']; ?></h1><br>
-				
-			</div>
-			<div style="overflow-y: scroll; height:700px;">
-				<div class="col-lg-12">
-					<div class="card card-outline card-primary">
-						<div class="card-body">
-							<form action="" method="POST">
-								<table class="table tabe-hover table-bordered" id="list">
-									<thead>
-										<tr>
-											<th class="text-center">#</th>
-											<!-- <th>Avatar</th> -->
-											<th>Student ID</th>
-											<th>Username</th>
-											<th>Present</th>
-										</tr>
-									</thead>
-									<tbody>
-										<?php
-										$i = 1;
-										foreach ($results as $row) {
-											$user_id = $row['user_id'];
-											$username = $row['username'];
-											echo '
-                    <tr>
-                      <th class="text-center">' . $i . '</th>
-                      <!--<td>
-                        <img src="" alt="" class="img-thumbnail border-rounded" width="75px" height="75px" style="object-fit: cover;">
-                      </td>-->
-                      <td><b>' . $user_id . '</b></td>
-                      <td><b>' . $username . '</b></td>
-                      <td class="text-center">											
-                        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                          <input type="radio" class="btn-check" data-toggle="modal" data-target="#uploadModalP' . $username . '" id="btncheck1' . $username . '">
-                          <label class="btn btn-outline-success rounded-pill" for="btncheck1' . $username . '">Present</label>
-													
-													<!-- Modal -->
-													<div class="modal fade" id="uploadModalP' . $username . '" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
-														<div class="modal-dialog" role="document">
-															<div class="modal-content">
-																<form action="attendance.php" method="POST" enctype="multipart/form-data">
-																	<div class="modal-header">
-																		<h5 class="modal-title" id="uploadModalLabel">Upload Assignment</h5>
-																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-																			<span aria-hidden="true">&times;</span>
-																		</button>
-																	</div>
-																	<div class="modal-body">
-																		<div class="form-group">
-																			<label for="attenp" class="col-form-label">Are you sure ?</label>
-																			<input type="hidden" class="form-control" id="attenp" name="at" value=1>
-																		</div>
-																		<div class="form-group">
-																			<input type="hidden" class="form-control" id="uid" name="user_id" value="' . $user_id . '">
-																		</div>
-																	</div>
-																	<div class="modal-footer">
-																		<button type="submit" name="att-submit" class="btn btn-primary">Upload</button>
-																		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-																	</div>
-																</form>
-															</div>
-														</div>
-													</div>
-													<!--Modal -->
+				$i = 1;
+				$p = 0;
+				$a = 0;
+				foreach ($results as $rowud) {
+					$user_id = $rowud['user_id'];
+					$username = $rowud['username'];
+					echo '
+														<tr>
+															<th class="text-center">' . $i . '</th>
+															<!--<td>
+																<img src="" alt="" class="img-thumbnail border-rounded" width="75px" height="75px" style="object-fit: cover;">
+															</td>-->
+															<td><b>' . $user_id . '</b></td>
+															<td><b>' . $username . '</b></td>
+															<td><b>';
 
-                          <input type="radio" class="btn-check" data-toggle="modal" data-target="#uploadModalA' . $username . '" id="btncheck2' . $username . '">
-                          <label class="btn btn-outline-danger rounded-pill" for="btncheck2' . $username . '">Absent</label>
-													
-													<!-- Modal -->
-													<div class="modal fade" id="uploadModalA' . $username . '" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
-														<div class="modal-dialog" role="document">
-															<div class="modal-content">
-																<form action="attendance.php" method="POST" enctype="multipart/form-data">
-																	<div class="modal-header">
-																		<h5 class="modal-title" id="uploadModalLabel">Upload Assignment</h5>
-																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-																			<span aria-hidden="true">&times;</span>
-																		</button>
-																	</div>
-																	<div class="modal-body">
-																		<div class="form-group">
-																			<label for="attena" class="col-form-label">Are you sure ?</label>
-																			<input type="hidden" class="form-control" id="attena" name="at" value=0>
-																		</div>	
-																		<div class="form-group">
-																			<input type="hidden" class="form-control" id="uid" name="user_id" value="' . $user_id . '">
-																		</div>																	
-																	</div>
-																	<div class="modal-footer">
-																		<button type="submit" name="att-submit" class="btn btn-primary">Submit</button>
-																		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-																	</div>
-																</form>
-															</div>
-														</div>
-													</div>
-													<!--Modal -->
 
-                        </div>
-												
-                      </td>
-                    </tr>
-                    ';
-											$i++;
-										}
-										?>
-									</tbody>
+					
+						foreach ($chkatt as $row) {
+							if ($row['student_id'] == $user_id && $row['date'] == $dval['date']) {
+								if ($row['attendance_id'] == "present") {
+									echo '<label class="btn btn-outline-success rounded-pill active">P</label>';
+									$p++;
+								} elseif ($row['student_id'] == $user_id && $row['attendance_id'] == "absent") {
+									$a++;
+									echo '<label class="btn btn-outline-danger rounded-pill active">A</label>';
+								}
+					
+								// echo $row['student_id'] . ' ' . $row['date'] .' '. $row['attendance_id'] .'<br>';
+							}
+						}
+					
+					echo '</b></td>
+														</tr>
+														
+														';
+					$i++;
+				}
+				echo '<tr><td colspan = "4"></td></tr><tr> 
+														<th colspan="2" class="text-center"><b>Total</b></td>
+														<td><b>Present :' . $p . '</b></td>
+														<td><b>Absent :' . $a . '</b></td>
+													</tr>
 
-								</table>
-								<!-- <button type="submit" class="btn btn-outline-primary" name="attendance-submit">Submit</button> -->
-							</form>
+											</tbody>
+
+										</table>
+									</div>
+									<br>
+								</div>
+							</div>
 						</div>
-						
-						<br>
-
-
 					</div>
 				</div>
-			</div>
+
+			</div>';
+			}
+			?>
+			
 		</content>
 		<br>
 

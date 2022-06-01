@@ -22,9 +22,9 @@
 <link rel="stylesheet" href="<?php echo base_url ?>plugins/css/bootstrap-grid.rtl.css">
 <link rel="stylesheet" href="<?php echo base_url ?>plugins/css/bootstrap-utilities.rtl.min.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="<?php echo base_url ?>plugins/js/sweetalert2@11"></script>
+<script src="<?php echo base_url ?>plugins/js/sweetalert2.all.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-<script src="<?php echo base_url ?>plugins/js/Chart.js/2.9.4/Chart.js"></script>
+<script src="<?php echo base_url ?>plugins/js/chart.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <style>
@@ -42,7 +42,7 @@
         background-size: cover;
     }
 
-    @media(min-width: 780px) {
+    @media(min-width: 100vh) {
         .form-input {
             width: 45%;
         }
@@ -59,8 +59,8 @@
     a {
         text-decoration: none;
     }
-    a :hover{
-        background: #eccfcf;
+    a :active{
+        background: none;
     }
 
     .icon {
@@ -128,6 +128,7 @@
   </style>
   <style>
 		.ho:hover {
+      margin-left:10px;
 			text-shadow: none !important;
 			box-shadow: border-box !important;
 			cursor: pointer !important;
@@ -137,4 +138,5 @@
 			transform: scale(1.1) !important;
 			z-index: 2;
 		}
+    
 	</style>

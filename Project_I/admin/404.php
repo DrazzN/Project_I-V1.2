@@ -12,7 +12,7 @@
         <div class="card shadow">
           <div class="card-body">
             <h1 class="card-title">404</h1>
-            <img class="img img-fluid w-50 far mx-auto" src="http://localhost/Project_I/img/settings-outline.svg" alt="">
+            <img class="img img-fluid w-50 far mx-auto" src="<?php echo base_url ?>img/settings-outline.svg" alt="">
             <p class="card-text">
             <h2>We can't find that page</h2>
             <p>We're fairly sure that page used to be here, but seems to have gone missing. We do apologise on it's behalf.

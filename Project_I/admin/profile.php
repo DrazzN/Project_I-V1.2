@@ -29,10 +29,10 @@ if (isset($_POST['save-submit'])) {
 <body>
   <section class="d-flex">
     <?php include '../plugins/inc/sidebar.php'; ?>
-
+    
     <content class="w-100">
       <?php 
-      if (isset($_GET['update'])) {
+      // if (isset($_GET['update'])) {
         if($_GET['update'] == 'success'){
           echo "<script>
                 Swal.fire(
@@ -41,16 +41,16 @@ if (isset($_POST['save-submit'])) {
                 );
                 </script>";
         }
-      }
-      if(isset($_GET['error'])){
-        echo "<script>
-    Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: '".$_GET['error']."!'
-      });
-      </script>";
-      }
+      // }
+      // if(isset($_GET['error'])){
+      //   echo "<script>
+      //           Swal.fire({
+      //               icon: 'error',
+      //               title: 'Oops...',
+      //               text: '".$_GET['error']."!'
+      //             });
+      //         </script>";
+      // }
     ?>
       <div class="container">
         <div class="row p-1">
@@ -117,7 +117,7 @@ if (isset($_POST['save-submit'])) {
                 <form action="profile.php" method="POST">
                   <div class="mb-3">
                     <label class="small mb-1" for="inputUserid">User ID</label>
-                    <input class="form-control" id="inputUserid" type="text" name="uid" value="<?php echo $_SESSION['user_id']; ?>" readonly>
+                    <input class="form-control" id="inputUserid" type="text" name="uid" value="<?php echo $_SESSION['userid']; ?>" readonly>
                   </div>
                   <div class="row gx-3 mb-3">
                     <div class="col-md-6">

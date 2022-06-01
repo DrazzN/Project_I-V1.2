@@ -17,29 +17,32 @@
     </ul>
   </div>
   <hr>
-  <ul class="nav nav-pills nav-sidebar flex-column nav-flat">
+  <ul class="nav nav-sidebar flex-column nav-flat">
     <li class="nav-item ho">
-      <a href="http://localhost/Project_I/" class="nav-link text-dark<?php if ($page == 'home') {echo ' active';} ?>" aria-current="page">
+      <a href="http://localhost/Project_I/" class="nav-link text-dark<?php if ($page == 'home') {
+                                                                        echo ' active';
+                                                                      } ?>" aria-current="page">
         <img class="img icon mx-2" src="http://localhost/Project_I/img/home-outline.svg" alt="">Home</a>
     </li>
     <hr>
     <li class="nav-item ho">
-      <a href="http://localhost/Project_I/<?php echo $_SESSION['user']; ?>/" class="nav-link text-dark<?php if ($page == 'dashboard') {echo 'active';} ?>">
+      <a href="http://localhost/Project_I/<?php echo $_SESSION['user']; ?>/" class="nav-link text-dark<?php if ($page == 'dashboard') {
+                                                                                                        echo 'active';
+                                                                                                      } ?>" >
         <img class="img icon mx-2" src="http://localhost/Project_I/img/speedometer-outline.svg" alt="">Dashboard</a>
     </li>
     <hr>
     <li class="nav-item ho">
-      <a href="http://localhost/Project_I/<?php echo $_SESSION['user']; ?>/course/" class="nav-link text-dark<?php if ($page == 'course') {echo 'active';} ?>">
+      <a href="http://localhost/Project_I/<?php echo $_SESSION['user']; ?>/course/" class="nav-link text-dark<?php if ($page == 'course') {
+                                                                                                                echo 'active';
+                                                                                                              } ?>">
         <img class="img icon mx-2" src="http://localhost/Project_I/img/apps-outline.svg" alt="">Courses</a>
     </li>
     <hr>
-    <!-- <li class="nav-item ho">
-      <a href="http://localhost/Project_I/<?php echo $_SESSION['user']; ?>/assignments/" class="nav-link text-dark<?php if ($page == 'assignments') {echo 'active'; } ?>">
-        <img class="img icon mx-2" src="http://localhost/Project_I/img/library-outline.svg" alt="">Assignnments</a>
-    </li>
-    <hr> -->
     <li class="nav-item ho">
-      <a href="http://localhost/Project_I/<?php echo $_SESSION['user']; ?>/users/" class="nav-link text-dark<?php if ($page == 'users') {echo 'active'; } ?>">
+      <a href="http://localhost/Project_I/<?php echo $_SESSION['user']; ?>/users/" class="nav-link text-dark<?php if ($page == 'users') {
+                                                                                                              echo 'active';
+                                                                                                            } ?>">
         <img class="img icon mx-2" src="http://localhost/Project_I/img/person-outline.svg" alt="">Users</a>
     </li>
     <hr>
@@ -47,15 +50,25 @@
     if (isset($_SESSION['user'])) {
       if ($_SESSION['user'] != 'students') {
         echo '<li class="nav-item ho">
-      <a href="http://localhost/Project_I/' . $_SESSION['user'] .'/attendance.php" class="nav-link text-dark';
+      <a href="" class="nav-link text-dark';
         if ($page == 'attendance') {
-          echo 'active';};
-          echo '">
+          echo 'active';
+        };
+        echo '" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
         <img class="img icon mx-2" src="http://localhost/Project_I/img/calendar-outline.svg" alt="">Attendance</a>
-    </li><hr>';
+        
+    </li>
+    <hr>';
       }
     }
     ?>
-
+    <li class="nav-item">
+      <div class="collapse hide text-left" id="home-collapse">
+        <ul class="btn-toggle-nav pb-1">
+          <li class="nav-item"><a href="http://localhost/Project_I/<?php echo $_SESSION['user']; ?>/attendancetake.php" class="link-dark rounded">Take</a></li>
+          <li class="nav-item"><a href="http://localhost/Project_I/<?php echo $_SESSION['user']; ?>/attendance.php" class="link-dark rounded">View</a></li>
+        </ul>
+      </div>
+    </li>
   </ul>
 </nav>
