@@ -1,11 +1,15 @@
 <?php
 session_start();
 $page = 'login';
+
 if (isset($_SESSION['user'])) {
     if ($_SESSION['user'] == 'admin') {
         header("Location: index.php");
     }
 }
+
+include '../initialize.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

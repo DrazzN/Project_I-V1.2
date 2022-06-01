@@ -2,6 +2,8 @@
 session_start();
 $page = 'register';
 
+include '../initialize.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en" class="" style="height: auto;">

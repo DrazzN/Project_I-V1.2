@@ -1,10 +1,14 @@
 <?php
 session_start();
 $page = 'profile';
+
 if ($_SESSION['user'] != 'faculty') {
   header("location: error.php");
 }
+
+include '../initialize.php';
 include 'settings.php';
+
 if (isset($_POST['save-submit'])) {
   $data = new Userdataset();
 	$update = $data->setUserdata($_POST['fname'],$_POST['lname'],$_POST['level'],$_POST['contact'],$_POST['uid']);

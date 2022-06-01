@@ -5,7 +5,7 @@ if ($_SESSION['user'] != 'faculty') {
 	header("location: ../error.php");
 }
 
-
+include '../../initialize.php';
 include "../classes/dbconn.class.php";
 include "../classes/users.class.php";
 

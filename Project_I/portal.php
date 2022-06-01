@@ -1,6 +1,7 @@
 <?php
 session_start();
 $page = 'portal';
+
 if (isset($_SESSION['user'])) {
   if ($_SESSION['user'] == 'admin') {
     header("Location: admin/index.php");
@@ -11,7 +12,7 @@ if (isset($_SESSION['user'])) {
   }
 }
 
-
+include 'initialize.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -4,7 +4,7 @@
 <title>Document</title>
 <link href="css/bootstrap.css" rel="stylesheet" />
 <link href="plugins/css/bootstrap.css" rel="stylesheet" />
-<?php define('base_url', 'http://localhost/Project_I/'); ?>
+<?php //define('base_url', 'http://localhost/Project_I/'); ?>
 <link rel="stylesheet" href="<?php echo base_url ?>plugins/css/bootstrap.css">
 <link rel="stylesheet" href="<?php echo base_url ?>plugins/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo base_url ?>plugins/css/bootstrap.rtl.css">

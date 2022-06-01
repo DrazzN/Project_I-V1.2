@@ -1,10 +1,12 @@
 <?php
 session_start();
 $page = 'attendance';
+
 if ($_SESSION['user'] != 'admin') {
 	header("location: error.php");
 }
 
+include '../initialize.php';
 include "classes/dbconn.class.php";
 include "classes/users.class.php";
 $avialdate = $obj->getUsers('SELECT date FROM attendance GROUP BY date');

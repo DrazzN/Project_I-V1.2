@@ -1,12 +1,15 @@
 <?php
 session_start();
 $page = 'users';
+
 if($_SESSION['user'] != 'faculty') {
   header("location: error.php");
 }
 
+include '../initialize.php'; 
 include "classes/dbconn.class.php";
 include "classes/users.class.php";
+
 $_SESSION['tdate'] = $tdate = date('Y-m-d');
 
 

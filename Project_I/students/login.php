@@ -7,7 +7,7 @@ if (isset($_SESSION['user'])) {
     }
 }
 
-
+include '../initialize.php';
 
 ?>
 <!DOCTYPE html>

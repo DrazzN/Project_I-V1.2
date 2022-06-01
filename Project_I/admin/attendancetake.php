@@ -1,15 +1,16 @@
 <?php
 session_start();
 $page = 'attendance';
+
 if ($_SESSION['user'] != 'admin') {
 	header("location: error.php");
 }
 
-$_SESSION['tdate'] = $tdate = date('Y-m-d');
-
+include '../initialize.php';
 include "classes/dbconn.class.php";
 include "classes/users.class.php";
 
+$_SESSION['tdate'] = $tdate = date('Y-m-d');
 $chkatt = $obj->getUsers('SELECT * FROM attendance WHERE date = "'.$_SESSION['tdate'].'"');
 
 if(isset($_POST['redo-submit'])){

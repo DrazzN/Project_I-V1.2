@@ -6,6 +6,7 @@ if (isset($_SESSION['user'])) {
     header("location: error.php");
   }
 }
+include '../initialize.php';
 include 'settings.php';
 include "classes/users.class.php";
 

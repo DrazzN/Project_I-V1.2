@@ -1,13 +1,15 @@
 <?php
 session_start();
 $page = 'assignments';
+
 if($_SESSION['user'] != 'admin') {
   header("location: ../../error.php");
 }
 
-
+include '../../initialize.php';
 include "../classes/dbconn.class.php";
 include "../classes/users.class.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

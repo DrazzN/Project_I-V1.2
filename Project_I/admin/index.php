@@ -1,11 +1,14 @@
 <?php
 session_start();
 $page = 'dashboard';
+
 if (isset($_SESSION['user'])) {
   if ($_SESSION['user'] != 'admin') {
     header("location: error.php");
   }
 }
+
+include '../initialize.php';
 include 'settings.php';
 include "classes/users.class.php";
 

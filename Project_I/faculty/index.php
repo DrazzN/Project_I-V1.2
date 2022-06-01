@@ -1,13 +1,17 @@
 <?php
 session_start();
 $page = 'dashboard';
+
 if (isset($_SESSION['user'])) {
   if ($_SESSION['user'] != 'faculty') {
     header("location: error.php");
   }
 }
+
+include '../initialize.php';
 include 'settings.php';
 include "classes/users.class.php";
+
 $userno = $obj->getUsers('SELECT count(person), person FROM users GROUP by person;');
 $adata = $userno->fetchAll();
 // echo $adata[1]['person'];

@@ -1,10 +1,12 @@
 <?php
 session_start();
 $page = 'course';
+
 if ($_SESSION['user'] != 'admin') {
   header("location: ../error.php");
 }
 
+include "../../../initialize.php";
 include "../../classes/dbconn.class.php";
 include "../../classes/course.class.php";
 if (isset($_GET['code'])) {

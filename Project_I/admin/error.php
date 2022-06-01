@@ -2,6 +2,8 @@
 session_start();
 $page = 'dashboard';
 
+include '../initialize.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
