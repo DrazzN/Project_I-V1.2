@@ -55,7 +55,7 @@ if(isset($_POST['delas-submit'])){
     <content class="w-100">
       <div class="card card-outline" style="height:100%;">
         <div class="d-flex">
-          <a href="http://localhost/Project_I/faculty/course/index.php"><img class="m-3" src="http://localhost/Project_I/img/ico/arrow-back-circle-outline.svg" style="width:30px; height:30px;" alt=""></a>
+          <a href="<?php echo base_url ?>faculty/course/index.php"><img class="m-3" src="<?php echo base_url ?>img/ico/arrow-back-circle-outline.svg" style="width:30px; height:30px;" alt=""></a>
           <h1 class="ps-3 pt-3"><?php echo $_SESSION['subject_name']; ?></h1>
         </div>
         <hr>
@@ -113,7 +113,7 @@ if(isset($_POST['delas-submit'])){
                     <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                          <form action="http://localhost/Project_I/faculty/course/assignments/upload.php" method="POST" enctype="multipart/form-data">
+                          <form action="<?php echo base_url ?>faculty/course/assignments/upload.php" method="POST" enctype="multipart/form-data">
                             <div class="modal-header">
                               <h5 class="modal-title" id="uploadModalLabel">Upload Assignment</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -185,7 +185,7 @@ if(isset($_POST['delas-submit'])){
                               <td><b>' . $datein . '</b></td>
                               <td><b>' . $sub_id . '</b></td>
                               <td><b>' . $fname . '</b></td>
-                              <td><b><a href="http://localhost/Project_I/faculty/course/assignments/'.$floc.'" download>
+                              <td><b><a href="'.base_url.'faculty/course/assignments/'.$floc.'" download>
                               <ion-icon name="download-outline"></ion-icon>Download
                             </a><button class="btn-outline-warning btn-shadow-light text-danger" data-toggle="modal" data-target="#uploadModal' . $assign_id . '" type="submit" name="deleteassign"><ion-icon name="trash-outline"></ion-icon>Delete</button>
                             </b>

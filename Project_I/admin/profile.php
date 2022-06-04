@@ -36,7 +36,7 @@ if (isset($_POST['save-submit'])) {
     
     <content class="w-100">
       <?php 
-      // if (isset($_GET['update'])) {
+      if (isset($_GET['update'])) {
         if($_GET['update'] == 'success'){
           echo "<script>
                 Swal.fire(
@@ -45,7 +45,7 @@ if (isset($_POST['save-submit'])) {
                 );
                 </script>";
         }
-      // }
+      }
       // if(isset($_GET['error'])){
       //   echo "<script>
       //           Swal.fire({

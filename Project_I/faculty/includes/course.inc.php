@@ -16,21 +16,21 @@ if (isset($_POST)) {
 
     $signup->addSubject();
     // Going to back to course page
-    header("location: ../course/index.php?error=added");
+    header("location: ../course/index.php?action=Added");
   }
   if (isset($_POST["delete-submit"])) {
     $deletion = new Coursedelete($subject_code);
 
     $deletion->deleteSubject($subject_code);
     // Going to back to course page
-    header("location: ../course/index.php?error=deleted");
+    header("location: ../course/index.php?action=Deleted");
   }
   if (isset($_POST["update-submit"])) {
     $update = new CourseUpdate();//$subject_code, $course_id, $level, $description, $id);
 
     $update->updateSubject($subject_code, $course_id, $level, $description, $id);
     // Going to back to course page
-    header("location: ../course/index.php?error=added");
+    header("location: ../course/index.php?action=Updated");
   }
   
   

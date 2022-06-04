@@ -12,11 +12,9 @@ include '../initialize.php';
 include 'settings.php';
 include "classes/users.class.php";
 
-$userno = $obj->getUsers('SELECT count(person), person FROM users GROUP by person;');
-$adata = $userno->fetchAll();
-// echo $adata[1]['person'];
+$adata = $obj->getUsers('SELECT COUNT(person), person FROM users GROUP by person;');
 $resultco = $objco->getCount();
-
+$resultur = $attco->getuserCount('SELECT COUNT(user_id) FROM users');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +39,7 @@ $resultco = $objco->getCount();
   <section class="d-flex ssize">
     <?php include '../plugins/inc/sidebar.php'; ?>
 
-    <content>
+    <content class="w-100">
       <div class="card card-outline card-primary" style="height:100%;">
         <div>
           <h1 class="ps-3 pt-3">Dashboard</h1>
@@ -58,35 +56,75 @@ $resultco = $objco->getCount();
               ?>
             </p>
           </div>
-          <div class="d-flex gx-5">
-            <div class="dropdown">
-              <button type="button" class="btn btn-outline-dark btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Total Users <span class="badge rounded-pill bg-light text-dark"><?php echo count($results->fetchAll()); ?></span>
-              </button>
-              <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
-                <li class="dropdown-item btn">Admin <span class="badge bg-light text-dark"><?php echo $adata[0]['count(person)']; ?></span></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li class="dropdown-item btn">Faculty <span class="badge bg-light text-dark"><?php echo $adata[1]['count(person)']; ?></span></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li class="dropdown-item btn">Students <span class="badge bg-light text-dark"><?php echo $adata[2]['count(person)']; ?></span></li>
-              </ul>
+
+          <main>
+            <div class="dashboard-cards">
+              <div class="single-card bg-white ho" id="users" onclick="userfunc()">
+                <div>
+                  <h1 class="fw-bold"><?php echo $resultur[0]['COUNT(user_id)']; ?></h1>
+                  <span>Users</span>
+                </div>
+                <div>
+                  <span>
+                    <ion-icon name="people-outline"></ion-icon>
+                  </span>
+                </div>
+              </div>
+              <div class="single-card bg-white ho" onclick="coursefunc()">
+                <div>
+                  <h1 class="fw-bold"><?php echo $resultco[0]['COUNT(id)']; ?></h1>
+                  <span>Courses</span>
+                </div>
+                <div>
+                  <span>
+                    <ion-icon name="book-outline"></ion-icon>
+                  </span>
+                </div>
+              </div>
+              <div class="single-card bg-white ho" onclick="dwnfunc()">
+                <div>
+                  <h1 class="fw-bold">0</h1>
+                  <span>Downlodables</span>
+                </div>
+                <div>
+                  <span>
+                    <ion-icon name="download-outline"></ion-icon>
+                  </span>
+                </div>
+              </div>
+              <div class="single-card bg-white ho" id="messages" onclick="eventfunc()">
+                <div>
+                  <h1 class="fw-bold">&nbsp;</h1>
+                  <span>Messages</span>
+                </div>
+                <div>
+                  <span>
+                    <ion-icon name="mail-outline"></ion-icon>
+                  </span>
+                </div>
+              </div>
             </div>
-            <div>
-              <button type="button" class="btn btn-outline-dark btn-primary">
-                Courses <span class="badge rounded-pill bg-light text-dark"><?php echo $resultco[0]['COUNT(id)']; ?></span>
-              </button>
-            </div>
-            <div>
-              <button type="button" class="btn btn-outline-dark btn-primary">
-                Downloadables <span class="badge rounded-pill bg-light text-dark">4</span>
-              </button>
+            <div class="wrapper center" style="width:100%;max-width:600px;">
+              <canvas id="myChart"></canvas>
+
             </div>
 
-          </div>
+
+            <div class="wrapper center" id="messageboard" style="display:none;animation-delay: 2s;">
+              <div class="card">
+                <div class="card-header">
+                  Message Board
+                  <button type="button" class="btn-close" id="closemessage" aria-label="Close"></button>
+                </div>
+                <div class="card-body">
+                  <blockquote class="blockquote mb-0">
+                    <p>No Messages</p>
+                    <!-- <footer class="blockquote-footer text-light"><cite title="Source Title">Source Title</cite></footer> -->
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </main>
 
         </div>
       </div>
@@ -97,7 +135,91 @@ $resultco = $objco->getCount();
   <footer class="">
     <?php include '../plugins/inc/footer.php'; ?>
   </footer>
+  <script>
+    var barColors = [
+      "#b91d47",
+      "#00aba9",
+      "#2b5797"
+    ];
+  </script>
+  <script>
+    function userfunc() {
+      // $("#messageboard").hide();
+      // $("#myChart").show();
+      let xValues = ["Student", "Faculty", "Admin"];
+      let yValues = [<?php echo $adata[2]['COUNT(person)'] . ',' . $adata[1]['COUNT(person)'] . ',' . $adata[0]['COUNT(person)']; ?>];
 
+      new Chart("myChart", {
+        type: "doughnut",
+        data: {
+          labels: xValues,
+          datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+          }]
+        },
+        options: {
+          // title: {
+          //   display: true,
+          //   text: "Chart"
+          // }
+        }
+      });
+    };
+  </script>
+  <script>
+    function coursefunc() {
+      $("#messageboard").hide();
+      $("#myChart").show();
+      let xValues = ["Course Available", "Remaining"];
+      let remd = <?php echo $resultco[0]['COUNT(id)']; ?>;
+      let yValues = [<?php echo $resultco[0]['COUNT(id)'] ?>, 44 - remd]
+      var barColors = [
+        "#b91d47",
+        "#00aba9",
+        "#2b5797"
+      ];
+      new Chart("myChart", {
+        type: "doughnut",
+        data: {
+          labels: xValues,
+          datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+          }]
+        }
+      });
+    }
+  </script>
+  <script>
+    function dwnfunc() {
+      $("#messageboard").hide();
+      $("#myChart").show();
+
+      let xValues = ["Downloadable"];
+      let yValues = [0,100];
+      new Chart("myChart", {
+        type: "doughnut",
+        data: {
+          labels: xValues,
+          datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+          }]
+        }
+      });
+    }
+  </script>
+  <script>
+    $("#closemessage").click(function() {
+      $("#messageboard").hide();
+    });
+
+    $("#messages").click(function() {
+      $("#myChart").hide();
+      $("#messageboard").show();
+    });
+  </script>
 </body>
 
 </html>

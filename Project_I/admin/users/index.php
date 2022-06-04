@@ -10,6 +10,7 @@ include '../../initialize.php';
 include "../classes/dbconn.class.php";
 include "../classes/users.class.php";
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,9 +22,27 @@ include "../classes/users.class.php";
 
 <body>
 	<section class="d-flex ssize">
+		<?php
+		if (isset($_GET['action'])) {
+			if ($_GET['action'] == 'added') {
+				$action = "User Added";
+			} else if ($_GET['action'] == 'deleted') {
+				$action = "User Deleted";
+			} else if ($_GET['action'] == 'updated') {
+				$action = "Update Successful";
+			}
+			echo "<script>
+					Swal.fire(
+						'" . $action . "',
+						'', 'success'
+					)
+				</script>";
+		}
+
+		?>
 		<?php include '../../plugins/inc/sidebar.php'; ?>
 
-		<content>
+		<content class="w-100">
 			<div class="card card-outline card-primary" style="height:100%;">
 				<div>
 					<h1 class="ps-3 pt-3">Users</h1>
@@ -31,56 +50,65 @@ include "../classes/users.class.php";
 					<div>
 						<div class="card card-outline card-primary">
 							<div class="card-body">
-								<div class="card-header">
-									<div class="">
-										<?php
+								<div class="card-header d-flex">
 
-										?>
-										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">Add New</button>
-										<!-- Modal -->
-										<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
-											<div class="modal-dialog" role="document">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="uploadModalLabel">New user</h5>
-														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-															<span aria-hidden="true">&times;</span>
-														</button>
-													</div>
-													<form action="http://localhost/Project_I/admin/includes/user.inc.php" method="POST" id="manage-user">
-														<div class="modal-body">
-															<div class="form-group">
-																<label for="name">UserName</label>
-																<input type="text" name="uid" class="form-control" value="" required>
-															</div>
-															<div class="form-group">
-																<label for="name">Email</label>
-																<input type="text" name="email" class="form-control" value="" required>
-															</div>
-															<div class="form-group">
-																<label for="password">Password</label>
-																<input type="password" name="pwd" class="form-control" value="">
-															</div>
-															<div class="form-group">
-																<label for="password">Person</label>
-																<select name="person">
-																	<option value="admin">Admin</option>
-																	<option value="faculty">Faculty</option>
-																	<option value="student">Student</option>
-																</select>
-															</div>
-														</div>
-														<div class="modal-footer">
-															<button type="submit" name="add-user-submit" class="btn btn-primary">Add</button>
-															<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-														</div>
-													</form>
+									<button type="button" class="btn btn-primary mx-1" data-toggle="modal" data-target="#adduser">Add New</button>
+									<!-- Modal -->
+									<div class="modal fade" id="adduser" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="uploadModalLabel">New user</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
 												</div>
+												<form action="<?php echo base_url ?>admin/includes/user.inc.php" method="POST" id="manage-user">
+													<div class="modal-body">
+														<div class="form-group">
+															<label for="name">UserName</label>
+															<input type="text" name="uid" class="form-control" value="" required>
+														</div>
+														<div class="form-group">
+															<label for="name">Email</label>
+															<input type="text" name="email" class="form-control" value="" required>
+														</div>
+														<div class="form-group">
+															<label for="password">Password</label>
+															<input type="password" name="pwd" class="form-control" value="">
+														</div>
+														<div class="form-group">
+															<label for="password">Person</label>
+															<select name="person">
+																<option value="admin">Admin</option>
+																<option value="faculty">Faculty</option>
+																<option value="student">Student</option>
+															</select>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="submit" name="add-user-submit" class="btn btn-primary">Add</button>
+														<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+													</div>
+												</form>
 											</div>
 										</div>
 									</div>
+									<!-- Modal -->
+									<br>
+									<form action="index.php" method="POST">
+										<button type="submit" name="person" class="btn btn-primary" value="admin">View Admin</button>
+										<button type="submit" name="person" class="btn btn-primary" value="faculty">View Faculty</button>
+										<button type="submit" name="person" class="btn btn-primary" value="student">View Student</button>
+									</form>
+
 								</div>
-								<div style="overflow-y: scroll; height:100%;">
+								<?php
+								if (isset($_POST['person'])) {
+									$results = $obj->getUsers('SELECT * FROM users WHERE person = "' . $_POST['person'] . '"');
+								}
+								?>
+								<div style="overflow-y: scroll; height:700px">
 									<table class="table tabe-hover table-bordered" id="list">
 										<thead>
 											<tr>
@@ -104,7 +132,7 @@ include "../classes/users.class.php";
 											<tr>
 												<th class="text-center">' . $i . '</th>
 												<!--<td>
-													<img src="http://localhost/Project_I/students/uploads/avatar/profile-'. $user_id . '" alt="" class="img-thumbnail border-rounded" width="75px" height="75px" style="object-fit: cover;">
+													<img src="' . base_url . 'students/uploads/avatar/profile-' . $user_id . '" alt="" class="img-thumbnail border-rounded" width="75px" height="75px" style="object-fit: cover;">
 												</td>-->
 												<td><b>' . $user_id . '</b></td>
 												<td><b>' . $username . '</b></td>
@@ -122,7 +150,7 @@ include "../classes/users.class.php";
 																					<span aria-hidden="true">&times;</span>
 																				</button>
 																			</div>
-																			<form action="http://localhost/Project_I/admin/includes/user.inc.php" method="POST">
+																			<form action="' . base_url . 'admin/includes/user.inc.php" method="POST">
 																				<div class="modal-body">
 																				<div class="form-group">
 																						<label for="id" class="control-label">ID</label>
@@ -164,7 +192,7 @@ include "../classes/users.class.php";
 																					<span aria-hidden="true">&times;</span>
 																				</button>
 																			</div>
-																			<form action="http://localhost/Project_I/admin/includes/user.inc.php" method="POST">
+																			<form action="' . base_url . 'admin/includes/user.inc.php" method="POST">
 																				<div class="modal-body">
 																					<div class="form-group">
 																						<label for="username" class="control-label">Username</label>

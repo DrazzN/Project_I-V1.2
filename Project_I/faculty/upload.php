@@ -14,10 +14,10 @@ if(isset($_POST['submit'])) {
   if(in_array($fileActualExt, $allowed)){
     if($fileError === 0){
       if($fileSize < 1000000) {
-        $fileNameNew = "profile-".$_SESSION['user_id'].".".$fileActualExt;
+        $fileNameNew = "profile-".$_SESSION['userid'].".".$fileActualExt;
         $fileDestination = 'uploads/avatar/'.$fileNameNew;
         move_uploaded_file($fileTmpName, $fileDestination);
-        $sqlup = "UPDATE profileimg SET location = '".$fileDestination."' WHERE user_id = ".$_SESSION['user_id'];
+        $sqlup = "UPDATE profileimg SET location = '".$fileDestination."' WHERE user_id = ".$_SESSION['userid'];
         include 'settings.php';
 
         $objset = new Profileimg;

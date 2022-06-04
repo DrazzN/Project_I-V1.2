@@ -9,7 +9,8 @@ class Users extends DBConnection
   }
 }
 $obj = new Users;
-$results = $obj->getUsers('SELECT * FROM users WHERE person = "student"');
+$results = $obj->getUsers('SELECT * FROM users');
+
 class User extends DBConnection
 {
   protected function setUser($uid, $email, $pwd, $person)
@@ -22,7 +23,7 @@ class User extends DBConnection
     }
     $stmt = null;
   }
-  protected function setProfile($uid, $email)
+  protected function setProfile($uid, $email, $person)
   {
     $stmt = $this->connect()->prepare('SELECT * FROM users WHERE username = ? OR email = ?');
     if (!$stmt->execute(array($uid, $email))) {
@@ -35,7 +36,7 @@ class User extends DBConnection
       foreach ($result as $result) {
         $id = $result['user_id'] . ' <br>';
       }
-      $stmt = $this->connect()->prepare('INSERT INTO student (user_id) VALUES (?)');
+      $stmt = $this->connect()->prepare('INSERT INTO '.$person.' (user_id) VALUES (?)');
       if (!$stmt->execute(array($id))) {
         $stmt = null;
         header("location: ../users/index.php?error=stmtfailed");

@@ -4,33 +4,25 @@ include "classes/dbconn.class.php";
 
 class Userdata extends DBConnection
 {
-	public function getUserdata($sql)
+	public function getUserdata()
 	{
-		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute();
-		$item = $stmt->fetch();
-		return $item;
+		$sqlp = 'SELECT faculty.user_id, faculty.firstname, faculty.lastname, faculty.department_id, faculty.contact, users.username, users.email FROM faculty INNER JOIN users ON faculty.user_id = users.user_id  WHERE users.user_id = "' . $_SESSION['userid'] . '"';
+		$stmt = $this->connect()->query($sqlp);
+		$item = $stmt->fetchAll();
+		$_SESSION['firstname'] = $item[0]['firstname'];
+		$_SESSION['lastname'] = $item[0]['lastname'];
+		$_SESSION['level'] = $item[0]['department_id'];
+		$_SESSION['contact'] = $item[0]['contact'];
 	}
 }
-$data = new Userdata();
-$sqlp = 'SELECT faculty.faculty_id, faculty.firstname, faculty.lastname, faculty.department_id, faculty.contact, users.username, users.email FROM faculty INNER JOIN users ON faculty.faculty_id = users.user_id  WHERE users.user_id = "' . $_SESSION['userid'] . '"';
-$userdata = $data->getUserdata($sqlp);
-if (isset($userdata)) {
-	$_SESSION['user_id'] = $userdata['faculty_id'];
-	$_SESSION['firstname'] = $userdata['firstname'];
-	$_SESSION['lastname'] = $userdata['lastname'];
-	$_SESSION['username'] = $userdata['username'];
-	$_SESSION['email'] = $userdata['email'];
-	$_SESSION['level'] = $userdata['department_id'];
-	$_SESSION['contact'] = $userdata['contact'];
-}
+
 
 
 class Userdataset extends DBConnection
 {
 	public function setUserdata($fname, $lname, $level, $contact, $user_id)
 	{
-		$stmt = $this->connect()->prepare('UPDATE faculty SET firstname = ?, lastname = ?, Department_id = ?, contact = ? WHERE faculty_id = ?');
+		$stmt = $this->connect()->prepare('UPDATE faculty SET firstname = ?, lastname = ?, department_id = ?, contact = ? WHERE user_id = ?');
 		if (!$stmt->execute(array($fname, $lname, $level, $contact, $user_id))) {
 			$stmt = null;
 			header("location : ../index.php?error=stmtfailed");
@@ -47,11 +39,12 @@ class Profileimg extends DBConnection
 		$stmt = $this->connect()->query($sqlup);
 		$item = $stmt->fetch();
 		return $item;
+		$stmt = null;
 	}
 }
 $objprof = new Profileimg;
 $resultsts = $objprof->setStatus('SELECT * FROM profileimg WHERE user_id = "' . $_SESSION['userid'] . '"');
-if(isset($resultsts)) {
+if (boolval($resultsts) == true) {
 	$_SESSION['profile_locate'] = $resultsts['location'];
 }
 
@@ -64,6 +57,7 @@ class Coursect extends DBConnection
 		$stmt = $this->connect()->query('SELECT COUNT(id) FROM subject');
 		$item = $stmt->fetchAll();
 		return $item;
+		$stmt = null;
 	}
 }
 $objco = new Coursect;

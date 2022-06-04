@@ -38,7 +38,8 @@ class Login extends DBConnection
 
           $user = $stmt->fetch();
           $_SESSION["userid"] = $user["user_id"];
-          $_SESSION["useruid"] = $user["username"];
+          $_SESSION["username"] = $user["username"];
+          $_SESSION["email"] = $user["email"];
         }
 $stmt = null;
   }

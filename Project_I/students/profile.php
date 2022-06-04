@@ -9,18 +9,11 @@ if ($_SESSION['user'] != 'students') {
 include '../initialize.php';
 include 'settings.php';
 
-// if (isset($_POST['save-submit'])) {
-// 	$update = $dataset->setUserdata($_POST['fname'],$_POST['lname'],$_POST['contact'],$_POST['uid']);
-//   var_dump($_POST);
-//   header("Location: profile.php?update=success");
-// } else{
-// echo "<script>
-//   Swal.fire(
-//     'UpdateSuccessful',
-//     '', 'danger'
-//   );
-//   </script>";
-// }
+$objprof = new Profileimg;
+$resultsts = $objprof->setStatus('SELECT * FROM profileimg WHERE user_id = "' . $_SESSION['userid'] . '"');
+if (isset($resultsts['location'])) {
+	$_SESSION['profile_locate'] = $resultsts['location'];
+}
 if (isset($_POST['save-submit'])) {
   $dataset = new Userdataset();
   $update = $dataset->setUserdata($_POST['fname'], $_POST['lname'], $_POST['level'], $_POST['contact'], $_POST['uid']);
@@ -34,7 +27,6 @@ if (isset($_POST['save-submit'])) {
   </script>";
 }
 
-var_dump($_POST)
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,7 +79,7 @@ var_dump($_POST)
                   if ($_SESSION['profile_locate'] == "") {
                     echo '<img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">';
                   } else {
-                    echo '<img class="img-account-profile rounded-circle mb-2" src="http://localhost/Project_I/students/' . $_SESSION['profile_locate'] . '" alt="" style="width:315px;height:315px;>';
+                    echo '<img class="img-account-profile rounded-circle mb-2" src="'.base_url.'students/' . $_SESSION['profile_locate'] . '" alt="" style="width:315px;height:315px;>';
                   }
                 }
 
@@ -96,13 +88,13 @@ var_dump($_POST)
                   <p>JPG or PNG no larger than 5 MB</p>
                   <div class="dropdown-divider">
                   </div>
-                  <button type="button" class="btn btn-primary btn-sm ms-3 w-25" data-toggle="modal" data-target="#uploadModal">
+                  <button type="button" class="btn btn-primary btn-sm ms-3 w-25" data-toggle="modal" data-target="#uploadImg">
                     Upload new image
                   </button>
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+                <div class="modal fade" id="uploadImg" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -154,7 +146,7 @@ var_dump($_POST)
                   </div>
                   <div class="mb-3">
                     <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                    <input class="form-control" id="inputEmailAddress" type="email" name="email" placeholder="Enter your email address" value="<?php echo $_SESSION['email']; ?>">
+                    <input class="form-control" id="inputEmailAddress" type="email" name="email" placeholder="Enter your email address" value="<?php echo $_SESSION['email']; ?>" readonly>
                   </div>
                   <div class="row gx-3 mb-3">
                     <div class="col-md-6">
@@ -165,7 +157,7 @@ var_dump($_POST)
                     </div>
                   </div>
                   <!-- Save changes button-->
-                  <button class="btn btn-primary" type="submit" name="save-submit">Save changes</button>
+                  <button class="btn btn-primary" type="submit" name="s5ave-submit">Save changes</button>
 
                 </form>
               </div>

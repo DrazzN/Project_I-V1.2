@@ -1,14 +1,30 @@
 <?php
 session_start();
 $page = 'login';
-if (isset($_SESSION['user'])) {
-    if ($_SESSION['user'] == 'students') {
-        header("Location: index.php");
+if (isset($_SESSION['person'])) {
+    if ($_SESSION['person'] !== 'student') {
+        session_start();
+        session_unset();
+        session_destroy();
+        header("location: login.php?error=invalidusertype");
     }
+    // else {
+    //     if (isset($_SESSION['user'])) {
+    //         if ($_SESSION['user'] == 'students') {
+    //             header("Location: index.php");
+    //         }
+    //     }
+    // }
 }
-
 include '../initialize.php';
-
+if (isset($_GET['error'])) {
+    echo "<script>
+                  Swal.fire(
+                    '" . $_GET['error'] . "',
+                    '', 'Danger'
+                  );
+              </script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,14 +47,14 @@ include '../initialize.php';
               </script>";
             }
         }
-        if ($_GET && isset($_SESSION['error'])) {
-            echo '
-        <div class="alert alert-danger alert-dismissable">
-            <button type="button" class="btn-close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            ' . $_SESSION['error'] . '
-        </div>';
-            //unset($_SESSION['error']);
-        }
+        // if ($_GET && isset($_SESSION['error'])) {
+        //     echo '
+        // <div class="alert alert-danger alert-dismissable">
+        //     <button type="button" class="btn-close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        //     ' . $_SESSION['error'] . '
+        // </div>';
+        //     //unset($_SESSION['error']);
+        // }
         ?>
         <div class="container col-xl-10 col-xxl-8 px-4 py-5">
             <div class="row align-items-center g-lg-5 py-5">
@@ -48,7 +64,7 @@ include '../initialize.php';
                 </div>
 
                 <div class="col-md-10 col-sm-8 mx-auto col-lg-5">
-                    <form action="http://localhost/Project_I/students/includes/login.inc.php" method="post" class="p-4 p-md-5 border rounded-3 bg-light">
+                    <form action="<?php echo base_url ?>students/includes/login.inc.php" method="post" class="p-4 p-md-5 border rounded-3 bg-light">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="floatingInput" placeholder="john" name="uid" required>
                             <label for="floatingInput">E-mail / Username</label>
@@ -67,9 +83,9 @@ include '../initialize.php';
                         <hr class="my-4">
                         <small class="text-muted">
                             <p>Don't have an account ?
-                                <a class="align-content-start text-mycolorpic" href="http://localhost/Project_I/students/register.php">Register Here</a>
+                                <a class="align-content-start text-mycolorpic" href="<?php echo base_url ?>students/register.php">Register Here</a>
                             </p>
-                            <a href="http://localhost/Project_I/portal.php">Go Back</a>
+                            <a href="<?php echo base_url ?>portal.php">Go Back</a>
                         </small>
                     </form>
                 </div>

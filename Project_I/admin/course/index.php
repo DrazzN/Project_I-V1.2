@@ -24,66 +24,75 @@ include "../classes/course.class.php";
 
 	<section class="d-flex ssize">
 		<?php include '../../plugins/inc/sidebar.php'; ?>
-
+		<?php
+		if (isset($_GET['action'])) {
+			echo "<script>
+									Swal.fire(
+										'" . $_GET['action'] . " Successful',
+										'', 'success'
+									);
+									</script>";
+		}
+		?>
 		<content class="w-100">
 			<div class="card card-outline" style="height:100%;">
 				<div>
 					<h1 class="ps-3 pt-3">Courses</h1>
 					<hr>
-						<button type="button" class="btn btn-primary ms-3" data-toggle="modal" data-target="#uploadModal" style="width:100px;">Add New</button>
-						<hr>
-						<!-- Modal -->
-						<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="uploadModalLabel">New Subject</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									<form action="http://localhost/Project_I/admin/includes/course.inc.php" method="POST">
-										<div class="modal-body">
-											<div class="form-group">
-												<label for="subject_code" class="control-label">Subject Code</label>
-												<input type="text" name="subject_code" id="subject_code" required="" class="form-control form-control-sm" value="">
-											</div>
-											<div class="form-group">
-												<label for="subject_code" class="control-label">Course ID</label>
-												<input type="text" name="course_id" id="course_id" required="" class="form-control form-control-sm" value="">
-											</div>
-											<div class="form-group">
-												<label for="subject_code" class="control-label">Level</label>
-												<input type="text" name="level" id="level" required="" class="form-control form-control-sm" value="">
-											</div>
-											<div class="form-group">
-												<label for="description" class="col-form-label">Description</label>
-												<input type="text" class="form-control" id="description" name="description">
-											</div>
-											<br>
-										</div>
-										<div class="modal-footer">
-											<button type="submit" name="add-submit" class="btn btn-primary">Upload</button>
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										</div>
-									</form>
+					<button type="button" class="btn btn-primary ms-3" data-toggle="modal" data-target="#uploadModal" style="width:100px;">Add New</button>
+					<hr>
+					<!-- Modal -->
+					<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="uploadModalLabel">New Subject</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
 								</div>
+								<form action="<?php echo base_url ?>admin/includes/course.inc.php" method="POST">
+									<div class="modal-body">
+										<div class="form-group">
+											<label for="subject_code" class="control-label">Subject Code</label>
+											<input type="text" name="subject_code" id="subject_code" required="" class="form-control form-control-sm" value="">
+										</div>
+										<div class="form-group">
+											<label for="subject_code" class="control-label">Course ID</label>
+											<input type="text" name="course_id" id="course_id" required="" class="form-control form-control-sm" value="">
+										</div>
+										<div class="form-group">
+											<label for="subject_code" class="control-label">Level</label>
+											<input type="text" name="level" id="level" required="" class="form-control form-control-sm" value="">
+										</div>
+										<div class="form-group">
+											<label for="description" class="col-form-label">Description</label>
+											<input type="text" class="form-control" id="description" name="description">
+										</div>
+										<br>
+									</div>
+									<div class="modal-footer">
+										<button type="submit" name="add-submit" class="btn btn-primary">Upload</button>
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									</div>
+								</form>
 							</div>
 						</div>
+					</div>
 
-						<!--<h3 class="px-5 pt-5 font-md-1">First Semister</h3>-->
-						<div class="container">
+					<!--<h3 class="px-5 pt-5 font-md-1">First Semister</h3>-->
+					<div class="container">
 
-							<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-4 d-flex m-2" style="width:100%;">
-								<?php
-								$i = 1;
-								foreach ($results as $row) {
-									$id = $row['id'];
-									$subid = $row['subject_code'];
-									$cid = $row['course_id'];
-									$lvl = $row['level'];
-									$sname = $row['description'];
-									echo '<div class="col">
+						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-4 d-flex m-2" style="width:100%;">
+							<?php
+							$i = 1;
+							foreach ($results as $row) {
+								$id = $row['id'];
+								$subid = $row['subject_code'];
+								$cid = $row['course_id'];
+								$lvl = $row['level'];
+								$sname = $row['description'];
+								echo '<div class="col">
 																	<div class="card shadow-sm">
 																	<img src="background/' . $i . '.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="...">
 																		<div class="card-body">
@@ -91,14 +100,13 @@ include "../classes/course.class.php";
 																			<!--<p class="card-text"></p>-->
 																			<div class="d-flex justify-content-between align-items-center">
 																				<div class="btn-group">
-																					<a class="link" href="http://localhost/Project_I/admin/course/view/course-content.php?name=' . $sname . '&code='.$subid.'" style="text-decoration:none;"><button type="button" class="btn btn-sm btn-outline-primary rounded">View</button></a>
+																					<a class="link" href="' . base_url . 'admin/course/view/course-content.php?name=' . $sname . '&code=' . $subid . '" style="text-decoration:none;"><button type="button" class="btn btn-sm btn-outline-primary rounded">View</button></a>
 																					<button type="button" class="btn btn-sm btn-outline-primary rounded" data-toggle="modal" data-target="#updateModal' . $subid . '">Edit</button>
 																					<button type="button" class="btn btn-sm btn-outline-primary rounded" data-toggle="modal" data-target="#deleteModal' . $subid . '">Delete</button>
 																					&nbsp;
-																					<button class="border border-outline-dark" style="border-radius:50%;" title="<em>Orders</em>" data-bs-toggle="tooltip"
-																					data-bs-placement="right">
-																					<img src="http://localhost/Project_I/img/alert-outline.svg" style="width:24px; height:24px;" alt="">
-																					</button>
+																					&nbsp;
+																					<img src="' . base_url . 'img/information-circle-outline.svg" style="width:24px; height:24px;" alt="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Subject ID : ' . $subid = $row['subject_code'] . '">																
+																					
 																					<!-- Update Modal -->
 																					<div class="modal fade" id="updateModal' . $subid . '" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
 																						<div class="modal-dialog" role="document">
@@ -109,7 +117,7 @@ include "../classes/course.class.php";
 																										<span aria-hidden="true">&times;</span>
 																									</button>
 																								</div>
-																								<form action="http://localhost/Project_I/admin/includes/course.inc.php" method="POST">
+																								<form action="' . base_url . 'admin/includes/course.inc.php" method="POST">
 																									<div class="modal-body">
 																									<div class="form-group">
 																											<label for="id" class="control-label">ID</label>
@@ -152,7 +160,7 @@ include "../classes/course.class.php";
 
 																								</div>
 																								<div class="modal-body">
-																									<form action="http://localhost/Project_I/admin/includes/course.inc.php" method="POST">
+																									<form action="' . base_url . 'admin/includes/course.inc.php" method="POST">
 																										<div class="form-group">
 																											<label class="control-label">Do you really want to delete this?
 																											<p>Subject Code : <input type="text" name="subject_code" readonly value="' . $subid . '"></p>
@@ -176,13 +184,13 @@ include "../classes/course.class.php";
 																		</div>
 																	</div>
 																</div>';
-									$i++;
-								}
-								?>
-							</div>
+								$i++;
+							}
+							?>
 						</div>
+					</div>
 
-					
+
 				</div>
 			</div>
 		</content>
@@ -191,11 +199,12 @@ include "../classes/course.class.php";
 	<footer class="">
 		<?php include '../../plugins/inc/footer.php'; ?>
 	</footer>
-<script>
-	$(function(){
-		$('[data-toggle="tooltip"]').tooltip()
-	})
-</script>
+	<script>
+		var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+		var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+			return new bootstrap.Tooltip(tooltipTriggerEl)
+		})
+	</script>
 </body>
 
 </html>

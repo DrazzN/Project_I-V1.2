@@ -17,7 +17,7 @@ if (isset($_POST)) {
     $add->addUser($uid, $email, $pwd, $person);
     
     // Going to back to User page
-    header("location: ../users/index.php?error=added");
+    header("location: ../users/index.php?action=added");
   }
 
   if (isset($_POST["delete-user-submit"])) {
@@ -27,7 +27,7 @@ if (isset($_POST)) {
 
     $deletion->deleteUser($uid);
     // Going to back to User page
-    header("location: ../users/index.php?error=deleted");
+    header("location: ../users/index.php?action=deleted");
   }
   if (isset($_POST["update-user-submit"]))
     //Grabbing the Data
@@ -39,6 +39,6 @@ if (isset($_POST)) {
 
     $update->updateUser($uid, $email, $pwd, $id);
     // Going to back to User page
-    header("location: ../users/index.php?error=updated");
+    header("location: ../users/index.php?action=updated");
   }
 }

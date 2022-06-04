@@ -30,87 +30,114 @@ include "../classes/users.class.php";
 					<div>
 						<div class="card card-outline card-primary">
 							<div class="card-body">
-								<div class="card-header">
-									<div class="">
-										<?php
-
-										?>
-										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">Add New</button>
-										<!-- Modal -->
-										<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
-											<div class="modal-dialog" role="document">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="uploadModalLabel">New user</h5>
-														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-															<span aria-hidden="true">&times;</span>
-														</button>
-													</div>
-													<form action="http://localhost/Project_I/faculty/includes/user.inc.php" method="POST" id="manage-user">
-														<div class="modal-body">
-															<div class="form-group">
-																<label for="name">UserName</label>
-																<input type="text" name="uid" class="form-control" value="" required>
-															</div>
-															<div class="form-group">
-																<label for="name">Email</label>
-																<input type="text" name="email" class="form-control" value="" required>
-															</div>
-															<div class="form-group">
-																<label for="password">Password</label>
-																<input type="password" name="pwd" class="form-control" value="">
-															</div>
-															<div class="form-group">
-																<label for="password">Person</label>
-																<select name="person">
-																	<option value="faculty">Faculty</option>
-																	<option value="student">Student</option>
-																</select>
-															</div>
-														</div>
-														<div class="modal-footer">
-															<button type="submit" name="add-user-submit" class="btn btn-primary">Add</button>
-															<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-														</div>
-													</form>
+								<div class="card-header d-flex">
+									<button type="button" class="btn btn-primary mx-1" data-toggle="modal" data-target="#uploadModal">Add New</button>
+									<!-- Modal -->
+									<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="uploadModalLabel">New user</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
 												</div>
+												<form action="<?php echo base_url ?>faculty/includes/user.inc.php" method="POST" id="manage-user">
+													<div class="modal-body">
+														<div class="form-group">
+															<label for="name">UserName</label>
+															<input type="text" name="uid" class="form-control" value="" required>
+														</div>
+														<div class="form-group">
+															<label for="name">Email</label>
+															<input type="text" name="email" class="form-control" value="" required>
+														</div>
+														<div class="form-group">
+															<label for="password">Password</label>
+															<input type="password" name="pwd" class="form-control" value="">
+														</div>
+														<div class="form-group">
+															<label for="password">Person</label>
+															<select name="person">
+																<option value="faculty">Faculty</option>
+																<option value="student">Student</option>
+															</select>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="submit" name="add-user-submit" class="btn btn-primary">Add</button>
+														<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+													</div>
+												</form>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div style="overflow-y: scroll; height:100%;">
-									<table class="table tabe-hover table-bordered" id="list">
-										<thead>
-											<tr>
-												<th class="text-center">#</th>
-												<!-- <th>Avatar</th> -->
-												<th>Student ID</th>
-												<th>Username</th>
-												<th>Email</th>
-												<th>Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php
-											$i = 1;
-											foreach ($results as $row) {
-												$user_id = $row['user_id'];
-												$username = $row['username'];
-												$email = $row['email'];
+									<!-- Modal -->
+									<br>
+									<form action="index.php" method="POST">
+										<button type="submit" name="person" class="btn btn-primary" value="faculty">View Faculty</button>
+										<button type="submit" name="person" class="btn btn-primary" value="student">View Student</button>
+									</form>
 
-												echo '
+									<?php
+									if (isset($_POST['person'])) {
+										$results = $obj->getUsers('SELECT * FROM users WHERE person = "' . $_POST['person'] . '"');
+									}
+									?>
+								</div>
+							</div>
+
+							<div style="overflow-y: scroll; height:700px;">
+								<table class="table tabe-hover table-bordered" id="list">
+									<thead>
+										<tr>
+											<th class="text-center">#</th>
+											<!-- <th>Avatar</th> -->
+											<th>User ID</th>
+											<th>Username</th>
+											<th>Email</th>
+											<?php
+											if (isset($_POST['person'])) {
+												if ($_POST['person'] == 'student') {
+													echo '<th>Action</th>';
+												}
+											} else {
+												echo '<th>Action</th>';
+											}
+											?>
+
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$i = 1;
+										foreach ($results as $row) {
+											$user_id = $row['user_id'];
+											$username = $row['username'];
+											$email = $row['email'];
+
+											echo '
 											<tr>
 												<th class="text-center">' . $i . '</th>
 												<!--<td>
-													<img src="http://localhost/Project_I/' . $_SESSION['user'] . '/' . $_SESSION['profile_locate'] . '" alt="" class="img-thumbnail border-rounded" width="75px" height="75px" style="object-fit: cover;">
+													<img src="' . base_url . '' . $_SESSION['user'] . '/' . $_SESSION['profile_locate'] . '" alt="" class="img-thumbnail border-rounded" width="75px" height="75px" style="object-fit: cover;">
 												</td>-->
 												<td><b>' . $user_id . '</b></td>
 												<td><b>' . $username . '</b></td>
 												<td><b>' . $email . '</b></td>
-												<td class="text-center">
-													<button type="button" class="dropdown-item action_edit btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#updateModal' . $username . '">Edit</button>
+												<td class="text-center">';
+												if (isset($_POST['person'])) {
+													if ($_POST['person'] == 'student') {
+														echo '<button type="button" class="dropdown-item action_edit btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#updateModal' . $username . '">Edit</button>
 														<div class="dropdown-divider"></div>
-																<!-- Modal -->
+														<button type="button" class="dropdown-item action_delete btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#deleteModal' . $username . '">Delete</button>	';
+													}
+												} else {
+													echo '<button type="button" class="dropdown-item action_edit btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#updateModal' . $username . '">Edit</button>
+													<div class="dropdown-divider"></div>
+													<button type="button" class="dropdown-item action_delete btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#deleteModal' . $username . '">Delete</button>	';
+												}
+													echo '<!-- Modal -->
 																<div class="modal fade" id="updateModal' . $username . '" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
 																	<div class="modal-dialog" role="document">
 																		<div class="modal-content">
@@ -120,7 +147,7 @@ include "../classes/users.class.php";
 																					<span aria-hidden="true">&times;</span>
 																				</button>
 																			</div>
-																			<form action="http://localhost/Project_I/faculty/includes/user.inc.php" method="POST">
+																			<form action="' . base_url . 'faculty/includes/user.inc.php" method="POST">
 																				<div class="modal-body">
 																				<div class="form-group">
 																						<label for="id" class="control-label">ID</label>
@@ -151,7 +178,7 @@ include "../classes/users.class.php";
 																</div>
 																<!-- Modal-->
 
-																<button type="button" class="dropdown-item action_delete btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#deleteModal' . $username . '">Delete</button>
+
 																<!-- Modal -->
 																<div class="modal fade" id="deleteModal' . $username . '" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
 																	<div class="modal-dialog" role="document">
@@ -162,7 +189,7 @@ include "../classes/users.class.php";
 																					<span aria-hidden="true">&times;</span>
 																				</button>
 																			</div>
-																			<form action="http://localhost/Project_I/faculty/includes/user.inc.php" method="POST">
+																			<form action="' . base_url . 'faculty/includes/user.inc.php" method="POST">
 																				<div class="modal-body">
 																					<div class="form-group">
 																						<label for="username" class="control-label">Username</label>
@@ -187,16 +214,16 @@ include "../classes/users.class.php";
 											</td>
 											</tr>
 											';
-												$i++;
-											}
-											?>
-										</tbody>
-									</table>
-								</div>
+											$i++;
+										}
+										?>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
 				</div>
+			</div>
 			</div>
 		</content>
 	</section>

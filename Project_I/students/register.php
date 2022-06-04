@@ -32,7 +32,7 @@ include '../initialize.php';
           <p class="col-lg-10 fs-4">Sign up to start your session</p>
         </div>
         <div class="col col-xxl-5 col-md-10 col-sm-10 col-lg-10 mx-auto">
-          <form action="http://localhost/Project_I/students/includes/signup.inc.php" method="POST" class="p-4 p-md-5 border rounded-3 bg-light">
+          <form action="<?php echo base_url ?>students/includes/signup.inc.php" method="POST" class="p-4 p-md-5 border rounded-3 bg-light">
             <div class="form-floating mb-3">
               <input type="text" class="form-control" id="floatingInput" placeholder="Exampl@hotcookie.com" name="email" value="<?php //echo $email; 
                                                                                                                                 ?>" required>
@@ -62,9 +62,9 @@ include '../initialize.php';
             <hr class="my-4">
             <small class="text-muted">
               <p>Have an account ?
-                <a class="align-content-start text-mycolorpic" href="http://localhost/Project_I/students/login.php">LogIn Here</a>
+                <a class="align-content-start text-mycolorpic" href="<?php echo base_url ?>students/login.php">LogIn Here</a>
               </p>
-              <a href="http://localhost/Project_I/portal.php">Go Back</a>
+              <a href="<?php echo base_url ?>portal.php">Go Back</a>
             </small>
           </form>
         </div>

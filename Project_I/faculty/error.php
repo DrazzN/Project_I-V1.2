@@ -18,7 +18,7 @@
             </p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary"><a href="http://localhost/Project_I/">Go Home</a></button>
+                <button type="button" class="btn btn-sm btn-outline-secondary"><a href="<?php echo base_url ?>">Go Home</a></button>
               </div>
             </div>
           </div>

@@ -90,7 +90,10 @@ include "../classes/course.class.php";
 																			<!--<p class="card-text"></p>-->
 																			<div class="d-flex justify-content-between align-items-center">
 																				<div class="btn-group">
-																					<button type="button" class="btn btn-sm btn-outline-secondary"><a class="text-dark" href="http://localhost/Project_I/students/course/view/course-content.php?name=' . $sname . '&code='.$subid.'" style="text-decoration:none;">View</a></button>
+																				<a class="link" href="' . base_url . 'students/course/view/course-content.php?name=' . $sname . '&code=' . $subid . '" style="text-decoration:none;"><button type="button" class="btn btn-sm btn-outline-primary rounded">View</button></a>
+																					&nbsp;
+																					<img src="' . base_url . 'img/information-circle-outline.svg" style="width:24px; height:24px;" alt="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Subject ID : ' . $subid = $row['subject_code'] . '">																
+																					
 																				</div>
 																			</div>
 																		</div>
@@ -111,7 +114,12 @@ include "../classes/course.class.php";
 	<footer class="">
 		<?php include '../../plugins/inc/footer.php'; ?>
 	</footer>
-
+	<script>
+		var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+		var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+			return new bootstrap.Tooltip(tooltipTriggerEl)
+		})
+	</script>
 </body>
 
 </html>

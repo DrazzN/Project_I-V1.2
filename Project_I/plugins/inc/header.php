@@ -104,9 +104,7 @@
     }
 
     content {
-      float: left;
       padding: 20px;
-      width: 80%;
       background-color: #f1f1f1;
       /* only for demonstration, should be removed */
     }
@@ -138,5 +136,53 @@
 			transform: scale(1.1) !important;
 			z-index: 2;
 		}
-    
 	</style>
+  <style>
+    :root {
+      --main-color: #DD2F6E;
+      --color-dark: #1D2231;
+      --text-grey: #8390A2;
+    }
+
+    main {
+      margin-top: 2px;
+      padding: 2rem 1.5rem;
+      background: #f1f5f9;
+      min-height: calc(100vh - 150px);
+    }
+
+    .dashboard-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    .single-card {
+      display: flex;
+      justify-content: space-between;
+      padding: 3rem;
+      border-radius: 2px;
+    }
+
+    .single-card h1+span {
+      color: var(--text-grey);
+    }
+
+    .single-card div:first-child span {
+      font-size: 3rem;
+      color: var(--text-grey);
+    }
+
+    .single-card div:last-child span {
+      font-size: 3rem;
+      color: var(--main-color);
+    }
+
+    .center {
+      margin: auto;
+      margin-top: 2rem;
+      width: 60%;
+      padding: 10px;
+    }
+  </style>

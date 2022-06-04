@@ -5,7 +5,6 @@ $page = 'profile';
 if ($_SESSION['user'] != 'faculty') {
   header("location: error.php");
 }
-
 include '../initialize.php';
 include 'settings.php';
 
@@ -14,7 +13,9 @@ if (isset($_POST['save-submit'])) {
 	$update = $data->setUserdata($_POST['fname'],$_POST['lname'],$_POST['level'],$_POST['contact'],$_POST['uid']);
   header("Location: profile.php?update=success");
 }
-
+$data = new Userdata();
+$data->getUserdata();
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,7 +68,7 @@ if (isset($_POST['save-submit'])) {
                   if ($_SESSION['profile_locate'] == "") {
                     echo '<img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">';
                   } else {
-                    echo '<img class="img-account-profile rounded-circle mb-2" src="http://localhost/Project_I/faculty/' . $_SESSION['profile_locate'] . '" alt="" style="width:315px;height:315px;>';
+                    echo '<img class="img-account-profile rounded-circle mb-2" src="'.base_url.'faculty/' . $_SESSION['profile_locate'] . '" alt="" style="width:315px;height:315px;>';
                   }
                 }
                 
@@ -120,7 +121,7 @@ if (isset($_POST['save-submit'])) {
                 <form action="profile.php" method="POST">
                   <div class="mb-3">
                     <label class="small mb-1" for="inputUserid">User ID</label>
-                    <input class="form-control" id="inputUserid" type="text" name="uid" value="<?php echo $_SESSION['user_id']; ?>" readonly>
+                    <input class="form-control" id="inputUserid" type="text" name="uid" value="<?php echo $_SESSION['userid']; ?>" readonly>
                   </div>
                   <div class="row gx-3 mb-3">
                     <div class="col-md-6">
@@ -134,7 +135,7 @@ if (isset($_POST['save-submit'])) {
                   </div>
                   <div class="mb-3">
                     <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                    <input class="form-control" id="inputEmailAddress" type="email" name="email" placeholder="Enter your email address" value="<?php echo $_SESSION['email']; ?>">
+                    <input class="form-control" id="inputEmailAddress" type="email" name="email" placeholder="Enter your email address" value="<?php echo $_SESSION['email']; ?>" readonly>
                   </div>
                   <div class="row gx-3 mb-3">
                     <div class="col-md-6">

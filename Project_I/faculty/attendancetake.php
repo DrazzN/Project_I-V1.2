@@ -2,7 +2,7 @@
 session_start();
 $page = 'attendance';
 
-if ($_SESSION['user'] != 'admin') {
+if ($_SESSION['user'] != 'faculty') {
 	header("location: error.php");
 }
 
@@ -22,6 +22,7 @@ if (isset($_POST['att-submit'])) {
 		header("Location: attendancetake.php?error=none");
 	}
 }
+// var_dump($_POST);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +36,7 @@ if (isset($_POST['att-submit'])) {
 	<section class="d-flex ssize">
 		<?php include '../plugins/inc/sidebar.php'; ?>
 
-		<content w-100>
+		<content class="w-100">
 		<form action="attendancetake.php" method="POST">
 			<div>
 				<h1>Attendance of <input type="text" name="donedate" value="<?php echo $_SESSION['tdate']; ?>"></h1><br>

@@ -18,11 +18,11 @@ if(isset($_POST['submit'])) {
         $fileDestination = 'uploads/avatar/'.$fileNameNew;
         move_uploaded_file($fileTmpName, $fileDestination);
         echo $fileDestination;
-        $sqlup = "UPDATE profileimg SET location = '".$fileDestination."' WHERE user_id = ".$_SESSION['userid'];
+        $locset = "UPDATE profileimg SET location = '".$fileDestination."' WHERE user_id = ".$_SESSION['userid'];
         include 'settings.php';
 
         $objset = new Profileimg;
-        $resultset = $objset->setStatus($sqlup);
+        $resultset = $objset->setStatus($locset);
         header("Location: profile.php?uploadsuccess");
       } else{
         echo 'Your file is too big.';

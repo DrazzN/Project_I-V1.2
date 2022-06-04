@@ -15,8 +15,11 @@ $login->loginUser();
 // Going to back to front page
 
 $_SESSION['user'] = 'students';
+echo $_SESSION['person'];
+// if ($_SESSION['person'] != 'student') {
+//   header("Location : login.php?error=userinvalid");
+// } else {
 header("Location: ../index.php?error=none");
-
+// }
 
 }
-?>
