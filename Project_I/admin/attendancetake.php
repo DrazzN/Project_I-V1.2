@@ -9,7 +9,7 @@ if ($_SESSION['user'] != 'admin') {
 include '../initialize.php';
 include "classes/dbconn.class.php";
 include "classes/users.class.php";
-
+$resultst = $obj->getUsers('SELECT * FROM users');
 $_SESSION['tdate'] = $tdate = date('Y-m-d');
 $chkatt = $obj->getUsers('SELECT * FROM attendance WHERE date = "'.$_SESSION['tdate'].'"');
 
@@ -35,7 +35,7 @@ if (isset($_POST['att-submit'])) {
 	<section class="d-flex ssize">
 		<?php include '../plugins/inc/sidebar.php'; ?>
 
-		<content w-100>
+		<content class="w-100">
 		<form action="attendancetake.php" method="POST">
 			<div>
 				<h1>Attendance of <input type="text" name="donedate" value="<?php echo $_SESSION['tdate']; ?>"></h1><br>

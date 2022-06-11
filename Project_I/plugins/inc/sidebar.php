@@ -6,7 +6,7 @@
   </div>
   <div class="dropdown">
     <a href="#" class="d-flex align-items-start justify-content-start p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
-      <img src="http://localhost/Project_I/<?php echo $_SESSION['user'] . '/' . $_SESSION['profile_locate']; ?>" alt="" width="30px" height="30px" class="rounded-circle">&nbsp;<?php echo $_SESSION["username"]; ?>
+      <img src="<?php echo base_url ?><?php echo $_SESSION['user'] . '/' . $_SESSION['profile_locate']; ?>" alt="" width="30px" height="30px" class="rounded-circle">&nbsp;<?php echo $_SESSION["username"]; ?>
     </a>
     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
       <li><a class="dropdown-item" href="http://localhost/Project_I/<?php echo $_SESSION['user']; ?>/profile.php">Profile</a></li>
@@ -48,7 +48,7 @@
     <hr>
     <?php
     if (isset($_SESSION['user'])) {
-      if ($_SESSION['user'] != 'students') {
+      if ($_SESSION['user'] == 'faculty') {
         echo '<li class="nav-item ho">
       <a href="" class="nav-link text-dark';
         if ($page == 'attendance') {

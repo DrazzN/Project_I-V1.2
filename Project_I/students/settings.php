@@ -51,7 +51,7 @@ class UserProf extends DBConnection
 		$stmt = $this->connect()->query('SELECT * FROM profileimg');
 		$item = $stmt->fetch();
 		return $item;
-		$sstmt = null;
+		$stmt = null;
 	}
 }
 
