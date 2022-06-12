@@ -53,7 +53,7 @@ if (isset($_POST['att-submit'])) {
 											<!-- <th>Avatar</th> -->
 											<th>Student ID</th>
 											<th>Username</th>
-											<th>Present</th>
+											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>

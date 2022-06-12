@@ -58,8 +58,8 @@ $resultur = $attco->getuserCount('SELECT COUNT(user_id) FROM users');
           </div>
 
           <main>
-            <div class="dashboard-cards">
-              <div class="single-card bg-white ho" id="users" onclick="userfunc()">
+            <div class="dashboard-cards d-flex">
+              <div class="single-card bg-white ho mx-3 col" id="users" onclick="userfunc()">
                 <div>
                   <h1 class="fw-bold"><?php echo $resultur[0]['COUNT(user_id)']; ?></h1>
                   <span>Users</span>
@@ -70,7 +70,7 @@ $resultur = $attco->getuserCount('SELECT COUNT(user_id) FROM users');
                   </span>
                 </div>
               </div>
-              <div class="single-card bg-white ho" onclick="coursefunc()">
+              <div class="single-card bg-white ho mx-3 col" onclick="coursefunc()">
                 <div>
                   <h1 class="fw-bold"><?php echo $resultco[0]['COUNT(id)']; ?></h1>
                   <span>Courses</span>
@@ -81,7 +81,7 @@ $resultur = $attco->getuserCount('SELECT COUNT(user_id) FROM users');
                   </span>
                 </div>
               </div>
-              <div class="single-card bg-white ho" onclick="dwnfunc()">
+              <div class="single-card bg-white ho mx-3 col" onclick="dwnfunc()">
                 <div>
                   <h1 class="fw-bold">0</h1>
                   <span>Downlodables</span>
@@ -92,7 +92,7 @@ $resultur = $attco->getuserCount('SELECT COUNT(user_id) FROM users');
                   </span>
                 </div>
               </div>
-              <div class="single-card bg-white ho" id="messages" onclick="eventfunc()">
+              <div class="single-card bg-white ho mx-3 col" id="messages" onclick="eventfunc()">
                 <div>
                   <h1 class="fw-bold">&nbsp;</h1>
                   <span>Messages</span>

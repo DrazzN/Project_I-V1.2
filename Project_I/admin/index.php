@@ -59,8 +59,8 @@ $resultur = $attco->getuserCount('SELECT COUNT(user_id) FROM users');
           </div>
 
           <main>
-            <div class="dashboard-cards">
-              <div class="single-card bg-white ho" onclick="userfunc()">
+            <div class="dashboard-cards d-flex">
+              <div class="single-card bg-white ho mx-3 col" onclick="userfunc()">
                 <div>
                   <h1 class="fw-bold"><?php echo $resultur[0]['COUNT(user_id)']; ?></h1>
                   <span>Users</span>
@@ -71,7 +71,7 @@ $resultur = $attco->getuserCount('SELECT COUNT(user_id) FROM users');
                   </span>
                 </div>
               </div>
-              <div class="single-card bg-white ho" onclick="coursefunc()">
+              <div class="single-card bg-white ho mx-3 col" onclick="coursefunc()">
                 <div>
                   <h1 class="fw-bold"><?php echo $resultco[0]['COUNT(id)']; ?></h1>
                   <span>Courses</span>
@@ -82,9 +82,9 @@ $resultur = $attco->getuserCount('SELECT COUNT(user_id) FROM users');
                   </span>
                 </div>
               </div>
-              <div class="single-card bg-white ho" onclick="dwnfunc()">
+              <div class="single-card bg-white ho mx-3 col" onclick="dwnfunc()">
                 <div>
-                  <h1 class="fw-bold">3</h1>
+                  <h1 class="fw-bold">0</h1>
                   <span>Downlodables</span>
                 </div>
                 <div>
@@ -93,7 +93,7 @@ $resultur = $attco->getuserCount('SELECT COUNT(user_id) FROM users');
                   </span>
                 </div>
               </div>
-              <div class="single-card bg-white ho" id="messages" onclick="eventfunc()">
+              <div class="single-card bg-white ho mx-3 col" id="messages" onclick="eventfunc()">
                 <div>
                   <h1 class="fw-bold">&nbsp;</h1>
                   <span>Messages</span>
@@ -105,6 +105,7 @@ $resultur = $attco->getuserCount('SELECT COUNT(user_id) FROM users');
                 </div>
               </div>
             </div>
+            <!--  -->
             <div class="wrapper center" style="width:100%;max-width:600px;">
               <canvas id="myChart"></canvas>
             </div>

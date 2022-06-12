@@ -152,9 +152,9 @@
     }
 
     .dashboard-cards {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-gap: 2rem;
+      /* display: grid; */
+      /* grid-template-columns: repeat(4, 1fr); */
+      /* grid-gap: 2rem; */
       margin-top: 1rem;
     }
 

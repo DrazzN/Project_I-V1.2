@@ -1,4 +1,4 @@
-<?php include 'initialize.php'; 
+<?php include 'initialize.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,23 +50,56 @@
         a {
             text-decoration: none;
         }
+        a:hover {
+            text-shadow: none !important;
+            box-shadow: border-box !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            -webkit-transition: scale(1.1) !important;
+            -ms-transform: scale(1.1) !important;
+            transform: scale(1.1) !important;
+            z-index: 2;
+        }
+    </style>
+    <style>
+        .ho:hover {
+            margin-left: 10px;
+            text-shadow: none !important;
+            box-shadow: border-box !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            -webkit-transition: scale(1.1) !important;
+            -ms-transform: scale(1.1) !important;
+            transform: scale(1.1) !important;
+            z-index: 2;
+        }
     </style>
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="<?php echo base_url; ?>index.php">eLearning</a>
 
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item ho">
                             <a href="#home" class="nav-link active">
                                 About
+                            </a>
+                        </li>
+                        <li class="nav-item ho">
+                            <a href="#home" class="nav-link active">
+                                Developers
+                            </a>
+                        </li>
+                        <li class="nav-item ho">
+                            <a href="#home" class="nav-link active">
+                                Contacts
                             </a>
                         </li>
                     </ul>
