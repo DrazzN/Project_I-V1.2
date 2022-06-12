@@ -1,5 +1,4 @@
-<?php include 'initialize.php';
-?>
+<?php include 'initialize.php';?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>elearning</title>
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="plugins/css/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="<?php echo base_url ?>plugins/css/bootstrap.css">
@@ -88,17 +87,17 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item ho">
-                            <a href="#home" class="nav-link active">
+                            <a href="about.php" class="nav-link active">
                                 About
                             </a>
                         </li>
                         <li class="nav-item ho">
-                            <a href="#home" class="nav-link active">
+                            <a href="developers.php" class="nav-link active">
                                 Developers
                             </a>
                         </li>
                         <li class="nav-item ho">
-                            <a href="#home" class="nav-link active">
+                            <a href="contacts.php" class="nav-link active">
                                 Contacts
                             </a>
                         </li>
@@ -126,6 +125,7 @@
                 </content>
             </div>
         </section>
+        
     </main>
 
 

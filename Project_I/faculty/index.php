@@ -2,12 +2,12 @@
 session_start();
 $page = 'dashboard';
 
-if (isset($_SESSION['user'])) {
-  if ($_SESSION['user'] != 'faculty') {
-    header("location: error.php");
+if (isset($_SESSION['person_ID'])) {
+  if ($_SESSION['person_ID'] != 'faculty') {
+    header("location: error.php?error=invalidusertype");
   }
 }
-
+// var_dump($_SESSION);
 include '../initialize.php';
 include 'settings.php';
 include "classes/users.class.php";

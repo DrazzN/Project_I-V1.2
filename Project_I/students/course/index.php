@@ -29,9 +29,9 @@ include "../classes/course.class.php";
 				<div>
 					<h1 class="ps-3 pt-3">Courses</h1>
 					<hr>
-						<button type="button" class="btn btn-primary ms-3" data-toggle="modal" data-target="#uploadModal" style="width:100px;">Add New</button>
-						<hr>
-						<!-- Modal -->
+						<!-- <button type="button" class="btn btn-primary ms-3" data-toggle="modal" data-target="#uploadModal" style="width:100px;">Add New</button>
+						<hr>-->
+						<!-- Modal --><!--
 						<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
@@ -68,7 +68,7 @@ include "../classes/course.class.php";
 									</form>
 								</div>
 							</div>
-						</div>
+						</div> -->
 
 						<!--<h3 class="px-5 pt-5 font-md-1">First Semister</h3>-->
 						<div class="container">

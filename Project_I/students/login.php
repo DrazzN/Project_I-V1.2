@@ -6,7 +6,7 @@ if (isset($_SESSION['person'])) {
         session_start();
         session_unset();
         session_destroy();
-        header("location: login.php?error=invalidusertype");
+        header("location: error.php?error=invalidusertype");
     }
     // else {
     //     if (isset($_SESSION['user'])) {

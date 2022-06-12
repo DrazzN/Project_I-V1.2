@@ -2,9 +2,9 @@
 session_start();
 $page = 'dashboard';
 
-if (isset($_SESSION['user'])) {
-  if ($_SESSION['user'] != 'admin') {
-    header("location: error.php");
+if (isset($_SESSION['person_ID'])) {
+  if ($_SESSION['person_ID'] != 'admin') {
+    header("location: error.php?error=invalidusertype");
   }
 }
 

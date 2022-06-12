@@ -40,6 +40,7 @@ class Login extends DBConnection
           $_SESSION["userid"] = $user["user_id"];
           $_SESSION["username"] = $user["username"];
           $_SESSION["email"] = $user["email"];
+          $_SESSION["person_ID"] = $user["person"];
         }
 $stmt = null;
   }

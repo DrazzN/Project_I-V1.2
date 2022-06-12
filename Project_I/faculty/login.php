@@ -2,8 +2,8 @@
 session_start();
 $page = 'login';
 
-if (isset($_SESSION['user'])) {
-    if ($_SESSION['user'] != 'faculty') {
+if (isset($_SESSION['person_ID'])) {
+    if ($_SESSION['person_ID'] != 'faculty') {
         header("location: error.php");
     }
 }
