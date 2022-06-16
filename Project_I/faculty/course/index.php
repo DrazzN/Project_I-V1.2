@@ -7,9 +7,12 @@ if ($_SESSION['user'] != 'faculty') {
 }
 
 include "../../initialize.php";
-include "../classes/dbconn.class.php";
+include '../settings.php';
 include "../classes/course.class.php";
-
+include "../classes/department.class.php";
+$results = $obj->getsubject('SELECT * FROM subject WHERE course_id = ' . $_SESSION['course_id']);
+// var_dump($_POST);
+// var_dump($_SESSION);
 
 ?>
 
@@ -20,16 +23,6 @@ include "../classes/course.class.php";
 <head>
 	<?php include '../../plugins/inc/header.php'; ?>
 
-	<script>
-		function a() {
-			Swal.fire(
-				$_GET['action'] + 'Successful',
-				'Welcome <?php if (isset($_SESSION["username"])) {
-										echo $_SESSION["username"];
-									} ?>', 'success'
-			)
-		};
-	</script>
 </head>
 
 
@@ -92,20 +85,22 @@ include "../classes/course.class.php";
 							</div>
 						</div>
 					</div>
+					<div style="overflow-y: scroll; height:700px">
+						<?php echo '<h3 class="px-5 pt-2 font-md-1">' . $_SESSION['department'] . ' &nbsp;Course ID : ' . $_SESSION['course_id'] . '</h3>'; ?>
 
-					<!--<h3 class="px-5 pt-5 font-md-1">First Semister</h3>-->
-					<div class="container">
-
-						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-4 d-flex m-2" style="width:100%;">
-							<?php
-							$i = 1;
-							foreach ($results as $row) {
-								$id = $row['id'];
-								$subid = $row['subject_code'];
-								$cid = $row['course_id'];
-								$lvl = $row['level'];
-								$sname = $row['description'];
-								echo '<div class="col">
+						<div class="container">
+							<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-4 d-flex m-2" style="width:100%;">
+								<?php
+								$i = 1;
+								$dcid = $_SESSION['course_id'];
+								foreach ($results as $row) {
+									$id = $row['id'];
+									$subid = $row['subject_code'];
+									$cid = $row['course_id'];
+									$lvl = $row['level'];
+									$sname = $row['description'];
+									if ($dcid == $cid) {
+										echo '<div class="col">
 																	<div class="card shadow-sm">
 																	<img src="background/' . $i . '.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="...">
 																		<div class="card-body">
@@ -196,13 +191,14 @@ include "../classes/course.class.php";
 																		</div>
 																	</div>
 																</div>';
-								$i++;
-							}
-							?>
+										$i++;
+									}
+								}
+								?>
+							</div>
 						</div>
+
 					</div>
-
-
 				</div>
 			</div>
 		</content>

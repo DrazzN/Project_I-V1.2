@@ -10,12 +10,16 @@ include 'settings.php';
 
 if (isset($_POST['save-submit'])) {
   $data = new Userdataset();
-	$update = $data->setUserdata($_POST['fname'],$_POST['lname'],$_POST['level'],$_POST['contact'],$_POST['uid']);
+  $update = $data->setUserdata($_POST['fname'], $_POST['lname'], $_POST['course_id'], $_POST['contact'], $_POST['uid']);
   header("Location: profile.php?update=success");
 }
 $data = new Userdata();
 $data->getUserdata();
- 
+$fald = new FacultyDept;
+$fald->getUserDept();
+// var_dump($_POST);
+// var_dump($_SESSION);
+// var_dump($results);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,9 +39,9 @@ $data->getUserdata();
     <?php include '../plugins/inc/sidebar.php'; ?>
 
     <content class="w-100">
-      <?php 
+      <?php
       if (isset($_GET['update'])) {
-        if($_GET['update'] == 'success'){
+        if ($_GET['update'] == 'success') {
           echo "<script>
                 Swal.fire(
                   'UpdateSuccessful',
@@ -46,16 +50,16 @@ $data->getUserdata();
                 </script>";
         }
       }
-      if(isset($_GET['error'])){
+      if (isset($_GET['error'])) {
         echo "<script>
     Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: '".$_GET['error']."!'
+        text: '" . $_GET['error'] . "!'
       });
       </script>";
       }
-    ?>
+      ?>
       <div class="container">
         <div class="row p-1">
           <div class="col">
@@ -68,10 +72,10 @@ $data->getUserdata();
                   if ($_SESSION['profile_locate'] == "") {
                     echo '<img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">';
                   } else {
-                    echo '<img class="img-account-profile rounded-circle mb-2" src="'.base_url.'faculty/' . $_SESSION['profile_locate'] . '" alt="" style="width:315px;height:315px;>';
+                    echo '<img class="img-account-profile rounded-circle mb-2" src="' . base_url . 'faculty/' . $_SESSION['profile_locate'] . '" alt="" style="width:315px;height:315px;>';
                   }
                 }
-                
+
                 ?>
                 <div class="small font-italic text-muted mb-4">
                   <p>JPG or PNG no larger than 5 MB</p>
@@ -133,9 +137,15 @@ $data->getUserdata();
                       <input class="form-control" id="inputLastName" type="text" name="lname" placeholder="Enter your last name" value="<?php echo $_SESSION['lastname']; ?>">
                     </div>
                   </div>
-                  <div class="mb-3">
-                    <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                    <input class="form-control" id="inputEmailAddress" type="email" name="email" placeholder="Enter your email address" value="<?php echo $_SESSION['email']; ?>" readonly>
+                  <div class="row gx-3 mb-3">
+                    <div class="col-md-6">
+                      <label class="small mb-1" for="inputEmailAddress">Email address</label>
+                      <input class="form-control" id="inputEmailAddress" type="email" name="email" placeholder="Enter your email address" value="<?php echo $_SESSION['email']; ?>" readonly>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="small mb-1" for="inputcid">Course ID</label>
+                      <input class="form-control" id="inputcid" type="text" name="course_id" placeholder="1" value="<?php echo $_SESSION['course_id']; ?>">
+                    </div>
                   </div>
                   <div class="row gx-3 mb-3">
                     <div class="col-md-6">
@@ -144,7 +154,7 @@ $data->getUserdata();
                     </div>
                     <div class="col-md-6">
                       <label class="small mb-1" for="inputDob">Department</label>
-                      <input class="form-control" id="inputlvl" type="text" name="level" placeholder="1" value="<?php echo $_SESSION['level']; ?>">
+                      <input class="form-control" id="inputlvl" type="text" name="department" placeholder="1" value="<?php echo $_SESSION['department']; ?>">
                     </div>
                   </div>
                   <!-- Save changes button-->

@@ -32,6 +32,22 @@
         <img class="img icon mx-2" src="http://localhost/Project_I/img/speedometer-outline.svg" alt="">Dashboard</a>
     </li>
     <hr>
+    <?php
+    if (isset($_SESSION['user'])) {
+      if ($_SESSION['user'] == 'admin') {
+        echo '<li class="nav-item ho">
+      <a href="http://localhost/Project_I/'.$_SESSION['user'].'/department/" class="nav-link text-dark';
+        if ($page == 'department') {
+          echo 'active';
+        };
+        echo '" >
+        <img class="img icon mx-2" src="http://localhost/Project_I/img/calendar-outline.svg" alt="">Department</a>
+        
+    </li>
+    <hr>';
+      }
+    }
+    ?>
     <li class="nav-item ho">
       <a href="http://localhost/Project_I/<?php echo $_SESSION['user']; ?>/course/" class="nav-link text-dark<?php if ($page == 'course') {
                                                                                                                 echo 'active';
@@ -70,5 +86,21 @@
         </ul>
       </div>
     </li>
+    <?php
+    if (isset($_SESSION['user'])) {
+      if ($_SESSION['user'] == 'admin') {
+        echo '<li class="nav-item ho">
+      <a href="http://localhost/Project_I/'.$_SESSION['user'].'/setup.php" class="nav-link text-dark';
+        if ($page == 'setup') {
+          echo 'active';
+        };
+        echo '" >
+        <img class="img icon mx-2" src="http://localhost/Project_I/img/calendar-outline.svg" alt="">Setting</a>
+        
+    </li>
+    <hr>';
+      }
+    }
+    ?>
   </ul>
 </nav>

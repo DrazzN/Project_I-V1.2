@@ -1,4 +1,25 @@
-<?php include 'initialize.php';?>
+<?php
+session_start();
+
+include 'initialize.php';
+include 'config.php';
+
+class SystemInfo extends DBConnection
+{
+    public function Info()
+    {
+        $stmt = $this->connect()->query('SELECT * FROM sys_info');
+        $item = $stmt->fetchAll();
+        $_SESSION['title'] = $item[0]['title'];
+        $_SESSION['content'] = $item[0]['content'];
+        $stmt = null;
+    }
+}
+$sysdata = new SystemInfo;
+$data = $sysdata->Info();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,6 +70,7 @@
         a {
             text-decoration: none;
         }
+
         a:hover {
             text-shadow: none !important;
             box-shadow: border-box !important;
@@ -113,11 +135,11 @@
                 <content>
                     <div class="d-sm-flex py-5 align-items-center justify-content-between">
                         <div>
-                            <h1>Start Learning<span class="d-sm-flex text-warning">What You Find Interesting</span></h1>
-                            <p class="lead my-4">
-                                Expand your opportunities with courses of your own choice. We
-                                provide the tools and skills to teach what you love.
-                            </p>
+                            <?php
+                            echo $_SESSION['title'];
+                            echo $_SESSION['content'];
+
+                            ?>
                             <button class="btn btn-primary btn-lg"><a href="<?php echo base_url; ?>portal.php" class="text-light">Start The Enrollment</a></button>
                         </div>
                         <img class="img-fluid w-50 d-none d-md-block" src="img/flowers.webp" alt="" />
@@ -125,7 +147,7 @@
                 </content>
             </div>
         </section>
-        
+
     </main>
 
 

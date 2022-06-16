@@ -39,7 +39,7 @@ class Subject extends DBConnection{
   // }
 }
 $obj = new Subject;
-$results = $obj->getsubject();
+$results = $obj->getSubject();
 // $semi = $obj->getLevel();
 
 class Coursedelete extends DBConnection{
@@ -91,4 +91,6 @@ class DelAssgin extends DBConnection {
   }
 }
 $objdel = new DelAssgin;
+
+
 ?>

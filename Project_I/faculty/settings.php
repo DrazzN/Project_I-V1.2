@@ -6,24 +6,33 @@ class Userdata extends DBConnection
 {
 	public function getUserdata()
 	{
-		$sqlp = 'SELECT faculty.user_id, faculty.firstname, faculty.lastname, faculty.department_id, faculty.contact, users.username, users.email FROM faculty INNER JOIN users ON faculty.user_id = users.user_id  WHERE users.user_id = "' . $_SESSION['userid'] . '"';
+		$sqlp = 'SELECT faculty.user_id, faculty.firstname, faculty.lastname, faculty.course_id, faculty.contact, users.username, users.email FROM faculty INNER JOIN users ON faculty.user_id = users.user_id  WHERE users.user_id = "' . $_SESSION['userid'] . '"';
 		$stmt = $this->connect()->query($sqlp);
 		$item = $stmt->fetchAll();
 		$_SESSION['firstname'] = $item[0]['firstname'];
 		$_SESSION['lastname'] = $item[0]['lastname'];
-		$_SESSION['level'] = $item[0]['department_id'];
+		$_SESSION['course_id'] = $item[0]['course_id'];
 		$_SESSION['contact'] = $item[0]['contact'];
+	}
+}
+class FacultyDept extends DBConnection 
+{
+	Public function getUserDept() {
+		$stmt = $this->connect()->query('SELECT department FROM department WHERE course_id = "'.$_SESSION['course_id'].'"');
+		$item = $stmt->fetchAll();
+		// return $item;
+		$_SESSION['department'] = $item[0]['department'];
+
 	}
 }
 
 
-
 class Userdataset extends DBConnection
 {
-	public function setUserdata($fname, $lname, $level, $contact, $user_id)
+	public function setUserdata($fname, $lname, $course_id, $contact, $user_id)
 	{
-		$stmt = $this->connect()->prepare('UPDATE faculty SET firstname = ?, lastname = ?, department_id = ?, contact = ? WHERE user_id = ?');
-		if (!$stmt->execute(array($fname, $lname, $level, $contact, $user_id))) {
+		$stmt = $this->connect()->prepare('UPDATE faculty SET firstname = ?, lastname = ?, course_id = ?, contact = ? WHERE user_id = ?');
+		if (!$stmt->execute(array($fname, $lname, $course_id, $contact, $user_id))) {
 			$stmt = null;
 			header("location : ../index.php?error=stmtfailed");
 			exit();

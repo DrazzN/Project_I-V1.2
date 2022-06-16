@@ -16,14 +16,14 @@ if(isset($_POST['submit'])) {
   if(in_array($fileActualExt, $allowed)){
     if($fileError === 0){
       if($fileSize < 1000000) {
-        $fileNameNew = $_SESSION['subject_code'].$_SESSION['user_id'].$_POST['assign_id'].$_POST['subdate'].".".$fileActualExt;
+        $fileNameNew = $_SESSION['subject_code'].$_SESSION['userid'].$_POST['assign_id'].$_POST['subdate'].".".$fileActualExt;
         $fileDestination = 'uploads/'.$fileNameNew;
         move_uploaded_file($fileTmpName, $fileDestination);
         include '../../settings.php';
         include '../../classes/course.class.php';
 
         $objset = new AssginUp;
-        $resultset = $objset->uploadAssign($_POST['assign_id'], $fileDestination, $fileNameNew, $_POST['subdate'], $_POST['description'], $_SESSION['subject_code'], $_SESSION['user_id']);
+        $resultset = $objset->uploadAssign($_POST['assign_id'], $fileDestination, $fileNameNew, $_POST['subdate'], $_POST['description'], $_SESSION['subject_code'], $_SESSION['userid']);
         header("Location: ../view/course-content.php?opt=assignments&upload=success");
       } else{
         header("Location: ../view/course-content.php?error=Your file is too big");

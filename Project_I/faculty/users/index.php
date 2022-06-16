@@ -22,7 +22,7 @@ include "../classes/users.class.php";
 	<section class="d-flex ssize">
 		<?php include '../../plugins/inc/sidebar.php'; ?>
 
-		<content>
+		<content class="w-100">
 			<div class="card card-outline card-primary" style="height:100%;">
 				<div>
 					<h1 class="ps-3 pt-3">Users</h1>
@@ -192,7 +192,7 @@ include "../classes/users.class.php";
 																			<form action="' . base_url . 'faculty/includes/user.inc.php" method="POST">
 																				<div class="modal-body">
 																					<div class="form-group">
-																						<label for="username" class="control-label">Username</label>
+																						<label for="username" class="control-label">User ID</label>
 																						<input type="text" name="uid" required="" class="form-control form-control-sm" value="' . $user_id . '">
 																					</div>
 																					<div class="form-group">

@@ -4,36 +4,30 @@ include "classes/dbconn.class.php";
 
 class Userdata extends DBConnection
 {
-	public function getUserdata($sqlp)
+	public function getUserdata()
 	{
-		$stmt = $this->connect()->prepare($sqlp);
-		$stmt->execute();
-		$item = $stmt->fetch();
-		return $item;
-		$stmt=null;
+		$sqlp ='SELECT student.user_id, student.firstname, student.lastname, student.course_id, student.contact, users.username, users.email FROM student INNER JOIN USERS ON student.user_id = users.user_id WHERE users.user_id = "' . $_SESSION['userid'] . '"';
+		$stmt = $this->connect()->query($sqlp);
+		$item = $stmt->fetchAll();
+		// var_dump($_SESSION);
+		$_SESSION['firstname'] = $item[0]['firstname'];
+		$_SESSION['lastname'] = $item[0]['lastname'];
+		$_SESSION['course_id'] = $item[0]['course_id'];
+		$_SESSION['contact'] = $item[0]['contact'];
 	}
 }
 $data = new Userdata();
-$userdata = $data->getUserdata('SELECT user_id, firstname, lastname, class_id, contact FROM student  WHERE user_id = "' . $_SESSION['userid'] . '"');
-// var_dump($userdata);
-// var_dump($_SESSION);
-if (boolval($userdata) == true) {
-	// $_SESSION['user_id'] = $userdata['user_id'];
-	$_SESSION['firstname'] = $userdata['firstname'];
-	$_SESSION['lastname'] = $userdata['lastname'];
-	$_SESSION['level'] = $userdata['user_id'];
-	$_SESSION['contact'] = $userdata['contact'];
-}
-$userdata = $data->getUserdata('SELECT username, email  FROM users  WHERE user_id = "' . $_SESSION['userid'] . '"');
-$_SESSION['username'] = $userdata['username'];
-// var_dump($userdata);
+$userdata = $data->getUserdata();
+
+// $userdata = $data->getUserdata('SELECT   FROM users  WHERE user_id = "' . $_SESSION['userid'] . '"');
+// $_SESSION['username'] = $userdata['username'];
 
 class Userdataset extends DBConnection
 {
-	public function setUserdata($fname, $lname, $lvl, $contact, $uid)
+	public function setUserdata($fname, $lname, $course_id, $contact, $uid)
 	{
-		$stmt = $this->connect()->prepare('UPDATE student SET firstname = ?, lastname = ?, class_id = ?, contact = ? WHERE user_id = ?');
-		if (!$stmt->execute(array($fname, $lname, $lvl, $contact, $uid))) {
+		$stmt = $this->connect()->prepare('UPDATE student SET firstname = ?, lastname = ?, course_id = ?, contact = ? WHERE user_id = ?');
+		if (!$stmt->execute(array($fname, $lname, $course_id, $contact, $uid))) {
 			$stmt = null;
 			header("location : ../index.php?error=stmtfailed");
 			exit();
@@ -42,7 +36,15 @@ class Userdataset extends DBConnection
 	}
 }
 
-
+class StudentDept extends DBConnection
+{
+	public function getUserDept()
+	{
+		$stmt = $this->connect()->query('SELECT department FROM department WHERE course_id = "' . $_SESSION['course_id'] . '"');
+		$item = $stmt->fetchAll();
+		$_SESSION['department'] = $item[0]['department'];
+	}
+}
 
 class UserProf extends DBConnection
 {
@@ -66,7 +68,8 @@ class Profileimg extends DBConnection
 		return $item;
 	}
 }
-
+$objprof = new Profileimg;
+$resultsts = $objprof->setStatus('SELECT * FROM profileimg WHERE user_id = "' . $_SESSION['userid'] . '"');
 
 class Coursect extends DBConnection
 {
