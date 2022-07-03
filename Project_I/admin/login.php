@@ -19,6 +19,7 @@ include '../initialize.php';
 </head>
 
 <body class="hold-transition login-page">
+<?php include '../plugins/inc/topnavbar.php'; ?>
     <section class="bg login bg p-5 text-center bg-light bg-image">
 
         <div class="container col-xl-10 col-xxl-8 px-4 py-5">

@@ -17,11 +17,11 @@ if (isset($_POST['save-submit'])) {
   $dataset = new Userdataset();
   $update = $dataset->setUserdata($_POST['fname'], $_POST['lname'], $_POST['course_id'], $_POST['contact'], $_POST['uid']);
   header("Location: profile.php?update=success");
-} 
-$data = new Userdata();
-$data->getUserdata();
-$stud = new StudentDept;
-$stud->getUserDept();
+}
+// $data = new Userdata();
+// $data->getUserdata();
+// $stud = new StudentDept;
+// $stud->getUserDept();
 // var_dump($_POST);
 // var_dump($_SESSION);
 // var_dump($results);
@@ -40,34 +40,37 @@ $stud->getUserDept();
 
 
 <body>
-  <section class="d-flex">
-    <?php include '../plugins/inc/sidebar.php'; ?>
 
-    <content class="w-100">
-      <?php
-      if (isset($_GET['update'])) {
-        if ($_GET['update'] == 'success') {
-          echo "<script>
+  <div class="d-flex ssize">
+
+
+    <?php include '../plugins/inc/sidebar.php'; ?>
+    <section>
+
+      <content class="w-100 d-flex ssize">
+        <?php
+        if (isset($_GET['update'])) {
+          if ($_GET['update'] == 'success') {
+            echo "<script>
                 Swal.fire(
                   'UpdateSuccessful',
                   '', 'success'
                 );
                 </script>";
+          }
         }
-      }
-      if (isset($_GET['error'])) {
-        echo "<script>
+        if (isset($_GET['error'])) {
+          echo "<script>
     Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: '" . $_GET['error'] . "!'
       });
       </script>";
-      }
-      ?>
-      <div class="container">
-        <div class="row p-1">
-          <div class="col">
+        }
+        ?>
+        <div class="row w-100">
+          <div class="col-6">
             <!-- Profile picture card-->
             <div class="card">
               <div class="card-header">Profile Picture</div>
@@ -120,68 +123,66 @@ $stud->getUserDept();
                 <!-- Modal-->
               </div>
             </div>
-          </div>
 
-          <div class="col">
-            <!-- Account details card-->
-            <div class="card">
-              <div class="card-header">Account Details</div>
-              <div class="card-body">
-                <form action="profile.php" method="POST">
-                  <div class="mb-3">
-                    <label class="small mb-1" for="inputUserid">User ID</label>
-                    <input class="form-control" id="inputUserid" type="text" name="uid" value="<?php echo $_SESSION['userid']; ?>" readonly>
-                  </div>
-                  <div class="row gx-3 mb-3">
-                    <div class="col-md-6">
-                      <label class="small mb-1" for="inputFirstName">First name</label>
-                      <input class="form-control" id="inputFirstName" type="text" name="fname" placeholder="Enter your first name" value="<?php echo $_SESSION['firstname']; ?>">
+
+            <div class="col-6">
+              <!-- Account details card-->
+              <div class="card">
+                <div class="card-header">Account Details</div>
+                <div class="card-body">
+                  <form action="profile.php" method="POST">
+                    <div class="mb-3">
+                      <label class="small mb-1" for="inputUserid">User ID</label>
+                      <input class="form-control" id="inputUserid" type="text" name="uid" value="<?php echo $_SESSION['userid']; ?>" readonly>
                     </div>
-                    <div class="col-md-6">
-                      <label class="small mb-1" for="inputLastName">Last name</label>
-                      <input class="form-control" id="inputLastName" type="text" name="lname" placeholder="Enter your last name" value="<?php echo $_SESSION['lastname']; ?>">
+                    <div class="row gx-3 mb-3">
+                      <div class="col-md-6">
+                        <label class="small mb-1" for="inputFirstName">First name</label>
+                        <input class="form-control" id="inputFirstName" type="text" name="fname" placeholder="Enter your first name" value="<?php echo $_SESSION['firstname']; ?>">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="small mb-1" for="inputLastName">Last name</label>
+                        <input class="form-control" id="inputLastName" type="text" name="lname" placeholder="Enter your last name" value="<?php echo $_SESSION['lastname']; ?>">
+                      </div>
                     </div>
-                  </div>
-                  <div class="row gx-3 mb-3">
-                    <div class="col-md-6">
-                      <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                      <input class="form-control" id="inputEmailAddress" type="email" name="email" placeholder="Enter your email address" value="<?php echo $_SESSION['email']; ?>" readonly>
+                    <div class="row gx-3 mb-3">
+                      <div class="col-md-6">
+                        <label class="small mb-1" for="inputEmailAddress">Email address</label>
+                        <input class="form-control" id="inputEmailAddress" type="email" name="email" placeholder="Enter your email address" value="<?php echo $_SESSION['email']; ?>" readonly>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="small mb-1" for="inputcid">Course ID</label>
+                        <input class="form-control" id="inputcid" type="text" name="course_id" placeholder="Eg. 1010, 1011" value="<?php echo $_SESSION['course_id']; ?>">
+                      </div>
                     </div>
-                    <div class="col-md-6">
-                      <label class="small mb-1" for="inputcid">Course ID</label>
-                      <input class="form-control" id="inputcid" type="text" name="course_id" placeholder="1" value="<?php echo $_SESSION['course_id']; ?>">
-                    </div>
-                  </div>
-                  <div class="row gx-3 mb-3">
-                    <div class="col-md-6">
-                      <label class="small mb-1" for="inputPhone">Phone number</label>
-                      <input class="form-control" id="inputPhone" type="tel" name="contact" placeholder="Optional Contact number" value="<?php echo $_SESSION['contact']; ?>">
-                      <!-- <label class="small mb-1" for="lvl">Level</label>
+                    <div class="row gx-3 mb-3">
+                      <div class="col-md-6">
+                        <label class="small mb-1" for="inputPhone">Phone number</label>
+                        <input class="form-control" id="inputPhone" type="tel" name="contact" placeholder="Optional Contact number" value="<?php echo $_SESSION['contact']; ?>">
+                        <!-- <label class="small mb-1" for="lvl">Level</label>
                       <input class="form-control" id="lvl" type="tel" name="level" placeholder="Level" value="<?php echo $_SESSION['level']; ?>"> -->
+                      </div>
+                      <div class="col-md-6">
+                        <label class="small mb-1" for="inputDob">Department</label>
+                        <input class="form-control" id="inputlvl" type="text" name="department" placeholder="" value="<?php echo $_SESSION['department']; ?>" readonly>
+                      </div>
                     </div>
-                    <div class="col-md-6">
-                      <label class="small mb-1" for="inputDob">Department</label>
-                      <input class="form-control" id="inputlvl" type="text" name="department" placeholder="1" value="<?php echo $_SESSION['department']; ?>">
-                    </div>
-                  </div>
-                  <!-- Save changes button-->
-                  <button class="btn btn-primary" type="submit" name="save-submit">Save changes</button>
+                    <!-- Save changes button-->
+                    <button class="btn btn-primary" type="submit" name="save-submit">Save changes</button>
 
-                </form>
+                  </form>
+                </div>
               </div>
             </div>
-          </div>
 
+          </div>
         </div>
 
+      </content>
+    </section>
+  </div>
+  <?php include '../plugins/inc/footer2.php'; ?>
 
-      </div>
-    </content>
-  </section>
-
-  <footer class="">
-    <?php include '../plugins/inc/footer.php'; ?>
-  </footer>
 
 </body>
 

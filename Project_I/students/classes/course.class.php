@@ -29,13 +29,14 @@ class Course extends DBConnection{
 }
 
 class Subject extends DBConnection{
-  public function getSubject() {
-    $stmt = $this->connect()->query('SELECT * FROM subject');
-    return $stmt;
+  public function getSubject($sql) {
+    $stmt = $this->connect()->query($sql);
+    $item = $stmt->fetchAll();
+    return $item;
   }
 }
 $obj = new Subject;
-$results = $obj->getsubject();
+$results = $obj->getsubject('SELECT * FROM subject');
 
 class Coursedelete extends DBConnection{
   public function deleteSubject($subject_code) {
@@ -73,8 +74,8 @@ class AssginUp extends DBConnection {
 }
 class Assgin extends DBConnection {
   public function getAssign() {
-    $stmt = $this->connect()->prepare('SELECT * FROM student_assignment WHERE subject_code = ?');
-    $stmt->execute(array($_SESSION["subject_code"]));
+    $stmt = $this->connect()->prepare('SELECT * FROM student_assignment WHERE subject_code = ? AND student_id = ?');
+    $stmt->execute(array($_SESSION["subject_code"],$_SESSION["userid"]));
     return $stmt->fetchAll();
   }
 }
@@ -86,4 +87,30 @@ class DelAssgin extends DBConnection {
   }
 }
 $objdel = new DelAssgin;
+class MatUp extends DBConnection {
+  public function uploadMaterials($name, $description, $file_location, $subject_code, $teacher_id, $date) {
+    $stmt = $this->connect()->prepare('INSERT INTO subject_materials (name, description, file_location, subject_code, uploaded_by, date) VALUES (?, ?, ?, ?, ?, ?)');
+    if (!$stmt->execute(array($name, $description, $file_location, $subject_code, $teacher_id, $date))) {
+      $stmt = null;
+      header("location : ../index.php?error=stmtfailed");
+      exit();
+    }
+    $stmt = null;
+  }
+}
+class Material extends DBConnection {
+  public function getMaterials() {
+    $stmt = $this->connect()->prepare('SELECT * FROM subject_materials WHERE subject_code = ?');
+    $stmt->execute(array($_SESSION["subject_code"]));
+    return $stmt->fetchAll();
+  }
+}
+class DelMat extends DBConnection {
+  public function delMaterials($name, $desc) {
+    $stmt = $this->connect()->prepare('DELETE FROM subject_materials WHERE name = ? AND description = ?');
+    $stmt->execute(array($name, $desc));
+    return $stmt->fetchAll();
+  }
+}
+$objdelM = new DelMat;
 ?>

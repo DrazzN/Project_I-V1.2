@@ -19,26 +19,13 @@ include 'initialize.php';
 
 <head>
   <?php include 'plugins/inc/header.php'; ?>
-  <style>
-		.ho:hover {
-			text-shadow: none !important;
-			box-shadow: border-box !important;
-			cursor:  pointer !important;
-			transition: all 0.3s ease !important;
-			-webkit-transition: scale(1.1) !important;
-			-ms-transform: scale(1.1) !important;
-			transform: scale(1.1) !important;
-			z-index: 2;
-		}
-
-	</style>
 </head>
 
 
 <body>
-  
-  <section class="bg text-center bg-light bg-imag">
-    <div class="container ssize" style="padding-top:25%;">
+<?php include 'plugins/inc/topnavbar.php'; ?>
+  <section class="bg text-center bg-light bg-imag justify-content-center">
+    <div class="container ssize" style="padding-top:20%;">
       <div class="row row-cols-md-3 py-1 bg-dark">
         <a href="<?php echo base_url; ?>admin/login.php" class="">
           <div class="mx-auto col">

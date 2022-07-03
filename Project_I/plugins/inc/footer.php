@@ -1,16 +1,44 @@
-<footer class="footer mt-auto py-0 bg-light">
-  <div class="container">
-    <span class="text-muted">© 2022 - eLearning</span>
+
+<footer class="footer mt-auto text-light" style="background-color:black;">
+  <div class="d-flex pt-3">
+    <div class="col-2 p-0">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <h3 style="padding:30px 0px 30px 0px;opacity:0.45;">My Account</h3>
+        </li>
+        <li class="nav-item">Sign In</li>
+        <li class="nav-item">Register</li>
+      </ul>
+    </div>
+    <div class="col-2 p-0">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <h3 style="padding:30px 0px 30px 0px;opacity:0.45;">About</h3>
+        </li>
+        <li class="nav-item">Site</li>
+        <li class="nav-item">Developers</li>
+      </ul>
+    </div>
+    <div class="col-2 p-0">
+      <ul class="nav flex-column text-light">
+        <li class="nav-item">
+          <h3 style="padding:30px 0px 30px 0px;opacity:0.45;">Legal Stuff</h3>
+        </li>
+        <li class="nav-item">Terms of use</li>
+        <li class="nav-item">Privacy Policy</li>
+      </ul>
+    </div>
+    <div class="col-2 p-0">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <h3 style="padding:30px 0px 30px 0px;opacity:0.45;">Follow Us</h3>
+        </li>
+        <li class="nav-item"></li>
+        <li class="nav-item"></li>
+      </ul>
+    </div>
+  </div>
+  <div class="text-start">
+  <h3 style="padding:10px 0px 30px 0px;opacity:0.1;text-align:left;">© Copyright 2022. - eLearning by aToughcookie. All rights reserved.</h3>
   </div>
 </footer>
-
-<script src="http://localhost/Project_I/plugins/js/bootstrap.bundle.min.js"></script>
-<script src="http://localhost/Project/plugins/js/bootstrap.min.js"></script>
-
-<script src="http://localhost/Project_I/plugins/js/jquery.slim.min.js"></script>
-<script src="http://localhost/Project_I/plugins/js/popper.min.js"></script>
-
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

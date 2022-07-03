@@ -70,3 +70,42 @@ class Coursect extends DBConnection
 	}
 }
 $objco = new Coursect;
+
+
+class Downloadable extends DBConnection
+{
+	public function getCountD()
+	{
+		$stmt = $this->connect()->query('SELECT COUNT(id) FROM subject_materials');
+		$item = $stmt->fetchAll();
+		return $item;
+	}
+}
+$objcod = new Downloadable;
+
+class Messages extends DBConnection
+{
+	public function getMessage()
+	{
+		$stmt = $this->connect()->query('SELECT * FROM message');
+		$item = $stmt->fetchAll();
+		return $item;
+	}
+}
+$objgmsg = new Messages;
+
+class SetMessages extends DBConnection
+{
+	public function setMessage($sentd, $message, $by)
+	{
+		$stmt = $this->connect()->prepare('INSERT INTO message (date_sent , message , sent_by) VALUES(?, ?, ?)');
+		if (!$stmt->execute(array($sentd, $message, $by))) {
+			$stmt = null;
+			header("location : ../index.php?error=stmtfailed");
+			exit();
+		}
+		$stmt = null;
+	}
+}
+
+$objsmsg = new SetMessages;

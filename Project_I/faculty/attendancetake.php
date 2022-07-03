@@ -180,9 +180,8 @@ if (isset($_POST['att-submit'])) {
 
 	</section>
 
-	<footer class="">
-		<?php include '../plugins/inc/footer.php'; ?>
-	</footer>
+		<?php include '../plugins/inc/footer2.php'; ?>
+
 
 </body>
 

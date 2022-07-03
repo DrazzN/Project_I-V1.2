@@ -19,26 +19,28 @@ include "../classes/department.class.php";
 
 
 <body>
-  <section class="d-flex ssize">
+
+  <?php include '../../plugins/inc/topnavbar.php'; ?>
+
+
+  <div class="d-flex">
     <?php include '../../plugins/inc/sidebar.php'; ?>
+    <section class="d-flex">
 
-    <content class="w-100">
-      <div class="card card-outline card-primary" style="height:100%;">
-        <div>
-          <h1 class="ps-3 pt-3">Departments</h1>
-          <hr>
+      <content class="w-100">
+        <div class="card card-outline" style="height:100%;">
           <div>
-            <div class="card card-outline card-primary">
-              <div class="card-body">
-                <div class="card-header d-flex">
+            <h1 class="ps-3 pt-3">Departments</h1>
+            <hr>
+            <main style="background-color:#f1f5f9">
+              <div class="card-body" style="padding-left:10px;">
+                <div class="card-header bg-white d-flex">
                   <button type="button" class="btn btn-primary mx-1" data-toggle="modal" data-target="#uploadModal">Add New</button>
-
-
                 </div>
               </div>
 
-              <div style="overflow-y: scroll; height:700px; padding:0 10px 0 10px">
-                <table class="table tabe-hover table-bordered" id="list">
+              <div style="overflow-y: scroll; height:450px; padding:0 10px 0 10px">
+                <table class="table tabe-hover table-bordered bg-white" id="list">
                   <thead>
                     <tr>
                       <th class="text-center">#</th>
@@ -150,13 +152,13 @@ include "../classes/department.class.php";
                   </tbody>
                 </table>
               </div>
-            </div>
+            </main>
           </div>
         </div>
-      </div>
-      </div>
-    </content>
-  </section>
+      </content>
+
+    </section>
+  </div>
   <!-- Modal -->
   <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -196,9 +198,9 @@ include "../classes/department.class.php";
     </div>
   </div>
   <!-- Modal -->
-  <footer class="">
-    <?php include '../../plugins/inc/footer.php'; ?>
-  </footer>
+
+  <?php include '../../plugins/inc/footer2.php'; ?>
+
 
 </body>
 

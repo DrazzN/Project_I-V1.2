@@ -45,15 +45,26 @@
       background: #161623;
     }
 
-    section2 {
-      position: relative;
+    /* Style the header */
+    header {
+      top: 0;
+      background-color: #666;
       width: 100%;
-      height: 10;
+      height: 56px;
+      padding: 0px;
+      font-size: 1rem;
+      color: white;
     }
 
-    section2::before {
+    section {
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 150px);
+    }
+
+    section::before {
       content: '';
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -62,9 +73,9 @@
       clip-path: circle(50% at right 70%);
     }
 
-    section2::after {
+    section::after {
       content: '';
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -206,36 +217,8 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark w-100">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="<?php echo base_url; ?>index.php">eLearning</a>
-
-      <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item ho">
-            <a href="about.php" class="nav-link active">
-              About
-            </a>
-          </li>
-          <li class="nav-item ho">
-            <a href="developers.php" class="nav-link active">
-              Developers
-            </a>
-          </li>
-          <li class="nav-item ho">
-            <a href="contacts.php" class="nav-link active">
-              Contacts
-            </a>
-          </li>
-        </ul>
-
-      </div>
-    </div>
-  </nav>
-  <section2 class="my-0">
+  <?php include 'plugins/inc/topnavbar.php'; ?>
+  <section class="">
 
     <div class="contain">
       <div class="card">
@@ -281,7 +264,7 @@
         </ul>
       </diV>
     </div>
-  </section2>
+  </section>
 </body>
 
 </html>

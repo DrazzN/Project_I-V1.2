@@ -13,7 +13,7 @@ include '../initialize.php';
 </head>
 
 <body class="hold-transition login-page">
-
+<?php include '../plugins/inc/topnavbar.php'; ?>
   <section class="bg login p-5 p-lg-4  text-center bg-light bg-image">
     <?php
     if ($_GET && isset($_SESSION['error'])) {
@@ -71,7 +71,7 @@ include '../initialize.php';
       </div>
     </div>
   </section>
-  <?php include '../plugins/inc/footer.php'; ?>
+  <?php include '../plugins/inc/footer2.php'; ?>
 </body>
 
 </html>

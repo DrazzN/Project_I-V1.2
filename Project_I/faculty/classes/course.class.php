@@ -29,18 +29,14 @@ class Course extends DBConnection{
 }
 
 class Subject extends DBConnection{
-  public function getSubject() {
-    $stmt = $this->connect()->query('SELECT * FROM subject');
-    return $stmt;
+  public function getSubject($sql) {
+    $stmt = $this->connect()->query($sql);
+    $item = $stmt->fetchAll();
+    return $item;
   }
-  // public function getLevel() {
-  //   $stmtlv = $this->connect()->query('SELECT COUNT(level), level FROM subject GROUP BY level;');
-  //   return $stmtlv;
-  // }
 }
 $obj = new Subject;
-$results = $obj->getSubject();
-// $semi = $obj->getLevel();
+$results = $obj->getSubject('SELECT * FROM subject');
 
 class Coursedelete extends DBConnection{
   public function deleteSubject($subject_code) {
@@ -91,6 +87,30 @@ class DelAssgin extends DBConnection {
   }
 }
 $objdel = new DelAssgin;
-
-
+class MatUp extends DBConnection {
+  public function uploadMaterials($name, $description, $file_location, $subject_code, $teacher_id, $date) {
+    $stmt = $this->connect()->prepare('INSERT INTO subject_materials (name, description, file_location, subject_code, uploaded_by, date) VALUES (?, ?, ?, ?, ?, ?)');
+    if (!$stmt->execute(array($name, $description, $file_location, $subject_code, $teacher_id, $date))) {
+      $stmt = null;
+      header("location : ../index.php?error=stmtfailed");
+      exit();
+    }
+    $stmt = null;
+  }
+}
+class Material extends DBConnection {
+  public function getMaterials() {
+    $stmt = $this->connect()->prepare('SELECT * FROM subject_materials WHERE subject_code = ?');
+    $stmt->execute(array($_SESSION["subject_code"]));
+    return $stmt->fetchAll();
+  }
+}
+class DelMat extends DBConnection {
+  public function delMaterials($name, $desc) {
+    $stmt = $this->connect()->prepare('DELETE FROM subject_materials WHERE name = ? AND description = ?');
+    $stmt->execute(array($name, $desc));
+    return $stmt->fetchAll();
+  }
+}
+$objdelM = new DelMat;
 ?>

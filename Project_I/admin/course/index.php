@@ -32,58 +32,58 @@ $results = $obj->getsubject($_SESSION['sple']);
 
 <body>
 
-	<section class="d-flex ssize">
+	<?php include '../../plugins/inc/topnavbar.php'; ?>
+
+
+	<div class="d-flex">
 		<?php include '../../plugins/inc/sidebar.php'; ?>
-		<?php
-		if (isset($_GET['action'])) {
-			echo "<script>
+		<section class="d-flex">
+			<?php
+			if (isset($_GET['action'])) {
+				echo "<script>
 									Swal.fire(
 										'" . $_GET['action'] . " Successful',
 										'', 'success'
 									);
 									</script>";
-		}
-		?>
-		<content class="w-100">
-			<div class="card card-outline" style="height:100%;">
-				<div>
-					<h1 class="ps-3 pt-3">Courses</h1>
-					<hr>
-					<button type="button" class="btn btn-primary ms-3" data-toggle="modal" data-target="#uploadModal" style="width:100px;">Add New</button>
-					<!-- <a href="index.php?course_id=1010&dept=BCA" class="btn btn-primary">BCA</a>
-					<a href="index.php?course_id=1011&dept=BSW" class="btn btn-primary">BSW</a>
-					<a href="index.php?course_id=1012&dept=BBS" class="btn btn-primary">BBS</a> -->
+			}
+			?>
+			<content class="w-100">
+				<div class="card card-outline" style="height:100%;">
+					<div>
+						<h1 class="ps-3 pt-3">Courses</h1>
+						<hr>
+						<main style="background-color:#f1f5f9">
+							<div class="card-body" style="padding-left:10px;">
+								<div class="card-header bg-white d-flex">
+									<button type="button" class="btn btn-primary mx-1" data-toggle="modal" data-target="#uploadModal">Add New</button>
+								</div>
+							</div>
 
-
-
-				</div>
-
-				<hr>
-
-				<div style="overflow-y: scroll; height:700px">
-					<?php
-					// $setin = false;
-					foreach ($resultd as $sect) {
-						$dcid = $sect['course_id'];
-						if (isset($_GET['course_id']) && $setin = true) {
-							// $setin = true;
-							echo '<h3 class="px-5 pt-5 font-md-1">' . $_GET['dept'] . '</h3>';
-						} else if (!isset($_GET['course_id'])) {
-							echo '<h3 class="px-5 pt-5 font-md-1">' . $sect['department'] . ' &nbsp;Course ID : '.$sect['course_id'].'</h3>';
-						}
-						echo '<div class="container">
+							<div style="overflow-y: scroll; height:450px">
+								<?php
+								// $setin = false;
+								foreach ($resultd as $sect) {
+									$dcid = $sect['course_id'];
+									if (isset($_GET['course_id']) && $setin = true) {
+										// $setin = true;
+										echo '<h3 class="px-5 pt-5 font-md-1">' . $_GET['dept'] . '</h3>';
+									} else if (!isset($_GET['course_id'])) {
+										echo '<h3 class="px-5 pt-5 font-md-1">' . $sect['department'] . ' &nbsp;Course ID : ' . $sect['course_id'] . '</h3>';
+									}
+									echo '<div class="container">
 									<div class="d-flex row row-lg-4 g-4 d-flex m-2" style="width:100%;">';
-						// <?php
-						$i = 1;
-						foreach ($results as $row) {
-							$id = $row['id'];
-							$subid = $row['subject_code'];
-							$cid = $row['course_id'];
-							$lvl = $row['level'];
-							$sname = $row['description'];
-							if ($dcid == $cid) {
-								echo
-								'<div class="col-lg-4">
+									// <?php
+									$i = 1;
+									foreach ($results as $row) {
+										$id = $row['id'];
+										$subid = $row['subject_code'];
+										$cid = $row['course_id'];
+										$lvl = $row['level'];
+										$sname = $row['description'];
+										if ($dcid == $cid) {
+											echo
+											'<div class="col-lg-4">
 														<div class="card shadow-sm">
 															<img src="background/' . $i . '.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="...">
 															<div class="card-body">
@@ -175,19 +175,21 @@ $results = $obj->getsubject($_SESSION['sple']);
 															</div>
 														</div>
 													</div>	';
-								$i++;
-							}
-						}
-						echo '</div>
+											$i++;
+										}
+									}
+									echo '</div>
 							</div>';
-					}
+								}
 
-					?>
+								?>
 
-				</div>
-			</div>
-		</content>
-	</section>
+							</div>
+						</main>
+					</div>
+			</content>
+		</section>
+	</div>
 	<!-- Add Modal -->
 	<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -227,9 +229,9 @@ $results = $obj->getsubject($_SESSION['sple']);
 		</div>
 	</div>
 	<!-- Add Modal -->
-	<footer class="">
-		<?php include '../../plugins/inc/footer.php'; ?>
-	</footer>
+
+	<?php include '../../plugins/inc/footer2.php'; ?>
+
 	<script>
 		var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 		var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {

@@ -116,9 +116,8 @@ $chkatt = $obj->getUsers('SELECT * FROM attendance');
 
 	</section>
 
-	<footer class="">
-		<?php include '../plugins/inc/footer.php'; ?>
-	</footer>
+		<?php include '../plugins/inc/footer2.php'; ?>
+
 
 </body>
 

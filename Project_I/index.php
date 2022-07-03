@@ -10,13 +10,13 @@ class SystemInfo extends DBConnection
     {
         $stmt = $this->connect()->query('SELECT * FROM sys_info');
         $item = $stmt->fetchAll();
-        $_SESSION['title'] = $item[0]['title'];
-        $_SESSION['content'] = $item[0]['content'];
+        return $item;
         $stmt = null;
     }
 }
 $sysdata = new SystemInfo;
 $data = $sysdata->Info();
+// var_dump($data[0]['content']);
 
 
 ?>
@@ -56,7 +56,6 @@ $data = $sysdata->Info();
         .bg {
             background-image: url('<?php echo base_url; ?>img/lg-back.webp');
             height: 95%;
-            background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }
@@ -81,6 +80,25 @@ $data = $sysdata->Info();
             transform: scale(1.1) !important;
             z-index: 2;
         }
+
+        footer {
+            background-color: #777;
+            padding: 0px;
+            text-align: left;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            position: absolute;
+            width: 100%;
+            height: 300px;
+            left: 0px;
+        }
+
+        footer div {
+            padding: 30px;
+        }
     </style>
     <style>
         .ho:hover {
@@ -99,7 +117,7 @@ $data = $sysdata->Info();
 
 <body>
     <header>
-        <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark" style="background-color:black;height:75px;">
             <div class="container-fluid">
                 <a class="navbar-brand" href="<?php echo base_url; ?>index.php">eLearning</a>
 
@@ -130,14 +148,14 @@ $data = $sysdata->Info();
         </nav>
     </header>
     <main>
-        <section class="ssize bg-dark text-light p-5 text-start">
+        <section class="bg-dark text-light p-5 text-start" style="max-width: 1920px;max-height: 1080px;">
             <div class="ssize">
                 <content>
                     <div class="d-sm-flex py-5 align-items-center justify-content-between">
                         <div>
                             <?php
-                            echo $_SESSION['title'];
-                            echo $_SESSION['content'];
+                            echo $data[0]['content'];
+                            echo $data[1]['content'];
 
                             ?>
                             <button class="btn btn-primary btn-lg"><a href="<?php echo base_url; ?>portal.php" class="text-light">Start The Enrollment</a></button>
@@ -152,10 +170,47 @@ $data = $sysdata->Info();
 
 
 
-    <footer class="footer mt-auto py-0 bg-light">
-        <div class="container">
-            <span class="text-muted">© 2022 - eLearning</span>
-            <a href="#">Back to top</a>
+    <footer class="footer mt-auto text-light" style="background-color:black;">
+        <div class="d-flex pt-3">
+            <div class="col-2 p-0">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <h3 style="padding:30px 0px 30px 0px;opacity:0.45;">My Account</h3>
+                    </li>
+                    <li class="nav-item">Sign In</li>
+                    <li class="nav-item">Register</li>
+                </ul>
+            </div>
+            <div class="col-2 p-0">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <h3 style="padding:30px 0px 30px 0px;opacity:0.45;">About</h3>
+                    </li>
+                    <li class="nav-item">Site</li>
+                    <li class="nav-item">Developers</li>
+                </ul>
+            </div>
+            <div class="col-2 p-0">
+                <ul class="nav flex-column text-light">
+                    <li class="nav-item">
+                        <h3 style="padding:30px 0px 30px 0px;opacity:0.45;">Legal Stuff</h3>
+                    </li>
+                    <li class="nav-item">Terms of use</li>
+                    <li class="nav-item">Privacy Policy</li>
+                </ul>
+            </div>
+            <div class="col-2 p-0">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <h3 style="padding:30px 0px 30px 0px;opacity:0.45;">Follow Us</h3>
+                    </li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="p-0">
+            <h3 style="padding:10px 0px 30px 0px;opacity:0.1;">© Copyright 2022. - eLearning All rights reserved.</h3>
         </div>
     </footer>
     <script src="js/bootstrap.bundle.min.js"></script>

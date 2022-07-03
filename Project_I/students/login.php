@@ -34,6 +34,8 @@ if (isset($_GET['error'])) {
 </head>
 
 <body class="hold-transition login-page">
+    
+<?php include '../plugins/inc/topnavbar.php'; ?>
     <section class="bg login p-5 text-center bg-light bg-image">
 
         <?php
@@ -95,7 +97,7 @@ if (isset($_GET['error'])) {
         </div>
 
     </section>
-    <?php include '../plugins/inc/footer.php'; ?>
+    <?php include '../plugins/inc/footer2.php'; ?>
 </body>
 
 </html>

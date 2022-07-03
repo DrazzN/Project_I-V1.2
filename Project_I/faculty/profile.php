@@ -35,34 +35,36 @@ $fald->getUserDept();
 
 
 <body>
-  <section class="d-flex ssize">
-    <?php include '../plugins/inc/sidebar.php'; ?>
+  <?php include '../plugins/inc/topnavbar.php'; ?>
+  <div class="d-flex">
 
-    <content class="w-100">
-      <?php
-      if (isset($_GET['update'])) {
-        if ($_GET['update'] == 'success') {
-          echo "<script>
+    <?php include '../plugins/inc/sidebar.php'; ?>
+    <section>
+
+      <content class="w-100 d-flex ssize">
+        <?php
+        if (isset($_GET['update'])) {
+          if ($_GET['update'] == 'success') {
+            echo "<script>
                 Swal.fire(
                   'UpdateSuccessful',
                   '', 'success'
                 );
                 </script>";
+          }
         }
-      }
-      if (isset($_GET['error'])) {
-        echo "<script>
-    Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: '" . $_GET['error'] . "!'
-      });
-      </script>";
-      }
-      ?>
-      <div class="container">
-        <div class="row p-1">
-          <div class="col">
+        if (isset($_GET['error'])) {
+          echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: '" . $_GET['error'] . "!'
+                  });
+                  </script>";
+        }
+        ?>
+        <div class="row w-100">
+          <div class="col-6">
             <!-- Profile picture card-->
             <div class="card">
               <div class="card-header">Profile Picture</div>
@@ -115,66 +117,63 @@ $fald->getUserDept();
                 <!-- Modal-->
               </div>
             </div>
-          </div>
 
-          <div class="col">
-            <!-- Account details card-->
-            <div class="card">
-              <div class="card-header">Account Details</div>
-              <div class="card-body">
-                <form action="profile.php" method="POST">
-                  <div class="mb-3">
-                    <label class="small mb-1" for="inputUserid">User ID</label>
-                    <input class="form-control" id="inputUserid" type="text" name="uid" value="<?php echo $_SESSION['userid']; ?>" readonly>
-                  </div>
-                  <div class="row gx-3 mb-3">
-                    <div class="col-md-6">
-                      <label class="small mb-1" for="inputFirstName">First name</label>
-                      <input class="form-control" id="inputFirstName" type="text" name="fname" placeholder="Enter your first name" value="<?php echo $_SESSION['firstname']; ?>">
-                    </div>
-                    <div class="col-md-6">
-                      <label class="small mb-1" for="inputLastName">Last name</label>
-                      <input class="form-control" id="inputLastName" type="text" name="lname" placeholder="Enter your last name" value="<?php echo $_SESSION['lastname']; ?>">
-                    </div>
-                  </div>
-                  <div class="row gx-3 mb-3">
-                    <div class="col-md-6">
-                      <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                      <input class="form-control" id="inputEmailAddress" type="email" name="email" placeholder="Enter your email address" value="<?php echo $_SESSION['email']; ?>" readonly>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="small mb-1" for="inputcid">Course ID</label>
-                      <input class="form-control" id="inputcid" type="text" name="course_id" placeholder="1" value="<?php echo $_SESSION['course_id']; ?>">
-                    </div>
-                  </div>
-                  <div class="row gx-3 mb-3">
-                    <div class="col-md-6">
-                      <label class="small mb-1" for="inputPhone">Phone number</label>
-                      <input class="form-control" id="inputPhone" type="tel" name="contact" placeholder="Optional Contact number" value="<?php echo $_SESSION['contact']; ?>">
-                    </div>
-                    <div class="col-md-6">
-                      <label class="small mb-1" for="inputDob">Department</label>
-                      <input class="form-control" id="inputlvl" type="text" name="department" placeholder="1" value="<?php echo $_SESSION['department']; ?>">
-                    </div>
-                  </div>
-                  <!-- Save changes button-->
-                  <button class="btn btn-primary" type="submit" name="save-submit">Save changes</button>
 
-                </form>
+            <div class="col-6">
+              <!-- Account details card-->
+              <div class="card">
+                <div class="card-header">Account Details</div>
+                <div class="card-body">
+                  <form action="profile.php" method="POST">
+                    <div class="mb-3">
+                      <label class="small mb-1" for="inputUserid">User ID</label>
+                      <input class="form-control" id="inputUserid" type="text" name="uid" value="<?php echo $_SESSION['userid']; ?>" readonly>
+                    </div>
+                    <div class="row gx-3 mb-3">
+                      <div class="col-md-6">
+                        <label class="small mb-1" for="inputFirstName">First name</label>
+                        <input class="form-control" id="inputFirstName" type="text" name="fname" placeholder="Enter your first name" value="<?php echo $_SESSION['firstname']; ?>">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="small mb-1" for="inputLastName">Last name</label>
+                        <input class="form-control" id="inputLastName" type="text" name="lname" placeholder="Enter your last name" value="<?php echo $_SESSION['lastname']; ?>">
+                      </div>
+                    </div>
+                    <div class="row gx-3 mb-3">
+                      <div class="col-md-6">
+                        <label class="small mb-1" for="inputEmailAddress">Email address</label>
+                        <input class="form-control" id="inputEmailAddress" type="email" name="email" placeholder="Enter your email address" value="<?php echo $_SESSION['email']; ?>" readonly>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="small mb-1" for="inputcid">Course ID</label>
+                        <input class="form-control" id="inputcid" type="text" name="course_id" placeholder="1" value="<?php echo $_SESSION['course_id']; ?>">
+                      </div>
+                    </div>
+                    <div class="row gx-3 mb-3">
+                      <div class="col-md-6">
+                        <label class="small mb-1" for="inputPhone">Phone number</label>
+                        <input class="form-control" id="inputPhone" type="tel" name="contact" placeholder="Optional Contact number" value="<?php echo $_SESSION['contact']; ?>">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="small mb-1" for="inputDob">Department</label>
+                        <input class="form-control" id="inputlvl" type="text" name="department" placeholder="1" value="<?php echo $_SESSION['department']; ?>">
+                      </div>
+                    </div>
+                    <!-- Save changes button-->
+                    <button class="btn btn-primary" type="submit" name="save-submit">Save changes</button>
+
+                  </form>
+                </div>
               </div>
             </div>
-          </div>
 
+          </div>
         </div>
 
-
-      </div>
-    </content>
-  </section>
-
-  <footer class="">
-    <?php include '../plugins/inc/footer.php'; ?>
-  </footer>
+      </content>
+    </section>
+  </div>
+  <?php include '../plugins/inc/footer2.php'; ?>
 
 </body>
 
