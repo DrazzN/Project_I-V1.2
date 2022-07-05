@@ -34,7 +34,15 @@ class Subject extends DBConnection{
     $item = $stmt->fetchAll();
     return $item;
   }
-
+  public function setSubject($mod, $subcode) {
+    $stmt = $this->connect()->prepare('UPDATE subject SET module = ? WHERE subject_code = ?');
+    if (!$stmt->execute(array($mod, $subcode))) {
+      $stmt = null;
+      header("location : ../index.php?error=stmtfailed");
+      exit();
+  }
+  $stmt = null;
+  }
 }
 $obj = new Subject;
 
@@ -43,10 +51,10 @@ $obj = new Subject;
 class Coursedelete extends DBConnection{
   public function deleteSubject($subject_code) {
    $stmt = $this->connect()->prepare('DELETE FROM subject WHERE subject_code = ?');
-   if (!$stmt->execute(array($subject_code))) {
-    $stmt = null;
-    header("location : ../index.php?error=stmtfailed");
-    exit();
+    if (!$stmt->execute(array($subject_code))) {
+      $stmt = null;
+      header("location : ../index.php?error=stmtfailed");
+      exit();
   }
   $stmt = null;
   }
@@ -116,4 +124,3 @@ class DelMat extends DBConnection {
   }
 }
 $objdelM = new DelMat;
-?>

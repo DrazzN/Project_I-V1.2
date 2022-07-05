@@ -1,15 +1,17 @@
 <?php
 // include '../../classes/course.class.php';
-
 $op = $obj->getSubject('SELECT module FROM subject WHERE subject_code = "' . $_SESSION['subject_code'] . '"');
-// var_dump($_POST);
-// var_dump($_SESSION); 
+
+var_dump($_POST);
+var_dump($_SESSION);
+
 ?>
-<form action="" method="POST">
-<div id="editor">
-  <div class="px-3 text-end" style="overflow-y:scroll;height:450px">
+<form action="course-content.php" method="POST">
+  <textarea name="textmodule" style="overflow-y:scroll;width:100%;height:450px">
+
     <?php echo  $op[0]['module']; ?>
-    <!-- 
+  </textarea>
+  <!-- 
     <h4>Course Description</h4>
     <p>
       This course offers fundamental concepts of computer and computing which includes introduction to computer system, computer software & database management system, operating system, data communication & computer network and contemporary technologies. It also aims at helping students convert theoretical concept into practical skill through the use of different application packages including word processor, spreadsheet package, presentation package and photo editing graphical package.
@@ -65,10 +67,7 @@ $op = $obj->getSubject('SELECT module FROM subject WHERE subject_code = "' . $_S
  -->
 
 
-
-  </div>
-</div>
-<button type="submit">Save</button>
+  <button type="md-submit" class="btn btn btn-primary" name="submit">Save</button>
 </form>
 <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
 

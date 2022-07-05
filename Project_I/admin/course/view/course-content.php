@@ -22,6 +22,9 @@ if (isset($_POST['delas-submit'])) {
 } else if (isset($_POST['delmat-submit'])) {
   $objdelM->delMaterials($_POST['name'], $_POST['desc']);
   header("Location: course-content.php?opt=coursematerials&upload=deleted");
+} else if(isset($_POST['md-submit'])) {
+  $obj->getSubject('UPDATE subject SET module = '.$_POST['texxtmodule'].' WHERE subject_code = "' . $_SESSION['subject_code'] . '"');
+  header("Location: course-content.php?opt=module&upload=success");
 }
 ?>
 
